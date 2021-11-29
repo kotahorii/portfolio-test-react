@@ -26,3 +26,10 @@ export type UpdateUserData = {
   prefecture?: number
   image?: string
 }
+export type UpdateUserFormData = FormData & {
+  append(
+    name: keyof UpdateUserData,
+    value: String | Blob,
+    fileName?: string
+  ): any
+}
