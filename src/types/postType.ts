@@ -5,7 +5,7 @@ export type Post = typeof postRes
 export type CreatePost = {
   body: string
   title: string
-  prefecture: typeof prefectures
+  prefecture: typeof prefectures[number]
   city: string
   town: string
   image: string

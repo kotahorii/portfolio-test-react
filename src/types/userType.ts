@@ -18,3 +18,11 @@ export type SignInData = {
 }
 export type User = typeof userRes
 export type SignInRes = { data: User }
+
+export type UpdateUserData = {
+  id: number
+  name?: string
+  introduction?: string
+  prefecture?: number
+  image?: string
+}
