@@ -1,8 +1,5 @@
 export const userRes = {
   id: 2,
-  provider: 'email',
-  uid: 'user0@gmail.com',
-  allow_password_change: false,
   name: 'takashi4 update',
   image: {
     url: 'sample.jpg',

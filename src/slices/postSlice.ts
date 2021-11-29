@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { UpdatePost } from 'types/postType'
+import { Post, UpdatePost } from 'types/postType'
 import { RootState } from '../app/store'
 
 type StateType = {
   editedPost: UpdatePost
+  detailPost: Post
 }
 
 const initialState: StateType = {
@@ -16,6 +17,20 @@ const initialState: StateType = {
     town: '',
     image: '',
   },
+  detailPost: {
+    title: '',
+    body: '',
+    prefecture: '東京都',
+    city: '',
+    town: '',
+    userId: 0,
+    image: {
+      url: '',
+    },
+    id: 0,
+    createdAt: '',
+    updatedAt: '',
+  },
 }
 
 export const postSlice = createSlice({
@@ -26,9 +41,20 @@ export const postSlice = createSlice({
     setEditPost: (state, action: PayloadAction<UpdatePost>) => {
       state.editedPost = action.payload
     },
+    resetEditPost: (state) => {
+      state.editedPost = initialState.editedPost
+    },
+    setDetailPost: (state, action: PayloadAction<Post>) => {
+      state.detailPost = action.payload
+    },
+    resetDetailPost: (state) => {
+      state.detailPost = initialState.detailPost
+    },
   },
 })
 
-export const { setEditPost } = postSlice.actions
-export const selectCount = (state: RootState) => state.post.editedPost
+export const { setEditPost, resetEditPost, setDetailPost, resetDetailPost } =
+  postSlice.actions
+export const selectEditedPost = (state: RootState) => state.post.editedPost
+export const selectDetailPost = (state: RootState) => state.post.detailPost
 export default postSlice.reducer
