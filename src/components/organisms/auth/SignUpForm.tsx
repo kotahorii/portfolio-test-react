@@ -44,13 +44,15 @@ export const SignUpForm = memo(() => {
           onChange={changeAuthData}
         />
       </div>
-      <div className="flex flex-col space-y-3">
-        <CustomLabel title="Prefecture:" />
-        <CustomSelector
-          value={userData.prefecture}
-          onChange={prefectureChange}
-          arrays={prefectures}
-        />
+      <div className="flex md:flex-col flex-row items-center md:space-y-3 space-y-0 md:space-x-0 space-x-1">
+        <div className="flex flex-col space-y-3">
+          <CustomLabel title="Prefecture:" />
+          <CustomSelector
+            value={userData.prefecture}
+            onChange={prefectureChange}
+            arrays={prefectures}
+          />
+        </div>
         <div className="flex flex-row justify-center space-x-3">
           <ImageInput />
         </div>
