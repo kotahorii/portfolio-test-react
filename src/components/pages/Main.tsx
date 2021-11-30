@@ -1,5 +1,5 @@
 import { VFC } from 'react'
 
-export const Test: VFC = () => {
+export const Main: VFC = () => {
   return <></>
 }
