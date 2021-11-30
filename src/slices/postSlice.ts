@@ -15,7 +15,6 @@ const initialState: StateType = {
     prefecture: '東京都',
     city: '',
     town: '',
-    genre: 0,
     image: '',
   },
   detailPost: {

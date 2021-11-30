@@ -4,7 +4,7 @@ import { useMain } from 'hooks/useMain'
 import { memo } from 'react'
 
 export const Main = memo(() => {
-  const { posts, isLoadingUser, isLoadingPosts } = useMain()
+  const { isLoadingUser, isLoadingPosts } = useMain()
 
   if (isLoadingPosts || isLoadingUser)
     return (
@@ -20,7 +20,7 @@ export const Main = memo(() => {
     )
   return (
     <Layout>
-      <div className="md:flex md:flex-wrap md:items-center justify-center block">
+      <div className="flex flex-col w-full items-center justify-center">
         {[...Array(18)]
           .map((_, i) => i)
           ?.map((i) => (

@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-export const LoadingCard = memo(() => {
+export const PostCard = memo(() => {
   return (
     <div className="flex md:flex-row flex-col m-2 items-center md:space-x-5 cursor-pointer md:w-3/5 max-w-2xl w-80 px-5 py-4 shadow-md hover:shadow-lg rounded-lg space-y-3">
       <div className=" w-72 h-52 bg-gray-300 rounded-lg"></div>
