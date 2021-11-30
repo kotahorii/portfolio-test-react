@@ -25,7 +25,7 @@ export const useMutationAuth = () => {
     }
   )
 
-  const signUpMutate = useMutation(
+  const signUpMutation = useMutation(
     (data: SignUpFormData) => client.post<AuthRes>('auth', data),
     {
       onSuccess: (res) => {
@@ -41,7 +41,7 @@ export const useMutationAuth = () => {
     }
   )
 
-  const signOutMutate = useMutation(
+  const signOutMutation = useMutation(
     () =>
       client.delete('auth/sign_out', {
         headers: {
@@ -64,5 +64,5 @@ export const useMutationAuth = () => {
     }
   )
 
-  return { signInMutation, signUpMutate, signOutMutate }
+  return { signInMutation, signUpMutation, signOutMutation }
 }

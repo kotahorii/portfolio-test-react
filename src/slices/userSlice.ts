@@ -5,6 +5,7 @@ import { RootState } from '../app/store'
 type StateType = {
   userData: SignUpData & { id: number }
   detailUser: User
+  preview: string
 }
 const initialState: StateType = {
   userData: {
@@ -29,6 +30,7 @@ const initialState: StateType = {
     createdAt: '',
     updatedAt: '',
   },
+  preview: '',
 }
 
 export const userSlice = createSlice({
@@ -51,10 +53,19 @@ export const userSlice = createSlice({
     resetDetailUser: (state) => {
       state.detailUser = initialState.detailUser
     },
+    setPreview: (state, action) => {
+      state.preview = action.payload
+    },
   },
 })
-export const { setUserData, resetUserData, setDetailUser, resetDetailUser } =
-  userSlice.actions
+export const {
+  setUserData,
+  resetUserData,
+  setDetailUser,
+  resetDetailUser,
+  setPreview,
+} = userSlice.actions
 export const selectUserData = (state: RootState) => state.user.userData
 export const selectDetailUser = (state: RootState) => state.user.detailUser
+export const selectPreview = (state: RootState) => state.user.preview
 export default userSlice.reducer
