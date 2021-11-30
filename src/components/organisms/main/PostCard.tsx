@@ -17,7 +17,7 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
           />
         </div>
       ) : (
-        <div className=" w-72 h-52 bg-gray-300 rounded-lg"></div>
+        <div className=" w-72 h-52 bg-green-200 rounded-lg"></div>
       )}
       <div className="flex flex-col md:h-52 md:w-2/3 w-full py-2 space-y-2">
         <div className="h-10 rounded-lg">
@@ -34,10 +34,10 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
           </p>
         </div>
         <div className="flex flex-row mt-5 justify-between items-center px-2">
-          <div className="w-10 h-8 mt-2 mr-2 bg-gray-300 rounded-full"></div>
-          <div className="h-8 w-28 mt-2 bg-gray-300 rounded-full"></div>
+          <div className="w-10 h-8 mt-2 mr-2 bg-green-200 rounded-full"></div>
+          <div className="h-8 w-28 mt-2 bg-green-200 rounded-full"></div>
           <div className="w-8"></div>
-          <div className="h-8 w-28 mt-2 bg-gray-300 rounded-full"></div>
+          <div className="h-8 w-28 mt-2 bg-green-200 rounded-full"></div>
         </div>
       </div>
     </div>

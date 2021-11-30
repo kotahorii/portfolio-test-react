@@ -1,8 +1,8 @@
 import { Menu } from '@headlessui/react'
-import { CustomUserIcon } from 'components/molecules/CustomUserIcon'
 import { useMain } from 'hooks/useMain'
 import { memo } from 'react'
 import { Link } from 'react-router-dom'
+import { CustomUserIcon } from 'components/molecules/CustomUserIcon'
 
 export const Header = memo(() => {
   const pageTopButton = document.querySelector('#page-top')
@@ -16,7 +16,7 @@ export const Header = memo(() => {
   return (
     <nav className=" flex flex-row z-10 fixed justify-between items-center px-3 w-screen h-20 text-white bg-green-300">
       <Menu.Button>
-        <CustomUserIcon user={currentUser} width="w-12" />
+        <CustomUserIcon user={currentUser} />
       </Menu.Button>
       <div
         id="page-top"
