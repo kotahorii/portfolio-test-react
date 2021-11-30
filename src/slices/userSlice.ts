@@ -6,6 +6,7 @@ type StateType = {
   userData: SignUpData & { id: number }
   detailUser: User
   preview: string
+  isOpenEditUserModal: boolean
 }
 const initialState: StateType = {
   userData: {
@@ -31,6 +32,7 @@ const initialState: StateType = {
     updatedAt: '',
   },
   preview: '',
+  isOpenEditUserModal: false,
 }
 
 export const userSlice = createSlice({
@@ -53,8 +55,11 @@ export const userSlice = createSlice({
     resetDetailUser: (state) => {
       state.detailUser = initialState.detailUser
     },
-    setPreview: (state, action) => {
+    setPreview: (state, action: PayloadAction<string>) => {
       state.preview = action.payload
+    },
+    setIsOpenEditUserModal: (state, action: PayloadAction<boolean>) => {
+      state.isOpenEditUserModal = action.payload
     },
   },
 })
@@ -64,8 +69,11 @@ export const {
   setDetailUser,
   resetDetailUser,
   setPreview,
+  setIsOpenEditUserModal,
 } = userSlice.actions
 export const selectUserData = (state: RootState) => state.user.userData
 export const selectDetailUser = (state: RootState) => state.user.detailUser
 export const selectPreview = (state: RootState) => state.user.preview
+export const selectIsOpenEditUserModal = (state: RootState) =>
+  state.user.isOpenEditUserModal
 export default userSlice.reducer

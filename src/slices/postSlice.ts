@@ -5,6 +5,8 @@ import { RootState } from '../app/store'
 type StateType = {
   editedPost: UpdatePost
   detailPost: Post
+  isOpenCreatePostModal: boolean
+  isOpenDeletePostModal: boolean
 }
 
 const initialState: StateType = {
@@ -32,6 +34,8 @@ const initialState: StateType = {
     createdAt: '',
     updatedAt: '',
   },
+  isOpenCreatePostModal: false,
+  isOpenDeletePostModal: false,
 }
 
 export const postSlice = createSlice({
@@ -51,11 +55,27 @@ export const postSlice = createSlice({
     resetDetailPost: (state) => {
       state.detailPost = initialState.detailPost
     },
+    setIsOpenCreatePostModal: (state, action: PayloadAction<boolean>) => {
+      state.isOpenCreatePostModal = action.payload
+    },
+    setIsOpenDeletePostModal: (state, action: PayloadAction<boolean>) => {
+      state.isOpenDeletePostModal = action.payload
+    },
   },
 })
 
-export const { setEditPost, resetEditPost, setDetailPost, resetDetailPost } =
-  postSlice.actions
+export const {
+  setEditPost,
+  resetEditPost,
+  setDetailPost,
+  resetDetailPost,
+  setIsOpenCreatePostModal,
+  setIsOpenDeletePostModal,
+} = postSlice.actions
 export const selectEditedPost = (state: RootState) => state.post.editedPost
 export const selectDetailPost = (state: RootState) => state.post.detailPost
+export const selectIsOpenCreatePostModal = (state: RootState) =>
+  state.post.isOpenCreatePostModal
+export const selectIsOpenDeletePostModal = (state: RootState) =>
+  state.post.isOpenDeletePostModal
 export default postSlice.reducer
