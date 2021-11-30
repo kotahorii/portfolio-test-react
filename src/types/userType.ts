@@ -17,7 +17,7 @@ export type SignInData = {
   password: string
 }
 export type User = typeof userRes
-export type SignInRes = { data: User }
+export type AuthRes = { data: User }
 
 export type UpdateUserData = {
   id: number
