@@ -30,7 +30,6 @@ export const Layout: VFC<Props> = memo(({ children }) => {
           {children}
           {/* <CustomMenu /> */}
         </main>
-        {/* <Footer /> */}
 
         {/* <CustomModal
           title="Edit user"
