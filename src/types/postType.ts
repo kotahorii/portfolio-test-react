@@ -1,11 +1,11 @@
-import { prefectures } from 'data/prefecture'
+import { prefecturesConst } from 'data/prefecture'
 import { commentRes, favoriteRes, postRes, rateRes } from 'data/response'
 
 export type Post = typeof postRes
 export type CreatePost = {
   body: string
   title: string
-  prefecture: typeof prefectures[number]
+  prefecture: typeof prefecturesConst[number]
   city: string
   town: string
   genre: number

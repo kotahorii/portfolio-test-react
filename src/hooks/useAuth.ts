@@ -28,6 +28,14 @@ export const useAuth = () => {
     [dispatch, userData]
   )
 
+  const prefectureChange = useCallback(
+    (e: ChangeEvent<{ value: unknown }>) =>
+      dispatch(
+        setUserData({ ...userData, prefecture: e.target.value as number })
+      ),
+    [dispatch, userData]
+  )
+
   const uploadImage = useCallback(
     (e) => {
       const file = e.target.files[0] as string
@@ -103,6 +111,7 @@ export const useAuth = () => {
 
   return {
     userData,
+    prefectureChange,
     preview,
     previewImage,
     uploadImage,

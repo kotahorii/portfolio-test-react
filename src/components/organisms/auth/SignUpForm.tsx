@@ -1,11 +1,13 @@
 import { CustomInput } from 'components/atoms/CustomInput'
 import { CustomLabel } from 'components/atoms/CustomLabel'
+import { CustomSelector } from 'components/atoms/CustomSelector'
 import { ImageInput } from 'components/molecules/ImageInput'
+import { prefectures } from 'data/prefecture'
 import { useAuth } from 'hooks/useAuth'
 import { memo } from 'react'
 
 export const SignUpForm = memo(() => {
-  const { userData, changeAuthData } = useAuth()
+  const { userData, changeAuthData, prefectureChange } = useAuth()
   return (
     <div className="flex md:flex-row flex-col items-start md:space-x-5">
       <div className="flex flex-col">
@@ -43,12 +45,11 @@ export const SignUpForm = memo(() => {
         />
       </div>
       <div className="flex flex-col space-y-3">
-        <CustomLabel title="Introduction:" />
-        <CustomInput
-          name="introduction"
-          value={userData.introduction}
-          placeholder="introduction"
-          onChange={changeAuthData}
+        <CustomLabel title="Prefecture:" />
+        <CustomSelector
+          value={userData.prefecture}
+          onChange={prefectureChange}
+          arrays={prefectures}
         />
         <div className="flex flex-row justify-center space-x-3">
           <ImageInput />
