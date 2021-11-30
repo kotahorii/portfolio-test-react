@@ -15,7 +15,7 @@ const initialState: StateType = {
     password: '',
     passwordConfirmation: '',
     introduction: '',
-    prefecture: 0,
+    prefecture: 1,
     image: '',
   },
   detailUser: {
