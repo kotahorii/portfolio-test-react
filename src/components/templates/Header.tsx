@@ -14,26 +14,26 @@ export const Header = memo(() => {
   })
   const { currentUser } = useMain()
   return (
-    <nav className=" flex flex-row z-10 fixed justify-between items-center px-3 w-screen h-20 text-white bg-blue-400">
+    <nav className=" flex flex-row z-10 fixed justify-between items-center px-3 w-screen h-20 text-white bg-green-300">
       <Menu.Button>
         <CustomUserIcon user={currentUser} width="w-12" />
       </Menu.Button>
       <div
         id="page-top"
-        className="text-3xl hover:text-blue-200 cursor-pointer"
+        className="text-3xl hover:text-green-100 cursor-pointer"
       >
-        Bookers
+        Portfolio App
       </div>
       <div className="md:flex hidden flex-row space-x-3">
         <Link
           to="/main"
-          className="text-lg hover:bg-blue-500 rounded-full px-3 py-3"
+          className="text-lg hover:bg-green-400 rounded-full px-3 py-3"
         >
-          Books
+          Posts
         </Link>
         <Link
           to="/users"
-          className="text-lg hover:bg-blue-500 rounded-full px-3 py-3"
+          className="text-lg hover:bg-green-400 rounded-full px-3 py-3"
         >
           Users
         </Link>

@@ -15,6 +15,6 @@ export const CustomUserIcon: VFC<Props> = memo(({ user, width = 'w-16' }) => {
       src={user?.image.url}
     />
   ) : (
-    <UserCircleIcon className={`${width}  rounded-full text-gray-400`} />
+    <UserCircleIcon className={`${width}  rounded-full text-gray-200`} />
   )
 })
