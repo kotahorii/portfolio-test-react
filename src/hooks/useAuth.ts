@@ -102,6 +102,7 @@ export const useAuth = () => {
   )
 
   return {
+    userData,
     preview,
     previewImage,
     uploadImage,
