@@ -8,7 +8,6 @@ export type CreatePost = {
   prefecture: typeof prefecturesConst[number]
   city: string
   town: string
-  genre: number
   image: string
 }
 export type CreatePostFormData = FormData & {

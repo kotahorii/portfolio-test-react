@@ -31,7 +31,6 @@ export const useMain = () => {
     formData.append('prefecture', editedPost.prefecture)
     formData.append('city', editedPost.city)
     formData.append('town', editedPost.town)
-    formData.append('genre', String(editedPost.genre))
     formData.append('image', editedPost.image)
 
     return formData
