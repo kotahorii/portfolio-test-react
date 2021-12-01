@@ -1,12 +1,12 @@
 import { Layout } from 'components/templates/Layout'
 import { useQueryDetailPost } from 'hooks/queries/useQueryDetailPost'
+import { useComments } from 'hooks/useComment'
 import { useMain } from 'hooks/useMain'
 import { memo } from 'react'
-import { useParams } from 'react-router'
 
 export const DetailPost = memo(() => {
   const { isLoadingUser } = useMain()
-  const { id } = useParams()
+  const { id } = useComments()
   const { data: detailPost, isLoading: isLoadingDetailPost } =
     useQueryDetailPost(Number(id))
 
@@ -25,7 +25,6 @@ export const DetailPost = memo(() => {
           </div>
         )}
       </div>
-      
     </Layout>
   )
 })

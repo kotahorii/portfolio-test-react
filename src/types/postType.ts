@@ -20,12 +20,12 @@ export type UpdatePostFormData = FormData & {
 
 export type Comment = typeof commentRes
 export type CreateComment = {
-  bookId: number
+  postId: number | undefined
   comment: string
 }
 export type DeleteComment = {
   id: number
-  bookId: string
+  postId: string
 }
 
 export type Favorite = typeof favoriteRes
@@ -36,7 +36,7 @@ export type DeleteFavorite = CreateFavorite & { id: number }
 
 export type Rate = typeof rateRes
 export type CreateRate = {
-  bookId: number
+  postId: number
   rate: number
 }
 export type UpdateRate = CreateRate & { id: number }
