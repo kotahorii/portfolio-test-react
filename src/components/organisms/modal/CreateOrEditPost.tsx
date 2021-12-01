@@ -1,6 +1,7 @@
 import { CustomButton } from 'components/atoms/CustomButton'
 import { CustomInput } from 'components/atoms/CustomInput'
 import { CustomLabel } from 'components/atoms/CustomLabel'
+import { PostImageInput } from 'components/molecules/postImage/PostImageInput'
 import { useMain } from 'hooks/useMain'
 import { memo } from 'react'
 
@@ -8,7 +9,10 @@ export const CreateOrEditPost = memo(() => {
   const { editedPost, changePost, submitPost } = useMain()
   return (
     <>
-      <form onSubmit={submitPost} className="w-72 mt-2 flex flex-col">
+      <form
+        onSubmit={submitPost}
+        className=" w-80 mt-2 flex flex-col space-y-3"
+      >
         <CustomLabel title="Title:" />
         <CustomInput
           name="title"
@@ -44,6 +48,9 @@ export const CreateOrEditPost = memo(() => {
           placeholder="Town"
           onChange={changePost}
         />
+        <div className="w-full flex flex-col items-center">
+          <PostImageInput />
+        </div>
         <CustomButton
           disabled={!editedPost.title}
           type="submit"

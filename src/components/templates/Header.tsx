@@ -2,7 +2,7 @@ import { Menu } from '@headlessui/react'
 import { useMain } from 'hooks/useMain'
 import { memo } from 'react'
 import { Link } from 'react-router-dom'
-import { CustomUserIcon } from 'components/molecules/CustomUserIcon'
+import { CustomUserIcon } from 'components/molecules/userIcon/CustomUserIcon'
 
 export const Header = memo(() => {
   const pageTopButton = document.querySelector('#page-top')

@@ -1,7 +1,7 @@
 import { CustomInput } from 'components/atoms/CustomInput'
 import { CustomLabel } from 'components/atoms/CustomLabel'
 import { CustomSelector } from 'components/atoms/CustomSelector'
-import { ImageInput } from 'components/molecules/ImageInput'
+import { ImageInput } from 'components/molecules/userIcon/ImageInput'
 import { prefectures } from 'data/prefecture'
 import { useAuth } from 'hooks/useAuth'
 import { memo } from 'react'

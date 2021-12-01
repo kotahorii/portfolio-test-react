@@ -1,12 +1,19 @@
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { ChangeEvent, FormEvent, useCallback } from 'react'
 import { toast } from 'react-toastify'
-import { selectEditedPost, setEditPost, setPostPreview } from 'slices/postSlice'
+import {
+  resetEditPost,
+  selectEditedPost,
+  selectPostPreview,
+  setEditPost,
+  setPostPreview,
+} from 'slices/postSlice'
 import { CreatePostFormData } from 'types/postType'
 import { User } from 'types/userType'
 import { useMutationPosts } from './queries/useMutationPosts'
 import { useQueryCurrentUser } from './queries/useQueryCurrentUser'
 import { useQueryPosts } from './queries/useQueryPosts'
+import { useHeader } from './useHeader'
 
 export const useMain = () => {
   const { data: currentUser, isLoading: isLoadingUser } = useQueryCurrentUser()
@@ -14,6 +21,8 @@ export const useMain = () => {
   const dispatch = useAppDispatch()
   const editedPost = useAppSelector(selectEditedPost)
   const { createPostMutation, updatePostMutation } = useMutationPosts()
+  const postPreview = useAppSelector(selectPostPreview)
+  const { closeCreatePostModal } = useHeader()
 
   const changePost = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +57,7 @@ export const useMain = () => {
     [uploadPostImage, previewImage]
   )
 
-  const resetPreview = useCallback(
+  const resetPostPreview = useCallback(
     () => dispatch(setPostPreview('')),
     [dispatch]
   )
@@ -75,8 +84,17 @@ export const useMain = () => {
       } else {
         updatePostMutation.mutate({ id: editedPost.id, formData: data })
       }
+      closeCreatePostModal()
+      dispatch(resetEditPost())
     },
-    [createFormData, createPostMutation, updatePostMutation, editedPost.id]
+    [
+      createFormData,
+      createPostMutation,
+      updatePostMutation,
+      dispatch,
+      closeCreatePostModal,
+      editedPost.id,
+    ]
   )
 
   const usersPost = useCallback(
@@ -86,6 +104,7 @@ export const useMain = () => {
 
   return {
     posts,
+    postPreview,
     currentUser,
     isLoadingPosts,
     isLoadingUser,
@@ -94,6 +113,6 @@ export const useMain = () => {
     usersPost,
     submitPost,
     postImageChange,
-    resetPreview,
+    resetPostPreview,
   }
 }
