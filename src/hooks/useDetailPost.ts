@@ -3,9 +3,12 @@ import { useQueryComments } from './queries/useQueryComments'
 import { toast } from 'react-toastify'
 import { useCommentMutation } from './queries/useMutationComment'
 import { useParams } from 'react-router'
+import { useUsers } from './useUsers'
+import { Comment } from 'types/postType'
 
 export const useDetailPost = () => {
-  const { data: comments } = useQueryComments()
+  const { data: comments, isLoading: isLoadingComment } = useQueryComments()
+  const { users } = useUsers()
   const { createCommentMutation } = useCommentMutation()
   const [comment, setComment] = useState('')
   const { id } = useParams()
@@ -25,15 +28,24 @@ export const useDetailPost = () => {
     [comment, createCommentMutation, id]
   )
 
-  const booksComments = useCallback(
-    () => comments?.filter((comment) => comment.postId === Number(id)),
-    [comments, id]
+  const postsComments = useCallback(
+    (id: number | undefined) =>
+      comments?.filter((comment) => comment.postId === Number(id)),
+    [comments]
+  )
+
+  const commentsUser = useCallback(
+    (comment: Comment) =>
+      users?.filter((user) => user.id === comment.userId)[0],
+    [users]
   )
   return {
     comment,
     commentChange,
+    isLoadingComment,
+    commentsUser,
     submitComment,
-    booksComments,
+    postsComments,
     createCommentMutation,
     id,
   }

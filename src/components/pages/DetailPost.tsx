@@ -2,7 +2,7 @@ import { StarIcon } from '@heroicons/react/solid'
 import { CustomButton } from 'components/atoms/button/CustomButton'
 import { LikeButton } from 'components/atoms/button/LikeButton'
 import { CustomInput } from 'components/atoms/form/CustomInput'
-import { LoadingCommentCard } from 'components/organisms/card/LoadingCommentCard'
+import { CommentCard } from 'components/organisms/card/CommentCard'
 import { LoadingHotelCard } from 'components/organisms/card/LoadingHotelCard'
 import { Layout } from 'components/templates/Layout'
 import { useQueryDetailPost } from 'hooks/queries/useQueryDetailPost'
@@ -14,13 +14,19 @@ import { LoadingPostPage } from './LoadingPostPage'
 
 export const DetailPost = memo(() => {
   const { isLoadingUser } = useMain()
-  const { id, commentChange, comment, submitComment, booksComments } =
-    useDetailPost()
+  const {
+    id,
+    commentChange,
+    comment,
+    isLoadingComment,
+    submitComment,
+    postsComments,
+  } = useDetailPost()
   const { data: detailPost, isLoading: isLoadingDetailPost } =
     useQueryDetailPost(Number(id))
   const { postsFavorites } = useLikes()
 
-  if (isLoadingDetailPost || isLoadingUser)
+  if (isLoadingDetailPost || isLoadingUser || isLoadingComment)
     return (
       <Layout>
         <LoadingPostPage />
@@ -66,11 +72,9 @@ export const DetailPost = memo(() => {
             className=" w-96 h-80 flex flex-col space-y-2 rounded-lg"
           >
             <div className="w-full h-72 p-2 space-y-3 overflow-auto bg-green-200 rounded-lg">
-              {[...Array(4)]
-                .map((_, i) => i)
-                ?.map((i) => (
-                  <LoadingCommentCard key={i} />
-                ))}
+              {postsComments(Number(id))?.map((comment) => (
+                <CommentCard comment={comment} />
+              ))}
             </div>
             <CustomInput
               name="comment"
