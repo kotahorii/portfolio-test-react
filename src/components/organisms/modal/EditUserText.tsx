@@ -12,7 +12,7 @@ export const EditUserText = memo(() => {
   const { userData, changeAuthData, prefectureChange } = useAuth()
   const { updateUser } = useUsers()
   return (
-    <form onSubmit={updateUser} className="w-72 mt-2 flex flex-col">
+    <form onSubmit={updateUser} className=" mt-2 flex flex-col">
       <CustomLabel title="名前" />
       <CustomInput
         name="name"
@@ -27,8 +27,8 @@ export const EditUserText = memo(() => {
         placeholder="自己紹介を入力"
         onChange={changeAuthData}
       />
-      <div className="flex flex-row items-center">
-        <div className="flex flex-col">
+      <div className="flex flex-row items-center mb-2 justify-between">
+        <div className="flex flex-col w-36 space-y-2">
           <CustomLabel title="都道府県" />
           <CustomSelector
             value={userData.prefecture}
@@ -36,9 +36,8 @@ export const EditUserText = memo(() => {
             arrays={prefectures}
           />
         </div>
-        <div className="flex flex-row w-full justify-center">
-          <ImageInput />
-        </div>
+        <ImageInput />
+        <div></div>
       </div>
       <CustomButton disabled={!userData.name} type="submit" text="更新" />
     </form>
