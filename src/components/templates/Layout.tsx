@@ -1,5 +1,9 @@
 import { Menu } from '@headlessui/react'
 import { SuccessToast } from 'components/molecules/SuccessToast'
+import { CustomMenu } from 'components/organisms/menu/CustomMenu'
+import { CustomModal } from 'components/organisms/modal/CustomModal'
+import { EditUserText } from 'components/organisms/modal/EditUserText'
+import { useHeader } from 'hooks/useHeader'
 import { VFC, ReactNode, memo, useEffect } from 'react'
 import { Header } from './Header'
 
@@ -15,12 +19,12 @@ export const Layout: VFC<Props> = memo(({ children }) => {
     })
   }, [])
 
-  // const {
-  //   isOpenEditUserModal,
-  //   closeEditedUserModal,
-  //   isOpenBookModal,
-  //   closeCreateBookModal,
-  // } = useHeader()
+  const {
+    isOpenEditUserModal,
+    closeEditedUserModal,
+    isOpenCreatePostModal,
+    closeCreatePostModal,
+  } = useHeader()
   // const { isOpenDeleteBookModal, closeDeleteBookModal } = useMyPage()
   return (
     <Menu>
@@ -28,20 +32,20 @@ export const Layout: VFC<Props> = memo(({ children }) => {
         <Header />
         <main className="flex flex-1 flex-col absolute top-20 justify-start items-center py-5 w-screen">
           {children}
-          {/* <CustomMenu /> */}
+          <CustomMenu />
         </main>
 
-        {/* <CustomModal
+        <CustomModal
           title="Edit user"
           isOpen={isOpenEditUserModal}
           closeModal={closeEditedUserModal}
         >
           <EditUserText />
         </CustomModal>
-        <CustomModal
+        {/* <CustomModal
           title="Create Book"
-          isOpen={isOpenBookModal}
-          closeModal={closeCreateBookModal}
+          isOpen={isOpenCreatePostModal}
+          closeModal={closeCreatePostModal}
         >
           <CreateOrEditBook />
         </CustomModal>

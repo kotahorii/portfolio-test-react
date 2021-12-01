@@ -52,7 +52,7 @@ export const useHeader = () => {
     dispatch(setIsOpenCreatePostModal(true))
   }, [dispatch])
 
-  const closeCreateBookModal = useCallback(() => {
+  const closeCreatePostModal = useCallback(() => {
     dispatch(setIsOpenCreatePostModal(false))
   }, [dispatch])
 
@@ -97,7 +97,7 @@ export const useHeader = () => {
     openEditUserModal,
     closeEditedUserModal,
     openCreatePostModal,
-    closeCreateBookModal,
+    closeCreatePostModal,
     myPageNavigate,
     menuItems,
     responsiveItems,

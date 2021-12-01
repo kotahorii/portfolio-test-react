@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from 'react-query'
 import { UpdateUserFormData, User } from 'types/userType'
 
 type Data = {
-  id: number
+  id: number | undefined
   formData: UpdateUserFormData
 }
 

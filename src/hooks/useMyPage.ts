@@ -8,8 +8,8 @@ import {
   setIsOpenDeletePostModal,
 } from 'slices/postSlice'
 import { Post } from 'types/postType'
-import { useMutationPosts } from './useMutationPosts'
-import { useQueryFavorites } from './useQueryFavorites'
+import { useMutationPosts } from './queries/useMutationPosts'
+import { useQueryFavorites } from './queries/useQueryFavorites'
 
 type ModeType = 'myPosts' | 'likedPosts'
 
