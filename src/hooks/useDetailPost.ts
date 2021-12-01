@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import { useCommentMutation } from './queries/useMutationComment'
 import { useParams } from 'react-router'
 
-export const useComments = () => {
+export const useDetailPost = () => {
   const { data: comments } = useQueryComments()
   const { createCommentMutation } = useCommentMutation()
   const [comment, setComment] = useState('')
