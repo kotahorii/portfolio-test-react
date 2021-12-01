@@ -11,7 +11,7 @@ export const useDetailPost = () => {
   const { id } = useParams()
 
   const commentChange = useCallback(
-    (e: ChangeEvent<HTMLTextAreaElement>) => setComment(e.target.value),
+    (e: ChangeEvent<HTMLInputElement>) => setComment(e.target.value),
     []
   )
 

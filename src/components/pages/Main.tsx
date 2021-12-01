@@ -1,5 +1,5 @@
-import { LoadingCard } from 'components/organisms/main/LoadingCard'
-import { PostCard } from 'components/organisms/main/PostCard'
+import { LoadingCard } from 'components/organisms/card/LoadingCard'
+import { PostCard } from 'components/organisms/card/PostCard'
 import { Layout } from 'components/templates/Layout'
 import { useMain } from 'hooks/useMain'
 import { memo } from 'react'
