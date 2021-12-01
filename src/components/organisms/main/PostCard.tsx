@@ -20,13 +20,13 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
         <div className=" w-72 h-52 bg-green-200 rounded-lg"></div>
       )}
       <div className="flex flex-col md:h-52 md:w-2/3 w-full py-2 space-y-2">
-        <div className="h-10 rounded-lg">
+        <div className="h-10 rounded-lg max-w-xs">
           <p className="text-xl">{post.title}</p>
         </div>
-        <div className="h-16 md:block hidden rounded-lg">
-          <p className="text-lg">{post.body}</p>
+        <div className="h-16 md:block hidden rounded-lg max-w-xs">
+          <p className="text-lg truncate overflow-ellipsis">{post.body}</p>
         </div>
-        <div className="h-6 rounded-lg">
+        <div className="h-6 rounded-lg max-w-xs">
           <p>
             {post.prefecture}
             <span className="mx-2">{post.city}</span>
