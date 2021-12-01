@@ -5,13 +5,14 @@ import { CustomSelector } from 'components/atoms/CustomSelector'
 import { ImageInput } from 'components/molecules/ImageInput'
 import { prefectures } from 'data/prefecture'
 import { useAuth } from 'hooks/useAuth'
+import { useUsers } from 'hooks/useUsers'
 import { memo } from 'react'
 
 export const EditUserText = memo(() => {
   const { userData, changeAuthData, prefectureChange } = useAuth()
-  
+  const { updateUser } = useUsers()
   return (
-    <form className="w-72 mt-2 flex flex-col">
+    <form onSubmit={updateUser} className="w-72 mt-2 flex flex-col">
       <CustomLabel title="Name:" />
       <CustomInput
         name="name"
@@ -26,14 +27,18 @@ export const EditUserText = memo(() => {
         placeholder="Introduction"
         onChange={changeAuthData}
       />
-      <CustomLabel title="Prefecture:" />
-      <CustomSelector
-        value={userData.prefecture}
-        onChange={prefectureChange}
-        arrays={prefectures}
-      />
-      <div className="flex flex-row w-full justify-center mb-3">
-        <ImageInput />
+      <div className="flex flex-row items-center">
+        <div className="flex flex-col">
+          <CustomLabel title="Prefecture:" />
+          <CustomSelector
+            value={userData.prefecture}
+            onChange={prefectureChange}
+            arrays={prefectures}
+          />
+        </div>
+        <div className="flex flex-row w-full justify-center">
+          <ImageInput />
+        </div>
       </div>
       <CustomButton disabled={!userData.name} type="submit" text="Update" />
     </form>
