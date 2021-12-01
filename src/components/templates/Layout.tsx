@@ -6,6 +6,7 @@ import { EditUserText } from 'components/organisms/modal/EditUserText'
 import { useHeader } from 'hooks/useHeader'
 import { VFC, ReactNode, memo, useEffect } from 'react'
 import { Header } from './Header'
+import { CreateOrEditPost } from 'components/organisms/modal/CreateOrEditPost'
 
 type Props = {
   children: ReactNode
@@ -42,14 +43,14 @@ export const Layout: VFC<Props> = memo(({ children }) => {
         >
           <EditUserText />
         </CustomModal>
-        {/* <CustomModal
+        <CustomModal
           title="Create Book"
           isOpen={isOpenCreatePostModal}
           closeModal={closeCreatePostModal}
         >
-          <CreateOrEditBook />
+          <CreateOrEditPost />
         </CustomModal>
-        <CustomModal
+        {/* <CustomModal
           isOpen={isOpenDeleteBookModal}
           closeModal={closeDeleteBookModal}
           title={detailBook.title}

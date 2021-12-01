@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { ChangeEvent, FormEvent, useCallback } from 'react'
 import { toast } from 'react-toastify'
-import { selectEditedPost, setEditPost } from 'slices/postSlice'
+import { selectEditedPost, setEditPost, setPostPreview } from 'slices/postSlice'
 import { CreatePostFormData } from 'types/postType'
 import { User } from 'types/userType'
 import { useMutationPosts } from './queries/useMutationPosts'
@@ -22,6 +22,35 @@ export const useMain = () => {
       dispatch(setEditPost({ ...editedPost, [name]: value }))
     },
     [dispatch, editedPost]
+  )
+
+  const uploadPostImage = useCallback(
+    (e) => {
+      const file = e.target.files[0] as string
+      dispatch(setEditPost({ ...editedPost, image: file }))
+    },
+    [dispatch, editedPost]
+  )
+
+  const previewImage = useCallback(
+    (e) => {
+      const file = e.target.files[0] as string
+      dispatch(setPostPreview(window.URL.createObjectURL(file)))
+    },
+    [dispatch]
+  )
+
+  const postImageChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      uploadPostImage(e)
+      previewImage(e)
+    },
+    [uploadPostImage, previewImage]
+  )
+
+  const resetPreview = useCallback(
+    () => dispatch(setPostPreview('')),
+    [dispatch]
   )
 
   const createFormData = useCallback((): CreatePostFormData => {
@@ -64,5 +93,7 @@ export const useMain = () => {
     editedPost,
     usersPost,
     submitPost,
+    postImageChange,
+    resetPreview,
   }
 }
