@@ -2,7 +2,7 @@ import { memo, VFC } from 'react'
 import { Post } from 'types/postType'
 import { StarIcon } from '@heroicons/react/solid'
 import { useLikes } from 'hooks/useLikes'
-import { LikeButton } from 'components/atoms/LikeButton'
+import { LikeButton } from 'components/atoms/button/LikeButton'
 import { Link } from 'react-router-dom'
 
 type Props = {

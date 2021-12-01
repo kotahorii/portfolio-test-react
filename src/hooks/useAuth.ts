@@ -93,16 +93,12 @@ export const useAuth = () => {
 
   const signOut = useCallback(() => signOutMutation.mutate(), [signOutMutation])
 
-  const isValidAuth = useCallback(
-    () =>
-      isLogin
-        ? !userData.email || userData.password.length < 6
-        : !userData.name ||
-          !userData.email ||
-          userData.password.length < 6 ||
-          userData.passwordConfirmation.length < 6,
-    [isLogin, userData]
-  )
+  const isValidAuth = isLogin
+    ? !userData.email || userData.password.length < 6
+    : !userData.name ||
+      !userData.email ||
+      userData.password.length < 6 ||
+      userData.passwordConfirmation.length < 6
 
   const isLoadingAuth = useCallback(
     () => (isLogin ? signInMutation.isLoading : signUpMutation.isLoading),

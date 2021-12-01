@@ -1,5 +1,5 @@
-import { CustomInput } from 'components/atoms/CustomInput'
-import { CustomLabel } from 'components/atoms/CustomLabel'
+import { CustomInput } from 'components/atoms/form/CustomInput'
+import { CustomLabel } from 'components/atoms/form/CustomLabel'
 import { useAuth } from 'hooks/useAuth'
 import { memo } from 'react'
 

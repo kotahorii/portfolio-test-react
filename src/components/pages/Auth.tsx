@@ -3,7 +3,7 @@ import { SwitchVerticalIcon } from '@heroicons/react/outline'
 import { SuccessToast } from 'components/molecules/SuccessToast'
 import { LoginForm } from 'components/organisms/auth/LoginForm'
 import { SignUpForm } from 'components/organisms/auth/SignUpForm'
-import { CustomButton } from 'components/atoms/CustomButton'
+import { CustomButton } from 'components/atoms/button/CustomButton'
 
 export const Auth = () => {
   const { isLogin, toggleIsLogin, authUser, isValidAuth, isLoadingAuth } =
@@ -18,7 +18,7 @@ export const Auth = () => {
         <div className="flex flex-row w-full mt-5 space-x-3 items-center justify-center">
           <div className="flex flex-row space-x-5 justify-center items-center w-full">
             <CustomButton
-              disabled={isValidAuth()}
+              disabled={isValidAuth}
               type="submit"
               text={isLogin ? 'ログイン' : '新規登録'}
               loading={isLoadingAuth()}
