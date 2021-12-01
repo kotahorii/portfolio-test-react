@@ -20,7 +20,7 @@ export const Auth = () => {
             <CustomButton
               disabled={isValidAuth()}
               type="submit"
-              text={isLogin ? 'Login' : 'Register'}
+              text={isLogin ? 'ログイン' : '新規登録'}
               loading={isLoadingAuth()}
             />
             <SwitchVerticalIcon

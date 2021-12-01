@@ -62,17 +62,17 @@ export const useHeader = () => {
 
   const menuItems: MenuType = [
     {
-      name: 'Edit my profile',
+      name: 'プロフィール編集',
       icon: PencilAltIcon,
       onClick: openEditUserModal,
     },
     {
-      name: 'Create new book',
+      name: '新規投稿',
       icon: PlusSmIcon,
       onClick: openCreatePostModal,
     },
     {
-      name: 'Go to my page',
+      name: 'マイページへ移動',
       icon: UserIcon,
       onClick: myPageNavigate,
     },
@@ -80,12 +80,12 @@ export const useHeader = () => {
 
   const responsiveItems: MenuType = [
     {
-      name: 'Users page',
+      name: 'ユーザー一覧',
       icon: UsersIcon,
       onClick: () => navigate('/users'),
     },
     {
-      name: 'Books page',
+      name: '投稿一覧',
       icon: BookOpenIcon,
       onClick: () => navigate('/main'),
     },

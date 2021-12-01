@@ -7,19 +7,19 @@ export const LoginForm = memo(() => {
   const { changeAuthData, userData } = useAuth()
   return (
     <>
-      <CustomLabel title="Email:" />
+      <CustomLabel title="メールアドレス" />
       <CustomInput
         name="email"
         value={userData.email}
-        placeholder="email"
+        placeholder="xxx@xxxx.com"
         onChange={changeAuthData}
       />
-      <CustomLabel title="Password:" />
+      <CustomLabel title="パスワード" />
       <CustomInput
         name="password"
         value={userData.password}
         type="password"
-        placeholder="password"
+        placeholder="６文字以上入力してください"
         onChange={changeAuthData}
       />
     </>

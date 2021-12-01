@@ -26,7 +26,6 @@ const initialState: StateType = {
     prefecture: '東京都',
     city: '',
     town: '',
-    genre: 0,
     userId: 0,
     image: {
       url: '',

@@ -13,39 +13,39 @@ export const CreateOrEditPost = memo(() => {
         onSubmit={submitPost}
         className=" w-80 mt-2 flex flex-col space-y-3"
       >
-        <CustomLabel title="Title:" />
+        <CustomLabel title="タイトル" />
         <CustomInput
           name="title"
           value={editedPost.title}
-          placeholder="Name"
+          placeholder="タイトルを入力"
           onChange={changePost}
         />
-        <CustomLabel title="Body:" />
+        <CustomLabel title="本文" />
         <CustomInput
           name="body"
           value={editedPost.body}
-          placeholder="Body"
+          placeholder="本文を入力"
           onChange={changePost}
         />
-        <CustomLabel title="Prefecture:" />
+        <CustomLabel title="都道府県" />
         <CustomInput
           name="prefecture"
           value={editedPost.prefecture}
-          placeholder="Prefecture"
+          placeholder="例：広島県"
           onChange={changePost}
         />
-        <CustomLabel title="City:" />
+        <CustomLabel title="市、区" />
         <CustomInput
           name="city"
           value={editedPost.city}
-          placeholder="City"
+          placeholder="例：東広島市"
           onChange={changePost}
         />
-        <CustomLabel title="Town:" />
+        <CustomLabel title="町" />
         <CustomInput
           name="town"
           value={editedPost.town}
-          placeholder="Town"
+          placeholder="例：西条岡町"
           onChange={changePost}
         />
         <div className="w-full flex flex-col items-center">
@@ -54,7 +54,7 @@ export const CreateOrEditPost = memo(() => {
         <CustomButton
           disabled={!editedPost.title}
           type="submit"
-          text="Create"
+          text="投稿"
         />
       </form>
     </>

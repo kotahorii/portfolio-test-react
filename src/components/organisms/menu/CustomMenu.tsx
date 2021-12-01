@@ -51,7 +51,7 @@ export const CustomMenu = memo(() => {
               className="text-gray-500 hover:bg-green-100 group flex rounded-md items-center w-full px-2 py-2 text-sm"
             >
               <LogoutIcon className="w-6 mr-2" />
-              Logout
+              ログアウト
             </button>
           </Menu.Item>
         </div>

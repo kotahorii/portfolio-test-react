@@ -16,7 +16,6 @@ export const postRes = {
   prefecture: 'test',
   city: 'test',
   town: 'test',
-  genre: 0,
   userId: 2,
   image: {
     url: 'sample.jpg',

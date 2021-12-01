@@ -37,14 +37,14 @@ export const Layout: VFC<Props> = memo(({ children }) => {
         </main>
 
         <CustomModal
-          title="Edit user"
+          title="プロフィールを編集"
           isOpen={isOpenEditUserModal}
           closeModal={closeEditedUserModal}
         >
           <EditUserText />
         </CustomModal>
         <CustomModal
-          title="Create Book"
+          title="新規投稿"
           isOpen={isOpenCreatePostModal}
           closeModal={closeCreatePostModal}
         >
