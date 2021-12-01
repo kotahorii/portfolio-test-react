@@ -33,7 +33,7 @@ export const useLikeMutation = () => {
       axios.request({
         method: 'delete',
         url: `http://localhost:8000/api/v1/favorites/${data.id}`,
-        data: { book_id: data.bookId },
+        data: { post_id: data.postId },
         headers: {
           'access-token': Cookies.get('_access_token') as string,
           client: Cookies.get('_client') as string,

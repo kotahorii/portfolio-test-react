@@ -10,8 +10,8 @@ export const LoadingCard = memo(() => {
         <div className=" bg-green-200 h-6 rounded-lg"></div>
         <div className="flex flex-row mt-5 justify-between items-center px-2">
           <div className="w-10 h-8 mt-2 mr-2 bg-green-200 rounded-full"></div>
-          <div className="h-8 w-28 mt-2 bg-green-200 rounded-full"></div>
-          <div className="w-8"></div>
+          <div className="h-8 w-14 mt-2 bg-green-200 rounded-full"></div>
+          <div className="w-20"></div>
           <div className="h-8 w-28 mt-2 bg-green-200 rounded-full"></div>
         </div>
       </div>

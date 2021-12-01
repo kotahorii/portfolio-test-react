@@ -30,7 +30,7 @@ export type DeleteComment = {
 
 export type Favorite = typeof favoriteRes
 export type CreateFavorite = {
-  bookId: number
+  postId: number
 }
 export type DeleteFavorite = CreateFavorite & { id: number }
 
