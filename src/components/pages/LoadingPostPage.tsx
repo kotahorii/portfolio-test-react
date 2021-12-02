@@ -1,8 +1,8 @@
 import { LoadingCommentCard } from 'components/organisms/card/LoadingCommentCard'
 import { LoadingHotelCard } from 'components/organisms/card/LoadingHotelCard'
-import React from 'react'
+import React, { memo } from 'react'
 
-export const LoadingPostPage = () => {
+export const LoadingPostPage = memo(() => {
   return (
     <div className="flex flex-col animate-pulse space-y-2 items-center px-2 w-full min-h-screen">
       <p className="w-1/2 text-3xl text-center font-semibold bg-green-200 rounded-lg h-12"></p>
@@ -51,4 +51,4 @@ export const LoadingPostPage = () => {
       <div className="w-full md:h-96 h-56 bg-green-200 rounded-lg"></div>
     </div>
   )
-}
+})

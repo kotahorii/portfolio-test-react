@@ -1,12 +1,12 @@
 import { useDetailPost } from 'hooks/useDetailPost'
-import { VFC } from 'react'
+import { memo, VFC } from 'react'
 import { Comment } from 'types/postType'
 
 type Props = {
   comment: Comment
 }
 
-export const CommentCard: VFC<Props> = ({ comment }) => {
+export const CommentCard: VFC<Props> = memo(({ comment }) => {
   const { commentsUser, isLoadingComment } = useDetailPost()
   if (isLoadingComment) return null
   return (
@@ -27,4 +27,4 @@ export const CommentCard: VFC<Props> = ({ comment }) => {
       <p className="break-words">{comment.comment}</p>
     </div>
   )
-}
+})

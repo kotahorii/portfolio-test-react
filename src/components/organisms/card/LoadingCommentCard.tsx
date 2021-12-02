@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export const LoadingCommentCard = () => {
+export const LoadingCommentCard = memo(() => {
   return (
     <div className="w-full p-2 flex flex-col space-y-2 rounded-lg bg-gray-50">
       <div className="flex flex-row space-x-3">
@@ -17,4 +17,4 @@ export const LoadingCommentCard = () => {
       </div>
     </div>
   )
-}
+})

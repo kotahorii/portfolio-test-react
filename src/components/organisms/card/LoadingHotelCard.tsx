@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export const LoadingHotelCard = () => {
+export const LoadingHotelCard = memo(() => {
   return (
     <li className="bg-gray-50 p-3 flex items-center shadow-md flex-row space-x-3 rounded-lg w-full ">
       <div className="w-32 h-24 bg-green-200 rounded-lg"></div>
@@ -14,4 +14,4 @@ export const LoadingHotelCard = () => {
       </div>
     </li>
   )
-}
+})
