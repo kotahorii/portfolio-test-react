@@ -14,6 +14,8 @@ import { memo } from 'react'
 import { LoadingPostPage } from './LoadingPostPage'
 import { ShopModal } from 'components/organisms/modal/ShopModal'
 import { HotelModal } from 'components/organisms/modal/HotelModal'
+import { CustomRateInput } from 'components/molecules/rate/CustomRateInput'
+import { useRates } from 'hooks/useRate'
 
 export const DetailPost = memo(() => {
   const { isLoadingUser } = useMain()
@@ -37,8 +39,14 @@ export const DetailPost = memo(() => {
   } = useApi()
 
   const { postsFavorites } = useLikes()
+  const { isLoadingRates } = useRates()
 
-  if (isLoadingDetailPost || isLoadingUser || isLoadingComment)
+  if (
+    isLoadingDetailPost ||
+    isLoadingUser ||
+    isLoadingComment ||
+    isLoadingRates
+  )
     return (
       <Layout>
         <LoadingPostPage />
@@ -104,7 +112,7 @@ export const DetailPost = memo(() => {
             />
             <div className="w-full flex flex-row items-center space-x-2 h-10">
               <div className=" w-44"></div>
-              <div className="w-32 h-8 rounded-lg bg-green-200"></div>
+              <CustomRateInput />
               <p>{comment.length}/140</p>
               <div className="w-24">
                 <CustomButton

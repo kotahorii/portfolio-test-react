@@ -32,10 +32,10 @@ export const Header = memo(() => {
           投稿一覧
         </Link>
         <Link
-          to="/users"
+          to="/myPage"
           className="text-lg hover:bg-green-400 rounded-full px-3 py-3"
         >
-          ユーザー一覧
+          マイページ
         </Link>
       </div>
       <div className="md:hidden block"></div>

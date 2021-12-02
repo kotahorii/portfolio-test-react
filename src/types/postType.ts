@@ -29,16 +29,16 @@ export type DeleteComment = {
 
 export type Favorite = typeof favoriteRes
 export type CreateFavorite = {
-  postId: number
+  postId: number | undefined
 }
 export type DeleteFavorite = CreateFavorite & { id: number }
 
 export type Rate = typeof rateRes
 export type CreateRate = {
-  postId: number
+  postId: number | undefined
   rate: number
 }
-export type UpdateRate = CreateRate & { id: number }
+export type UpdateRate = CreateRate & { id: number | undefined }
 
 export type MenuType = {
   name: string
