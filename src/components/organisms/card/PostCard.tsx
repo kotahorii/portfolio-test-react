@@ -4,6 +4,7 @@ import { StarIcon } from '@heroicons/react/solid'
 import { useLikes } from 'hooks/useLikes'
 import { LikeButton } from 'components/atoms/button/LikeButton'
 import { Link } from 'react-router-dom'
+import { useRates } from 'hooks/useRate'
 
 type Props = {
   post: Post
@@ -11,6 +12,7 @@ type Props = {
 
 export const PostCard: VFC<Props> = memo(({ post }) => {
   const { postsFavorites } = useLikes()
+  const { averageRate, postsRates } = useRates()
   return (
     <div className="flex md:flex-row flex-col m-2 items-center md:space-x-5 cursor-pointer md:w-3/5 max-w-2xl w-80 px-5 py-4 shadow-md hover:shadow-lg rounded-lg space-y-3">
       {post.image.url !== null || '' ? (
@@ -48,12 +50,26 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
             <LikeButton post={post} />
             <span>{postsFavorites(post)?.length}</span>
           </div>
-          <div className="h-8 w-12 mt-2 flex flex-row justify-between items-center">
+          <div className="h-8 w-20 mt-2 flex flex-row justify-between items-center">
             <StarIcon className="w-6 text-yellow-500" />
-            <p>4.8</p>
+            <p className="flex flex-row">
+              {averageRate(post)?.toString() !== 'NaN'
+                ? averageRate(post)?.toString()
+                : 0}
+              <span className="text-gray-400 ml-0.5">
+                ({postsRates(post)?.length}件)
+              </span>
+            </p>
           </div>
-          <div className="w-20"></div>
-          <div className="h-8 w-28 mt-2 bg-green-200 rounded-full"></div>
+          <div className="w-16"></div>
+          <div className="flex flex-row space-x-1 items-center">
+            <p className="mt-2 px-3 py-1 text-green-800 text-center bg-green-200 rounded-full">
+              タグ１
+            </p>
+            <p className="mt-2 px-3 py-1 text-green-800 text-center bg-green-200 rounded-full">
+              タグ2
+            </p>
+          </div>
         </div>
       </div>
     </div>

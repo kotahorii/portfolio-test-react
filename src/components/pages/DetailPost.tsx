@@ -16,8 +16,7 @@ import { ShopModal } from 'components/organisms/modal/ShopModal'
 import { HotelModal } from 'components/organisms/modal/HotelModal'
 import { CustomRateInput } from 'components/molecules/rate/CustomRateInput'
 import { useRates } from 'hooks/useRate'
-import { Disclosure, Transition } from '@headlessui/react'
-import { ChevronUpIcon } from '@heroicons/react/outline'
+import { Disclosure } from '@headlessui/react'
 import { DisclosureText } from 'components/molecules/DisclosureText'
 
 export const DetailPost = memo(() => {
@@ -87,7 +86,7 @@ export const DetailPost = memo(() => {
                       ? averageRate(detailPost)?.toString()
                       : 0}
                     <span className="text-gray-400 ml-0.5">
-                      ({postsRates.length}件)
+                      ({postsRates(detailPost)?.length}件)
                     </span>
                   </p>
                 </div>

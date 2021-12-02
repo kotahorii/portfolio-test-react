@@ -49,8 +49,9 @@ export const rateRes = {
 }
 export const labelRes = {
   id: 2,
-  post_id: 3,
-  created_at: '2021-12-02T11:31:46.326Z',
-  updated_at: '2021-12-02T11:31:46.326Z',
+  postId: 3,
+  userId: 2,
+  createdAt: '2021-12-02T11:31:46.326Z',
+  updatedAt: '2021-12-02T11:31:46.326Z',
   name: 'testlabel',
 }
