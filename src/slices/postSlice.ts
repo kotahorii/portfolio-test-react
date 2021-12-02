@@ -17,7 +17,7 @@ const initialState: StateType = {
     id: 0,
     body: '',
     title: '',
-    prefecture: '東京都',
+    prefecture: '',
     city: '',
     town: '',
     image: '',
@@ -25,7 +25,7 @@ const initialState: StateType = {
   detailPost: {
     title: '',
     body: '',
-    prefecture: '東京都',
+    prefecture: '',
     city: '',
     town: '',
     userId: 0,

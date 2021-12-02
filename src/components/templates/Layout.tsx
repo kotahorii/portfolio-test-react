@@ -44,6 +44,8 @@ export const Layout: VFC<Props> = memo(({ children }) => {
           <EditUserText />
         </CustomModal>
         <CustomModal
+          width="w-full"
+          mdWidth="md:w-192"
           title="新規投稿"
           isOpen={isOpenCreatePostModal}
           closeModal={closeCreatePostModal}
