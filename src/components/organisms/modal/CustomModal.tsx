@@ -6,10 +6,12 @@ type Props = {
   children: ReactNode
   isOpen: boolean
   closeModal: () => void
+  width?: string
+  mdWidth?: string
 }
 
 export const CustomModal: VFC<Props> = memo(
-  ({ title, children, isOpen, closeModal }) => {
+  ({ title, children, isOpen, closeModal, width = 'w-96', mdWidth }) => {
     return (
       <div className="fixed">
         <Transition appear show={isOpen} as={Fragment}>
@@ -45,10 +47,12 @@ export const CustomModal: VFC<Props> = memo(
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <div className="inline-block fixed w-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-500 bg-gray-50 p-6 my-8 overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-lg">
+                <div
+                  className={`${width} ${mdWidth} inline-block fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-500 bg-gray-50 p-6 my-8 overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-lg`}
+                >
                   <Dialog.Title
                     as="h3"
-                    className="text-lg text-center font-medium leading-6"
+                    className="text-xl text-center font-semibold leading-6 mb-5"
                   >
                     {title}
                   </Dialog.Title>

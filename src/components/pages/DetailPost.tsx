@@ -1,16 +1,19 @@
 import { StarIcon } from '@heroicons/react/solid'
 import { CustomButton } from 'components/atoms/button/CustomButton'
 import { LikeButton } from 'components/atoms/button/LikeButton'
+import { ShopSearchButton } from 'components/atoms/button/ShopSearchButton'
 import { CustomInput } from 'components/atoms/form/CustomInput'
 import { CommentCard } from 'components/organisms/card/CommentCard'
-import { LoadingHotelCard } from 'components/organisms/card/LoadingHotelCard'
+import { CustomModal } from 'components/organisms/modal/CustomModal'
 import { Layout } from 'components/templates/Layout'
-import { useQueryDetailPost } from 'hooks/queries/useQueryDetailPost'
+import { useApi } from 'hooks/useApi'
 import { useDetailPost } from 'hooks/useDetailPost'
 import { useLikes } from 'hooks/useLikes'
 import { useMain } from 'hooks/useMain'
 import { memo } from 'react'
 import { LoadingPostPage } from './LoadingPostPage'
+import { ShopModal } from 'components/organisms/modal/ShopModal'
+import { HotelModal } from 'components/organisms/modal/HotelModal'
 
 export const DetailPost = memo(() => {
   const { isLoadingUser } = useMain()
@@ -24,6 +27,14 @@ export const DetailPost = memo(() => {
     submitComment,
     postsComments,
   } = useDetailPost()
+  const {
+    isOpenShopModal,
+    closeShopModal,
+    openShopModal,
+    isOpenHotelModal,
+    openHotelModal,
+    closeHotelModal,
+  } = useApi()
 
   const { postsFavorites } = useLikes()
 
@@ -40,7 +51,7 @@ export const DetailPost = memo(() => {
           {detailPost?.title}
         </p>
         <div className="flex md:flex-row flex-col justify-center items-center md:space-x-3 md:space-y-0 space-y-3 w-full">
-          <div className="flex flex-col justify-between space-y-8 ">
+          <div className="flex flex-col justify-between space-y-4 ">
             {detailPost?.image.url === null ? (
               <div className="w-96 h-64 rounded-lg bg-green-200"></div>
             ) : (
@@ -67,14 +78,22 @@ export const DetailPost = memo(() => {
                 {detailPost?.town}
               </div>
             </div>
+            <ShopSearchButton
+              title="周辺のレストランを検索"
+              onClick={openShopModal}
+            />
+            <ShopSearchButton
+              title="周辺のホテルを検索"
+              onClick={openHotelModal}
+            />
           </div>
           <form
             onSubmit={submitComment}
-            className=" w-96 h-80 flex flex-col space-y-2 rounded-lg"
+            className=" w-96 flex flex-col space-y-2 rounded-lg"
           >
-            <div className="w-full h-72 p-2 space-y-3 overflow-auto bg-green-200 rounded-lg">
+            <div className="w-full h-80 p-2 space-y-3 overflow-auto bg-green-200 rounded-lg">
               {postsComments(Number(id))?.map((comment) => (
-                <CommentCard comment={comment} />
+                <CommentCard key={comment.id} comment={comment} />
               ))}
             </div>
             <CustomInput
@@ -97,24 +116,26 @@ export const DetailPost = memo(() => {
             </div>
           </form>
         </div>
-        <div className="grid md:grid-cols-2 grid-cols-1 md:space-x-2 md:space-y-0 space-y-3 md:w-full w-96 pt-5 rounded-lg">
-          <ul className="flex flex-col overflow-auto space-y-2 w-full h-96 bg-green-200 rounded-lg p-2">
-            {[...Array(4)]
-              .map((_, i) => i)
-              ?.map((i) => (
-                <LoadingHotelCard key={i} />
-              ))}
-          </ul>
-          <ul className="flex flex-col overflow-auto space-y-2 w-full h-96 bg-green-200 rounded-lg p-2">
-            {[...Array(4)]
-              .map((_, i) => i)
-              ?.map((i) => (
-                <LoadingHotelCard key={i} />
-              ))}
-          </ul>
-        </div>
         <div className="w-full md:h-96 h-56 bg-green-200 rounded-lg"></div>
       </div>
+      <CustomModal
+        width="w-full"
+        mdWidth="md:w-192"
+        title="レストラン"
+        isOpen={isOpenShopModal}
+        closeModal={closeShopModal}
+      >
+        <ShopModal />
+      </CustomModal>
+      <CustomModal
+        width="w-full"
+        mdWidth="md:w-192"
+        title="ホテル"
+        isOpen={isOpenHotelModal}
+        closeModal={closeHotelModal}
+      >
+        <HotelModal />
+      </CustomModal>
     </Layout>
   )
 })

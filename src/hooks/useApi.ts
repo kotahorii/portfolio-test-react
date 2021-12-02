@@ -4,10 +4,20 @@ import { useMutateHotPepper } from './queries/useMutationHotPepper'
 import { Post } from 'types/postType'
 import { useDetailPost } from './useDetailPost'
 import { useQueryRakutenData } from './queries/useQueryRakuten'
+import { useAppDispatch, useAppSelector } from 'app/hooks'
+import {
+  selectIsOpenHotelModal,
+  selectIsOpenShopModal,
+  setIsOpenHotelModal,
+  setIsOpenShopModal,
+} from 'slices/postSlice'
 
 export const useApi = () => {
   const [address, setAddress] = useState('')
   const { detailPost } = useDetailPost()
+  const dispatch = useAppDispatch()
+  const isOpenShopModal = useAppSelector(selectIsOpenShopModal)
+  const isOpenHotelModal = useAppSelector(selectIsOpenHotelModal)
 
   const changeAddress = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setAddress(e.target.value)
@@ -61,12 +71,31 @@ export const useApi = () => {
     [validatedAddress]
   )
 
-  const refetchData = useCallback(() => {
-    refetchRakutenData()
+  const openShopModal = useCallback(() => {
+    dispatch(setIsOpenShopModal(true))
     postHotPepperParams.mutate(hotPepperKeyword(detailPost))
-  }, [refetchRakutenData, hotPepperKeyword, postHotPepperParams, detailPost])
+  }, [dispatch, postHotPepperParams, detailPost, hotPepperKeyword])
+
+  const closeShopModal = useCallback(() => {
+    dispatch(setIsOpenShopModal(false))
+  }, [dispatch])
+
+  const openHotelModal = useCallback(() => {
+    dispatch(setIsOpenHotelModal(true))
+    refetchRakutenData()
+  }, [dispatch, refetchRakutenData])
+
+  const closeHotelModal = useCallback(() => {
+    dispatch(setIsOpenHotelModal(false))
+  }, [dispatch])
 
   return {
+    isOpenShopModal,
+    openShopModal,
+    closeShopModal,
+    isOpenHotelModal,
+    openHotelModal,
+    closeHotelModal,
     isNotValidData,
     isError,
     isLoadingAddress,
@@ -80,6 +109,5 @@ export const useApi = () => {
     rakutenData,
     setAddressData,
     addressData,
-    refetchData,
   }
 }

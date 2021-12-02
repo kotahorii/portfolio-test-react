@@ -6,6 +6,7 @@ module.exports = {
       spacing: {
         160: '40rem',
         116: '29rem',
+        192: '48rem',
       },
     },
     variants: {

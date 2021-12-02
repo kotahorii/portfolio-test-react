@@ -10,7 +10,6 @@ import {
 import { Post } from 'types/postType'
 import { useMutationPosts } from './queries/useMutationPosts'
 import { useQueryFavorites } from './queries/useQueryFavorites'
-
 type ModeType = 'myPosts' | 'likedPosts'
 
 export const useMyPage = () => {
