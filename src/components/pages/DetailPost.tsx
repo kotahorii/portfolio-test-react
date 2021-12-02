@@ -19,11 +19,12 @@ export const DetailPost = memo(() => {
     commentChange,
     comment,
     isLoadingComment,
+    detailPost,
+    isLoadingDetailPost,
     submitComment,
     postsComments,
   } = useDetailPost()
-  const { data: detailPost, isLoading: isLoadingDetailPost } =
-    useQueryDetailPost(Number(id))
+
   const { postsFavorites } = useLikes()
 
   if (isLoadingDetailPost || isLoadingUser || isLoadingComment)

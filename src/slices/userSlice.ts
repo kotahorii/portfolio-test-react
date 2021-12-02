@@ -34,7 +34,6 @@ const initialState: StateType = {
   preview: '',
   isOpenEditUserModal: false,
 }
-
 export const userSlice = createSlice({
   name: 'user',
   initialState,

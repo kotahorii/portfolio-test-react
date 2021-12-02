@@ -5,6 +5,7 @@ import { useCommentMutation } from './queries/useMutationComment'
 import { useParams } from 'react-router'
 import { useUsers } from './useUsers'
 import { Comment } from 'types/postType'
+import { useQueryDetailPost } from './queries/useQueryDetailPost'
 
 export const useDetailPost = () => {
   const { data: comments, isLoading: isLoadingComment } = useQueryComments()
@@ -39,9 +40,14 @@ export const useDetailPost = () => {
       users?.filter((user) => user.id === comment.userId)[0],
     [users]
   )
+
+  const { data: detailPost, isLoading: isLoadingDetailPost } =
+    useQueryDetailPost(Number(id))
   return {
     comment,
     commentChange,
+    detailPost,
+    isLoadingDetailPost,
     isLoadingComment,
     commentsUser,
     submitComment,

@@ -1,6 +1,6 @@
-import { useAppDispatch } from 'app/hooks'
 import axios from 'axios'
 import { useQuery } from 'react-query'
+import { AddressQueryType, AddressRes } from 'types/apiTypes'
 
 const getAddressData = async (address: string) => {
   const { data } = await axios.get<AddressRes>(
@@ -10,17 +10,10 @@ const getAddressData = async (address: string) => {
 }
 
 export const useQueryAddress = (address: string) => {
-  const dispatch = useAppDispatch()
-
   return useQuery<AddressQueryType, Error>({
     queryKey: 'address',
     queryFn: () => getAddressData(address),
     staleTime: Infinity,
     enabled: false,
-    onSuccess: (data) => {
-      dispatch(setPrefecture(data.address1))
-      dispatch(setCity(data.address2))
-      dispatch(setTown(data.address3))
-    },
   })
 }
