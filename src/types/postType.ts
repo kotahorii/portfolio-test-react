@@ -1,4 +1,10 @@
-import { commentRes, favoriteRes, postRes, rateRes } from 'data/response'
+import {
+  commentRes,
+  favoriteRes,
+  labelRes,
+  postRes,
+  rateRes,
+} from 'data/response'
 
 export type Post = typeof postRes
 export type CreatePost = {
@@ -39,6 +45,12 @@ export type CreateRate = {
   rate: number
 }
 export type UpdateRate = CreateRate & { id: number | undefined }
+
+export type Label = typeof labelRes
+export type CreateLabel = {
+  postId: number | undefined
+  name: string
+}
 
 export type MenuType = {
   name: string

@@ -2,7 +2,6 @@ import {
   PencilAltIcon,
   PlusSmIcon,
   UserIcon,
-  UsersIcon,
   BookOpenIcon,
 } from '@heroicons/react/outline'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
@@ -71,18 +70,13 @@ export const useHeader = () => {
       icon: PlusSmIcon,
       onClick: openCreatePostModal,
     },
-    {
-      name: 'マイページへ移動',
-      icon: UserIcon,
-      onClick: myPageNavigate,
-    },
   ]
 
   const responsiveItems: MenuType = [
     {
-      name: 'ユーザー一覧',
-      icon: UsersIcon,
-      onClick: () => navigate('/users'),
+      name: 'マイページへ移動',
+      icon: UserIcon,
+      onClick: myPageNavigate,
     },
     {
       name: '投稿一覧',
