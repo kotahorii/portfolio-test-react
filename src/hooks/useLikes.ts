@@ -6,7 +6,7 @@ import { useMain } from './useMain'
 
 export const useLikes = () => {
   const { createLikeMutation, deleteLikeMutation } = useLikeMutation()
-  const { data: favorites } = useQueryFavorites()
+  const { data: favorites, isLoading: isLoadingFavorites } = useQueryFavorites()
   const { currentUser } = useMain()
 
   const postsFavorites = useCallback(
@@ -39,5 +39,5 @@ export const useLikes = () => {
       postsFavorites,
     ]
   )
-  return { postsFavorites, isLiked, toggleLike }
+  return { postsFavorites, isLiked, toggleLike, isLoadingFavorites }
 }

@@ -1,18 +1,23 @@
+import { choices } from 'data/choices'
 import { prefectures } from 'data/prefecture'
 import { ChangeEvent, useCallback, useState } from 'react'
 import { Label, Post } from 'types/postType'
 import { useMutationLabels } from './queries/useMutationLabels'
 import { useQueryLabels } from './queries/useQueryLabel'
 import { useDetailPost } from './useDetailPost'
+import { useLikes } from './useLikes'
 import { useMain } from './useMain'
 
 export const useSearch = () => {
   const { data: labels, isLoading: isLoadingLabels } = useQueryLabels()
   const { id } = useDetailPost()
   const { createLabelMutation, deleteLabelMutation } = useMutationLabels()
+  const { postsFavorites } = useLikes()
   const { posts } = useMain()
   const [labelName, setLabelName] = useState('')
   const [searchedLabel, setSearchedLabel] = useState('')
+  const [searchPrefecture, setSearchPrefecture] = useState(1)
+  const [choice, setChoice] = useState(1)
   const changeLabel = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => setLabelName(e.target.value),
     []
@@ -52,10 +57,11 @@ export const useSearch = () => {
     posts?.map((post) =>
       searchLabels.includes(post.id) || searchedLabel === '' ? post : undefined
     )
-  const selectedPrefecture = (num: number) => prefectures[num]
-  const [searchPrefecture, setSearchPrefecture] = useState(1)
   const changeSearchPrefecture = (e: ChangeEvent<{ value: unknown }>) =>
     setSearchPrefecture(e.target.value as number)
+
+  const changeChoice = (e: ChangeEvent<{ value: unknown }>) =>
+    setChoice(e.target.value as number)
 
   return {
     labels,
@@ -70,8 +76,9 @@ export const useSearch = () => {
     postsLabels,
     labelsPosts,
     filteredPosts,
-    selectedPrefecture,
     searchPrefecture,
     changeSearchPrefecture,
+    changeChoice,
+    choice,
   }
 }

@@ -7,9 +7,11 @@ import { useMain } from 'hooks/useMain'
 import { memo } from 'react'
 import { CustomSelector } from 'components/atoms/form/CustomSelector'
 import { prefectures } from 'data/prefecture'
+import { useLikes } from 'hooks/useLikes'
 
 export const Main = memo(() => {
   const { isLoadingUser, isLoadingPosts, posts } = useMain()
+  const { isLoadingFavorites } = useLikes()
   const {
     searchedLabel,
     changeSearchedLabel,
@@ -19,7 +21,7 @@ export const Main = memo(() => {
     changeSearchPrefecture,
   } = useSearch()
 
-  if (isLoadingPosts || isLoadingUser || isLoadingLabels)
+  if (isLoadingPosts || isLoadingUser || isLoadingLabels || isLoadingFavorites)
     return (
       <Layout>
         <div className="flex flex-col w-full items-center justify-center">
@@ -33,30 +35,46 @@ export const Main = memo(() => {
     )
   return (
     <Layout>
-      <div className=" flex flex-row space-x-1 w-5/12">
-        <CustomInput
-          name="search"
-          placeholder="タグで絞り込み"
-          value={searchedLabel}
-          onChange={changeSearchedLabel}
-        />
-        <CustomSelector
-          value={searchPrefecture}
-          onChange={changeSearchPrefecture}
-          arrays={prefectures}
-        />
+      <div className=" flex flex-row space-x-1 w-5/12 items-center">
+        <div className="w-96">
+          <CustomInput
+            name="search"
+            placeholder="タグで絞り込み"
+            value={searchedLabel}
+            onChange={changeSearchedLabel}
+          />
+        </div>
+        <div className=" w-56">
+          <CustomSelector
+            value={searchPrefecture}
+            onChange={changeSearchPrefecture}
+            arrays={prefectures}
+          />
+        </div>
+        <div className="w-10"></div>
+        <p className="w-40">
+          {posts &&
+            filteredPosts(posts)?.map((post) =>
+              post?.prefecture === prefectures[searchPrefecture - 1] ||
+              prefectures[searchPrefecture - 1] === '都道府県を選択'
+                ? post
+                : undefined
+            ).length}
+          件の結果
+        </p>
       </div>
       <div className="flex flex-col w-full items-center justify-center">
-        {filteredPosts(posts)
-          ?.map((post) =>
-            post?.prefecture === prefectures[searchPrefecture - 1] ||
-            prefectures[searchPrefecture - 1] === '都道府県を選択'
-              ? post
-              : undefined
-          )
-          .map((post) =>
-            !post ? null : <PostCard key={post?.id} post={post} />
-          )}
+        {posts &&
+          filteredPosts(posts)
+            ?.map((post) =>
+              post?.prefecture === prefectures[searchPrefecture - 1] ||
+              prefectures[searchPrefecture - 1] === '都道府県を選択'
+                ? post
+                : undefined
+            )
+            .map((post) =>
+              !post ? null : <PostCard key={post?.id} post={post} />
+            )}
       </div>
     </Layout>
   )
