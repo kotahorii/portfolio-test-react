@@ -2,9 +2,11 @@ import { CustomInput } from 'components/atoms/form/CustomInput'
 import { LoadingCard } from 'components/organisms/card/LoadingCard'
 import { PostCard } from 'components/organisms/card/PostCard'
 import { Layout } from 'components/templates/Layout'
-import { useLabel } from 'hooks/useLabel'
+import { useSearch } from 'hooks/useSearch'
 import { useMain } from 'hooks/useMain'
 import { memo } from 'react'
+import { CustomSelector } from 'components/atoms/form/CustomSelector'
+import { prefectures } from 'data/prefecture'
 
 export const Main = memo(() => {
   const { isLoadingUser, isLoadingPosts, posts } = useMain()
@@ -13,7 +15,9 @@ export const Main = memo(() => {
     changeSearchedLabel,
     isLoadingLabels,
     filteredPosts,
-  } = useLabel()
+    searchPrefecture,
+    changeSearchPrefecture,
+  } = useSearch()
 
   if (isLoadingPosts || isLoadingUser || isLoadingLabels)
     return (
@@ -29,18 +33,30 @@ export const Main = memo(() => {
     )
   return (
     <Layout>
-      <div className="w-1/3">
+      <div className=" flex flex-row space-x-1 w-5/12">
         <CustomInput
           name="search"
           placeholder="タグで絞り込み"
           value={searchedLabel}
           onChange={changeSearchedLabel}
         />
+        <CustomSelector
+          value={searchPrefecture}
+          onChange={changeSearchPrefecture}
+          arrays={prefectures}
+        />
       </div>
       <div className="flex flex-col w-full items-center justify-center">
-        {filteredPosts(posts)?.map((post) =>
-          !post ? null : <PostCard key={post?.id} post={post} />
-        )}
+        {filteredPosts(posts)
+          ?.map((post) =>
+            post?.prefecture === prefectures[searchPrefecture - 1] ||
+            prefectures[searchPrefecture - 1] === '都道府県を選択'
+              ? post
+              : undefined
+          )
+          .map((post) =>
+            !post ? null : <PostCard key={post?.id} post={post} />
+          )}
       </div>
     </Layout>
   )

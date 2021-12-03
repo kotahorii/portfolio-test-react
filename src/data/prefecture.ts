@@ -1,4 +1,5 @@
 export const prefectures = [
+  '都道府県を選択',
   '北海道',
   '青森県',
   '岩手県',

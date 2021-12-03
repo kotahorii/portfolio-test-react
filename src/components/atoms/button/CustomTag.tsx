@@ -1,5 +1,5 @@
 import { XCircleIcon } from '@heroicons/react/solid'
-import { useLabel } from 'hooks/useLabel'
+import { useSearch } from 'hooks/useSearch'
 import { VFC } from 'react'
 import { Label } from 'types/postType'
 
@@ -8,7 +8,7 @@ type Props = {
 }
 
 export const CustomTag: VFC<Props> = ({ label }) => {
-  const { deleteLabel } = useLabel()
+  const { deleteLabel } = useSearch()
   return (
     <div
       key={label.id}

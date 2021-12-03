@@ -1,3 +1,4 @@
+import { prefectures } from 'data/prefecture'
 import { ChangeEvent, useCallback, useState } from 'react'
 import { Label, Post } from 'types/postType'
 import { useMutationLabels } from './queries/useMutationLabels'
@@ -5,7 +6,7 @@ import { useQueryLabels } from './queries/useQueryLabel'
 import { useDetailPost } from './useDetailPost'
 import { useMain } from './useMain'
 
-export const useLabel = () => {
+export const useSearch = () => {
   const { data: labels, isLoading: isLoadingLabels } = useQueryLabels()
   const { id } = useDetailPost()
   const { createLabelMutation, deleteLabelMutation } = useMutationLabels()
@@ -47,11 +48,14 @@ export const useLabel = () => {
               .map((label) => label.postId)
           )
         )
-
   const filteredPosts = (posts: Post[] | undefined) =>
     posts?.map((post) =>
       searchLabels.includes(post.id) || searchedLabel === '' ? post : undefined
     )
+  const selectedPrefecture = (num: number) => prefectures[num]
+  const [searchPrefecture, setSearchPrefecture] = useState(1)
+  const changeSearchPrefecture = (e: ChangeEvent<{ value: unknown }>) =>
+    setSearchPrefecture(e.target.value as number)
 
   return {
     labels,
@@ -66,5 +70,8 @@ export const useLabel = () => {
     postsLabels,
     labelsPosts,
     filteredPosts,
+    selectedPrefecture,
+    searchPrefecture,
+    changeSearchPrefecture,
   }
 }

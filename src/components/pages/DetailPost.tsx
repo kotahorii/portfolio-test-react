@@ -18,7 +18,7 @@ import { CustomRateInput } from 'components/molecules/rate/CustomRateInput'
 import { useRates } from 'hooks/useRate'
 import { Disclosure } from '@headlessui/react'
 import { DisclosureText } from 'components/molecules/DisclosureText'
-import { useLabel } from 'hooks/useLabel'
+import { useSearch } from 'hooks/useSearch'
 import { CustomTag } from 'components/atoms/button/CustomTag'
 
 export const DetailPost = memo(() => {
@@ -45,7 +45,7 @@ export const DetailPost = memo(() => {
   const { postsFavorites } = useLikes()
   const { isLoadingRates, averageRate, postsRates } = useRates()
   const { isLoadingLabels, labelName, changeLabel, createLabel, postsLabels } =
-    useLabel()
+    useSearch()
 
   if (
     isLoadingDetailPost ||
