@@ -37,9 +37,21 @@ export const useLabel = () => {
     (e: ChangeEvent<HTMLInputElement>) => setSearchedLabel(e.target.value),
     []
   )
-  const searchLabels = labels?.filter((label) =>
-    label.name.includes(searchedLabel)
-  )
+  const searchLabels =
+    !labels || searchedLabel === ''
+      ? []
+      : Array.from(
+          new Set(
+            labels
+              .filter((label) => label.name.includes(searchedLabel))
+              .map((label) => label.postId)
+          )
+        )
+
+  const filteredPosts = (posts: Post[] | undefined) =>
+    posts?.map((post) =>
+      searchLabels.includes(post.id) || searchedLabel === '' ? post : undefined
+    )
 
   return {
     labels,
@@ -49,8 +61,10 @@ export const useLabel = () => {
     createLabel,
     changeSearchedLabel,
     searchLabels,
+    searchedLabel,
     deleteLabel,
     postsLabels,
     labelsPosts,
+    filteredPosts,
   }
 }
