@@ -18,6 +18,8 @@ import { CustomRateInput } from 'components/molecules/rate/CustomRateInput'
 import { useRates } from 'hooks/useRate'
 import { Disclosure } from '@headlessui/react'
 import { DisclosureText } from 'components/molecules/DisclosureText'
+import { useLabel } from 'hooks/useLabel'
+import { CustomTag } from 'components/atoms/button/CustomTag'
 
 export const DetailPost = memo(() => {
   const { isLoadingUser } = useMain()
@@ -42,12 +44,15 @@ export const DetailPost = memo(() => {
 
   const { postsFavorites } = useLikes()
   const { isLoadingRates, averageRate, postsRates } = useRates()
+  const { isLoadingLabels, labelName, changeLabel, createLabel, postsLabels } =
+    useLabel()
 
   if (
     isLoadingDetailPost ||
     isLoadingUser ||
     isLoadingComment ||
-    isLoadingRates
+    isLoadingRates ||
+    isLoadingLabels
   )
     return (
       <Layout>
@@ -134,6 +139,24 @@ export const DetailPost = memo(() => {
                     disabled={comment.length === 0 || comment.length > 140}
                   />
                 </div>
+              </div>
+              <div className="flex flex-row space-x-1">
+                <CustomInput
+                  name="label"
+                  value={labelName}
+                  placeholder="ラベルを入力してください"
+                  onChange={changeLabel}
+                />
+                <CustomButton
+                  text="ラベル"
+                  onClick={createLabel}
+                  disabled={labelName.length > 15 || labelName.length === 0}
+                />
+              </div>
+              <div className="flex flex-row space-x-2">
+                {postsLabels(detailPost)?.map((label) => (
+                  <CustomTag label={label} />
+                ))}
               </div>
             </form>
           </div>

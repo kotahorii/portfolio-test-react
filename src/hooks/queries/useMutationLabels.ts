@@ -33,7 +33,7 @@ export const useMutationLabels = () => {
         const previousLabels = queryClient.getQueryData<Label[]>('labels')
         if (previousLabels) {
           queryClient.setQueryData<Label[]>(
-            'label',
+            'labels',
             previousLabels.filter((label) => label.id !== variable)
           )
         }

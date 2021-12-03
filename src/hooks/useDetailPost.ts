@@ -23,7 +23,7 @@ export const useDetailPost = () => {
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault()
       createCommentMutation.mutate({ postId: Number(id), comment: comment })
-      toast.success('Success to create comments!')
+      toast.success('コメントを作成しました')
       setComment('')
     },
     [comment, createCommentMutation, id]

@@ -80,7 +80,7 @@ export const useMain = () => {
       const data = createFormData()
       if (editedPost.id === 0) {
         createPostMutation.mutate(data)
-        toast.success('Success to create !')
+        toast.success('投稿に成功しました。')
       } else {
         updatePostMutation.mutate({ id: editedPost.id, formData: data })
       }

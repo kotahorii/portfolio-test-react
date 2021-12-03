@@ -20,7 +20,7 @@ export const useMutationAuth = () => {
         navigate('/main')
       },
       onError: () => {
-        toast.error('Login Failed')
+        toast.error('ログインに失敗しました')
       },
     }
   )
@@ -36,7 +36,7 @@ export const useMutationAuth = () => {
         navigate('/main')
       },
       onError: () => {
-        toast.error('Sign up Failed')
+        toast.error('新規登録に失敗しました')
       },
     }
   )

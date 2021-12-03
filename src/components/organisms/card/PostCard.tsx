@@ -62,14 +62,6 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
             </p>
           </div>
           <div className="w-16"></div>
-          <div className="flex flex-row space-x-1 items-center">
-            <p className="mt-2 px-3 py-1 text-green-800 text-center bg-green-200 rounded-full">
-              タグ１
-            </p>
-            <p className="mt-2 px-3 py-1 text-green-800 text-center bg-green-200 rounded-full">
-              タグ2
-            </p>
-          </div>
         </div>
       </div>
     </div>
