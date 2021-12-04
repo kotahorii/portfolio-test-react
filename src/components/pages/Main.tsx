@@ -1,6 +1,5 @@
 import { CustomInput } from 'components/atoms/form/CustomInput'
 import { LoadingCard } from 'components/organisms/card/LoadingCard'
-import { PostCard } from 'components/organisms/card/PostCard'
 import { Layout } from 'components/templates/Layout'
 import { useSearch } from 'hooks/useSearch'
 import { useMain } from 'hooks/useMain'
@@ -8,6 +7,8 @@ import { memo } from 'react'
 import { CustomSelector } from 'components/atoms/form/CustomSelector'
 import { prefectures } from 'data/prefecture'
 import { useLikes } from 'hooks/useLikes'
+import { RadioButton } from 'components/atoms/button/RadioButton'
+import { PostsList } from 'components/organisms/main/PostsList'
 
 export const Main = memo(() => {
   const { isLoadingUser, isLoadingPosts, posts } = useMain()
@@ -19,6 +20,11 @@ export const Main = memo(() => {
     filteredPosts,
     searchPrefecture,
     changeSearchPrefecture,
+    choice,
+    RadioData,
+    favPostsData,
+    rateAveData,
+    ratePostsData,
   } = useSearch()
 
   if (isLoadingPosts || isLoadingUser || isLoadingLabels || isLoadingFavorites)
@@ -63,18 +69,19 @@ export const Main = memo(() => {
           件の結果
         </p>
       </div>
+      <div className="flex flex-row justify-center w-1/2 space-x-3">
+        <RadioButton radioData={RadioData} />
+      </div>
       <div className="flex flex-col w-full items-center justify-center">
-        {posts &&
-          filteredPosts(posts)
-            ?.map((post) =>
-              post?.prefecture === prefectures[searchPrefecture - 1] ||
-              prefectures[searchPrefecture - 1] === '都道府県を選択'
-                ? post
-                : undefined
-            )
-            .map((post) =>
-              !post ? null : <PostCard key={post?.id} post={post} />
-            )}
+        {choice === '投稿が新しい順' ? (
+          <PostsList posts={posts} />
+        ) : choice === 'いいねが多い順' ? (
+          <PostsList posts={favPostsData} />
+        ) : choice === '評価が高い順' ? (
+          <PostsList posts={rateAveData} />
+        ) : (
+          <PostsList posts={ratePostsData} />
+        )}
       </div>
     </Layout>
   )

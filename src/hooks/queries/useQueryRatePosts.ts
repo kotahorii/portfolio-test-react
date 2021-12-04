@@ -13,9 +13,9 @@ const getRatePosts = async () => {
   })
   return data
 }
-export const useQueryRateUsers = () => {
+export const useQueryRatePosts = () => {
   return useQuery<Post[], Error>({
-    queryKey: 'posts',
+    queryKey: 'postsRate',
     queryFn: getRatePosts,
     staleTime: Infinity,
     enabled: false,

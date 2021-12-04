@@ -13,9 +13,9 @@ const getFavPosts = async () => {
   })
   return data
 }
-export const useQueryFavUsers = () => {
+export const useQueryFavPosts = () => {
   return useQuery<Post[], Error>({
-    queryKey: 'posts',
+    queryKey: 'postsFav',
     queryFn: getFavPosts,
     staleTime: Infinity,
     enabled: false,

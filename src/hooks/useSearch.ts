@@ -1,23 +1,38 @@
-import { choices } from 'data/choices'
-import { prefectures } from 'data/prefecture'
 import { ChangeEvent, useCallback, useState } from 'react'
 import { Label, Post } from 'types/postType'
 import { useMutationLabels } from './queries/useMutationLabels'
+import { useQueryFavPosts } from './queries/useQueryFavPosts'
+import { useQueryRatePosts } from './queries/useQueryRatePosts'
+import { useQueryRateAve } from './queries/useQueryRateAve'
 import { useQueryLabels } from './queries/useQueryLabel'
 import { useDetailPost } from './useDetailPost'
-import { useLikes } from './useLikes'
 import { useMain } from './useMain'
 
 export const useSearch = () => {
   const { data: labels, isLoading: isLoadingLabels } = useQueryLabels()
   const { id } = useDetailPost()
   const { createLabelMutation, deleteLabelMutation } = useMutationLabels()
-  const { postsFavorites } = useLikes()
+  const {
+    data: favPostsData,
+    refetch: refetchFavPosts,
+    isRefetching: isRefetchingFavPosts,
+  } = useQueryFavPosts()
+  const {
+    data: ratePostsData,
+    refetch: refetchRatePosts,
+    isRefetching: isRefetchingRatePosts,
+  } = useQueryRatePosts()
+  const {
+    data: rateAveData,
+    refetch: refetchRateAve,
+    isRefetching: isRefetchingRateAve,
+  } = useQueryRateAve()
+
   const { posts } = useMain()
   const [labelName, setLabelName] = useState('')
   const [searchedLabel, setSearchedLabel] = useState('')
   const [searchPrefecture, setSearchPrefecture] = useState(1)
-  const [choice, setChoice] = useState(1)
+  const [choice, setChoice] = useState('')
   const changeLabel = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => setLabelName(e.target.value),
     []
@@ -60,8 +75,41 @@ export const useSearch = () => {
   const changeSearchPrefecture = (e: ChangeEvent<{ value: unknown }>) =>
     setSearchPrefecture(e.target.value as number)
 
-  const changeChoice = (e: ChangeEvent<{ value: unknown }>) =>
-    setChoice(e.target.value as number)
+  const RadioData = [
+    {
+      name: '投稿が新しい順',
+      value: 1,
+      checked: true,
+      onClick: () => setChoice('投稿が新しい順'),
+    },
+    {
+      name: 'いいねが多い順',
+      value: 2,
+      checked: false,
+      onClick: () => {
+        refetchFavPosts()
+        setChoice('いいねが多い順')
+      },
+    },
+    {
+      name: '評価が高い順',
+      value: 3,
+      checked: false,
+      onClick: () => {
+        refetchRateAve()
+        setChoice('評価が高い順')
+      },
+    },
+    {
+      name: '評価数が多い順',
+      value: 4,
+      checked: false,
+      onClick: () => {
+        refetchRatePosts()
+        setChoice('評価数が多い順')
+      },
+    },
+  ]
 
   return {
     labels,
@@ -78,7 +126,13 @@ export const useSearch = () => {
     filteredPosts,
     searchPrefecture,
     changeSearchPrefecture,
-    changeChoice,
     choice,
+    isRefetchingFavPosts,
+    isRefetchingRatePosts,
+    isRefetchingRateAve,
+    RadioData,
+    favPostsData,
+    rateAveData,
+    ratePostsData,
   }
 }
