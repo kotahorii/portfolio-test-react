@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from 'app/hooks'
+import { prefectures } from 'data/prefecture'
 import { useMain } from 'hooks/useMain'
 import { useCallback, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -10,7 +11,7 @@ import {
 import { Post } from 'types/postType'
 import { useMutationPosts } from './queries/useMutationPosts'
 import { useQueryFavorites } from './queries/useQueryFavorites'
-type ModeType = 'myPosts' | 'likedPosts'
+export type ModeType = 'myPosts' | 'likedPosts' | 'myPrefecturePosts'
 
 export const useMyPage = () => {
   const { currentUser, posts } = useMain()
@@ -18,8 +19,7 @@ export const useMyPage = () => {
   const { deletePostMutation } = useMutationPosts()
   const dispatch = useAppDispatch()
   const isOpenDeletePostModal = useAppSelector(selectIsOpenDeletePostModal)
-  const [postsMode, setPostsMode] =
-    useState<'myPosts' | 'likedPosts'>('myPosts')
+  const [postsMode, setPostsMode] = useState<ModeType>('myPosts')
 
   const changePostsMode = useCallback(
     (mode: ModeType) => () => setPostsMode(mode),
@@ -41,6 +41,17 @@ export const useMyPage = () => {
   const likedPost = useCallback(
     () => posts?.filter((post) => myFavorites()?.includes(post.id)),
     [posts, myFavorites]
+  )
+
+  const myPrefecturePosts = useCallback(
+    () =>
+      !currentUser?.prefecture
+        ? null
+        : posts?.filter(
+            (post) =>
+              post.prefecture === prefectures[currentUser?.prefecture - 1]
+          ),
+    [currentUser?.prefecture, posts]
   )
 
   const openDeletePostModal = useCallback(
@@ -73,5 +84,6 @@ export const useMyPage = () => {
     isOpenDeletePostModal,
     openDeletePostModal,
     closeDeletePostModal,
+    myPrefecturePosts,
   }
 }
