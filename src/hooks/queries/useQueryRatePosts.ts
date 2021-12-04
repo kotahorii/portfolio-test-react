@@ -18,6 +18,5 @@ export const useQueryRatePosts = () => {
     queryKey: 'postsRate',
     queryFn: getRatePosts,
     staleTime: Infinity,
-    enabled: false,
   })
 }

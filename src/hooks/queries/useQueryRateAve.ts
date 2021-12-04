@@ -18,6 +18,5 @@ export const useQueryRateAve = () => {
     queryKey: 'postsRateAve',
     queryFn: getRateAve,
     staleTime: Infinity,
-    enabled: false,
   })
 }

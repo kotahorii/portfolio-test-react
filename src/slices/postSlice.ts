@@ -8,6 +8,7 @@ type StateType = {
   postPreview: string
   searchedLabel: string
   searchPrefecture: number
+  selectedOption: string
   isOpenCreatePostModal: boolean
   isOpenDeletePostModal: boolean
   isOpenShopModal: boolean
@@ -45,6 +46,7 @@ const initialState: StateType = {
   isOpenDeletePostModal: false,
   isOpenShopModal: false,
   isOpenHotelModal: false,
+  selectedOption: '1',
 }
 
 export const postSlice = createSlice({
@@ -85,6 +87,9 @@ export const postSlice = createSlice({
     setSearchPrefecture: (state, action: PayloadAction<number>) => {
       state.searchPrefecture = action.payload
     },
+    setSelectedOption: (state, action) => {
+      state.selectedOption = action.payload
+    },
   },
 })
 
@@ -100,6 +105,7 @@ export const {
   setIsOpenDeletePostModal,
   setSearchedLabel,
   setSearchPrefecture,
+  setSelectedOption,
 } = postSlice.actions
 export const selectEditedPost = (state: RootState) => state.post.editedPost
 export const selectDetailPost = (state: RootState) => state.post.detailPost
@@ -116,4 +122,6 @@ export const selectSearchedLabel = (state: RootState) =>
   state.post.searchedLabel
 export const selectSearchPrefecture = (state: RootState) =>
   state.post.searchPrefecture
+export const selectSelectedOption = (state: RootState) =>
+  state.post.selectedOption
 export default postSlice.reducer

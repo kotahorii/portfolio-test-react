@@ -22,10 +22,31 @@ export const useMutationPosts = () => {
     {
       onSuccess: (res) => {
         const previousPosts = queryClient.getQueryData<Post[]>('posts')
+        const previousFavPosts = queryClient.getQueryData<Post[]>('postsFav')
+        const previousRatePosts = queryClient.getQueryData<Post[]>('postsRate')
+        const previousRateAve = queryClient.getQueryData<Post[]>('postsRateAve')
         if (previousPosts) {
           queryClient.setQueryData<Post[]>('posts', [
             res.data,
             ...previousPosts,
+          ])
+        }
+        if (previousFavPosts) {
+          queryClient.setQueryData<Post[]>('postsFav', [
+            res.data,
+            ...previousFavPosts,
+          ])
+        }
+        if (previousRatePosts) {
+          queryClient.setQueryData<Post[]>('postsRate', [
+            res.data,
+            ...previousRatePosts,
+          ])
+        }
+        if (previousRateAve) {
+          queryClient.setQueryData<Post[]>('postsRateAve', [
+            res.data,
+            ...previousRateAve,
           ])
         }
       },
@@ -36,10 +57,37 @@ export const useMutationPosts = () => {
     {
       onSuccess: (res, variable) => {
         const previousPosts = queryClient.getQueryData<Post[]>('posts')
+        const previousFavPosts = queryClient.getQueryData<Post[]>('postsFav')
+        const previousRatePosts = queryClient.getQueryData<Post[]>('postsRate')
+        const previousRateAve = queryClient.getQueryData<Post[]>('postsRateAve')
         if (previousPosts) {
           queryClient.setQueryData<Post[]>(
             'posts',
             previousPosts.map((post) =>
+              post.id === variable.id ? res.data : post
+            )
+          )
+        }
+        if (previousFavPosts) {
+          queryClient.setQueryData<Post[]>(
+            'postsFav',
+            previousFavPosts.map((post) =>
+              post.id === variable.id ? res.data : post
+            )
+          )
+        }
+        if (previousRatePosts) {
+          queryClient.setQueryData<Post[]>(
+            'postsRate',
+            previousRatePosts.map((post) =>
+              post.id === variable.id ? res.data : post
+            )
+          )
+        }
+        if (previousRateAve) {
+          queryClient.setQueryData<Post[]>(
+            'postsRateAve',
+            previousRateAve.map((post) =>
               post.id === variable.id ? res.data : post
             )
           )
@@ -52,10 +100,31 @@ export const useMutationPosts = () => {
     {
       onSuccess: (res, variable) => {
         const previousPosts = queryClient.getQueryData<Post[]>('posts')
+        const previousFavPosts = queryClient.getQueryData<Post[]>('postsFav')
+        const previousRatePosts = queryClient.getQueryData<Post[]>('postsRate')
+        const previousRateAve = queryClient.getQueryData<Post[]>('postsRateAve')
         if (previousPosts) {
           queryClient.setQueryData<Post[]>(
             'posts',
             previousPosts.filter((Post) => Post.id !== variable)
+          )
+        }
+        if (previousFavPosts) {
+          queryClient.setQueryData<Post[]>(
+            'postsFav',
+            previousFavPosts.filter((Post) => Post.id !== variable)
+          )
+        }
+        if (previousRatePosts) {
+          queryClient.setQueryData<Post[]>(
+            'postsRate',
+            previousRatePosts.filter((Post) => Post.id !== variable)
+          )
+        }
+        if (previousRateAve) {
+          queryClient.setQueryData<Post[]>(
+            'postsRateAve',
+            previousRateAve.filter((Post) => Post.id !== variable)
           )
         }
       },

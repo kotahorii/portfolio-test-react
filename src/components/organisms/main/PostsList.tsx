@@ -12,11 +12,11 @@ export const PostsList: VFC<Props> = ({ posts }) => {
   const {
     filteredPosts,
     searchPrefecture,
-    isRefetchingFavPosts,
-    isRefetchingRateAve,
-    isRefetchingRatePosts,
+    isLoadingFavPosts,
+    isLoadingRateAve,
+    isLoadingRatePosts,
   } = useSearch()
-  if (isRefetchingFavPosts || isRefetchingRatePosts || isRefetchingRateAve)
+  if (isLoadingFavPosts || isLoadingRatePosts || isLoadingRateAve)
     return <p>Loading...</p>
   return (
     <>

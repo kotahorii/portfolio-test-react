@@ -18,6 +18,5 @@ export const useQueryFavPosts = () => {
     queryKey: 'postsFav',
     queryFn: getFavPosts,
     staleTime: Infinity,
-    enabled: false,
   })
 }

@@ -20,7 +20,7 @@ export const Main = memo(() => {
     filteredPosts,
     searchPrefecture,
     changeSearchPrefecture,
-    choice,
+    selectedOption,
     RadioData,
     favPostsData,
     rateAveData,
@@ -78,11 +78,11 @@ export const Main = memo(() => {
         </div>
       </div>
       <div className="flex flex-col w-full items-center justify-center">
-        {choice === '投稿が新しい順' ? (
+        {selectedOption === '1' ? (
           <PostsList posts={posts} />
-        ) : choice === 'いいねが多い順' ? (
+        ) : selectedOption === '2' ? (
           <PostsList posts={favPostsData} />
-        ) : choice === '評価が高い順' ? (
+        ) : selectedOption === '3' ? (
           <PostsList posts={rateAveData} />
         ) : (
           <PostsList posts={ratePostsData} />

@@ -11,36 +11,29 @@ import { useAppDispatch, useAppSelector } from 'app/hooks'
 import {
   selectSearchedLabel,
   selectSearchPrefecture,
+  selectSelectedOption,
   setSearchedLabel,
   setSearchPrefecture,
+  setSelectedOption,
 } from 'slices/postSlice'
 
 export const useSearch = () => {
   const { data: labels, isLoading: isLoadingLabels } = useQueryLabels()
   const { id } = useDetailPost()
   const { createLabelMutation, deleteLabelMutation } = useMutationLabels()
-  const {
-    data: favPostsData,
-    refetch: refetchFavPosts,
-    isRefetching: isRefetchingFavPosts,
-  } = useQueryFavPosts()
-  const {
-    data: ratePostsData,
-    refetch: refetchRatePosts,
-    isRefetching: isRefetchingRatePosts,
-  } = useQueryRatePosts()
-  const {
-    data: rateAveData,
-    refetch: refetchRateAve,
-    isRefetching: isRefetchingRateAve,
-  } = useQueryRateAve()
+  const { data: favPostsData, isLoading: isLoadingFavPosts } =
+    useQueryFavPosts()
+  const { data: ratePostsData, isLoading: isLoadingRatePosts } =
+    useQueryRatePosts()
+  const { data: rateAveData, isLoading: isLoadingRateAve } = useQueryRateAve()
   const dispatch = useAppDispatch()
   const searchedLabel = useAppSelector(selectSearchedLabel)
   const searchPrefecture = useAppSelector(selectSearchPrefecture)
+  const selectedOption = useAppSelector(selectSelectedOption)
 
   const { posts } = useMain()
   const [labelName, setLabelName] = useState('')
-  const [choice, setChoice] = useState('投稿が新しい順')
+  // const [choice, setChoice] = useState('投稿が新しい順')
   const changeLabel = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => setLabelName(e.target.value),
     []
@@ -84,41 +77,27 @@ export const useSearch = () => {
   const changeSearchPrefecture = (e: ChangeEvent<{ value: unknown }>) =>
     dispatch(setSearchPrefecture(e.target.value as number))
 
-  const [selectedOption, SetSelectedOption] = useState('1')
   const handleOptionChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => SetSelectedOption(e.target.value),
-    []
+    (e: ChangeEvent<HTMLInputElement>) =>
+      dispatch(setSelectedOption(e.target.value)),
+    [dispatch]
   )
-
   const RadioData = [
     {
       name: '投稿が新しい順',
       value: 1,
-      onClick: () => setChoice('投稿が新しい順'),
     },
     {
       name: 'いいねが多い順',
       value: 2,
-      onClick: () => {
-        refetchFavPosts()
-        setChoice('いいねが多い順')
-      },
     },
     {
       name: '評価が高い順',
       value: 3,
-      onClick: () => {
-        refetchRateAve()
-        setChoice('評価が高い順')
-      },
     },
     {
       name: '評価数が多い順',
       value: 4,
-      onClick: () => {
-        refetchRatePosts()
-        setChoice('評価数が多い順')
-      },
     },
   ]
 
@@ -139,10 +118,9 @@ export const useSearch = () => {
     filteredPosts,
     searchPrefecture,
     changeSearchPrefecture,
-    choice,
-    isRefetchingFavPosts,
-    isRefetchingRatePosts,
-    isRefetchingRateAve,
+    isLoadingFavPosts,
+    isLoadingRatePosts,
+    isLoadingRateAve,
     RadioData,
     favPostsData,
     rateAveData,
