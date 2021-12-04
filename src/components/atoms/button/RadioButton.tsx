@@ -1,3 +1,4 @@
+import { useSearch } from 'hooks/useSearch'
 import { VFC } from 'react'
 
 type Props = {
@@ -9,6 +10,7 @@ type Props = {
 }
 
 export const RadioButton: VFC<Props> = ({ radioData }) => {
+  const { handleOptionChange, selectedOption } = useSearch()
   return (
     <>
       {radioData.map((data) => (
@@ -19,6 +21,8 @@ export const RadioButton: VFC<Props> = ({ radioData }) => {
             name="radio"
             value={data.value}
             onClick={data.onClick}
+            checked={Number(selectedOption) === data.value}
+            onChange={handleOptionChange}
           />
           <span className="ml-2">{data.name}</span>
         </label>

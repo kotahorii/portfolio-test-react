@@ -6,6 +6,8 @@ type StateType = {
   editedPost: UpdatePost
   detailPost: Post
   postPreview: string
+  searchedLabel: string
+  searchPrefecture: number
   isOpenCreatePostModal: boolean
   isOpenDeletePostModal: boolean
   isOpenShopModal: boolean
@@ -37,6 +39,8 @@ const initialState: StateType = {
     updatedAt: '',
   },
   postPreview: '',
+  searchedLabel: '',
+  searchPrefecture: 1,
   isOpenCreatePostModal: false,
   isOpenDeletePostModal: false,
   isOpenShopModal: false,
@@ -75,6 +79,12 @@ export const postSlice = createSlice({
     setIsOpenHotelModal: (state, action: PayloadAction<boolean>) => {
       state.isOpenHotelModal = action.payload
     },
+    setSearchedLabel: (state, action: PayloadAction<string>) => {
+      state.searchedLabel = action.payload
+    },
+    setSearchPrefecture: (state, action: PayloadAction<number>) => {
+      state.searchPrefecture = action.payload
+    },
   },
 })
 
@@ -88,6 +98,8 @@ export const {
   setIsOpenHotelModal,
   setIsOpenCreatePostModal,
   setIsOpenDeletePostModal,
+  setSearchedLabel,
+  setSearchPrefecture,
 } = postSlice.actions
 export const selectEditedPost = (state: RootState) => state.post.editedPost
 export const selectDetailPost = (state: RootState) => state.post.detailPost
@@ -100,4 +112,8 @@ export const selectIsOpenCreatePostModal = (state: RootState) =>
   state.post.isOpenCreatePostModal
 export const selectIsOpenDeletePostModal = (state: RootState) =>
   state.post.isOpenDeletePostModal
+export const selectSearchedLabel = (state: RootState) =>
+  state.post.searchedLabel
+export const selectSearchPrefecture = (state: RootState) =>
+  state.post.searchPrefecture
 export default postSlice.reducer

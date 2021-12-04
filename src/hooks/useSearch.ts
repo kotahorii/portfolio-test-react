@@ -7,6 +7,13 @@ import { useQueryRateAve } from './queries/useQueryRateAve'
 import { useQueryLabels } from './queries/useQueryLabel'
 import { useDetailPost } from './useDetailPost'
 import { useMain } from './useMain'
+import { useAppDispatch, useAppSelector } from 'app/hooks'
+import {
+  selectSearchedLabel,
+  selectSearchPrefecture,
+  setSearchedLabel,
+  setSearchPrefecture,
+} from 'slices/postSlice'
 
 export const useSearch = () => {
   const { data: labels, isLoading: isLoadingLabels } = useQueryLabels()
@@ -27,12 +34,13 @@ export const useSearch = () => {
     refetch: refetchRateAve,
     isRefetching: isRefetchingRateAve,
   } = useQueryRateAve()
+  const dispatch = useAppDispatch()
+  const searchedLabel = useAppSelector(selectSearchedLabel)
+  const searchPrefecture = useAppSelector(selectSearchPrefecture)
 
   const { posts } = useMain()
   const [labelName, setLabelName] = useState('')
-  const [searchedLabel, setSearchedLabel] = useState('')
-  const [searchPrefecture, setSearchPrefecture] = useState(1)
-  const [choice, setChoice] = useState('')
+  const [choice, setChoice] = useState('投稿が新しい順')
   const changeLabel = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => setLabelName(e.target.value),
     []
@@ -55,8 +63,9 @@ export const useSearch = () => {
     [posts]
   )
   const changeSearchedLabel = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => setSearchedLabel(e.target.value),
-    []
+    (e: ChangeEvent<HTMLInputElement>) =>
+      dispatch(setSearchedLabel(e.target.value)),
+    [dispatch]
   )
   const searchLabels =
     !labels || searchedLabel === ''
@@ -73,19 +82,23 @@ export const useSearch = () => {
       searchLabels.includes(post.id) || searchedLabel === '' ? post : undefined
     )
   const changeSearchPrefecture = (e: ChangeEvent<{ value: unknown }>) =>
-    setSearchPrefecture(e.target.value as number)
+    dispatch(setSearchPrefecture(e.target.value as number))
+
+  const [selectedOption, SetSelectedOption] = useState('1')
+  const handleOptionChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => SetSelectedOption(e.target.value),
+    []
+  )
 
   const RadioData = [
     {
       name: '投稿が新しい順',
       value: 1,
-      checked: true,
       onClick: () => setChoice('投稿が新しい順'),
     },
     {
       name: 'いいねが多い順',
       value: 2,
-      checked: false,
       onClick: () => {
         refetchFavPosts()
         setChoice('いいねが多い順')
@@ -94,7 +107,6 @@ export const useSearch = () => {
     {
       name: '評価が高い順',
       value: 3,
-      checked: false,
       onClick: () => {
         refetchRateAve()
         setChoice('評価が高い順')
@@ -103,7 +115,6 @@ export const useSearch = () => {
     {
       name: '評価数が多い順',
       value: 4,
-      checked: false,
       onClick: () => {
         refetchRatePosts()
         setChoice('評価数が多い順')
@@ -112,6 +123,8 @@ export const useSearch = () => {
   ]
 
   return {
+    selectedOption,
+    handleOptionChange,
     labels,
     isLoadingLabels,
     changeLabel,

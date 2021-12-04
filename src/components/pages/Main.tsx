@@ -41,8 +41,8 @@ export const Main = memo(() => {
     )
   return (
     <Layout>
-      <div className="w-5/12 space-y-5">
-        <div className=" flex flex-row space-x-1 items-center">
+      <div className="w-7/12 space-y-5">
+        <div className=" flex flex-row space-x-1 justify-center items-center">
           <div className="w-96">
             <CustomInput
               name="search"
@@ -59,19 +59,22 @@ export const Main = memo(() => {
             />
           </div>
           <div className="w-10"></div>
-          <p className="w-40">
-            {posts &&
-              filteredPosts(posts)?.map((post) =>
-                post?.prefecture === prefectures[searchPrefecture - 1] ||
-                prefectures[searchPrefecture - 1] === '都道府県を選択'
-                  ? post
-                  : undefined
-              ).length}
-            件の結果
-          </p>
         </div>
         <div className="flex flex-row justify-center w-full space-x-3">
           <RadioButton radioData={RadioData} />
+          <p className="w-40 border-2 border-gray-500 rounded-lg text-center py-1">
+            {
+              filteredPosts(posts)
+                ?.map((post) =>
+                  post?.prefecture === prefectures[searchPrefecture - 1] ||
+                  prefectures[searchPrefecture - 1] === '都道府県を選択'
+                    ? post
+                    : undefined
+                )
+                .filter((data) => data !== undefined).length
+            }
+            件の結果
+          </p>
         </div>
       </div>
       <div className="flex flex-col w-full items-center justify-center">

@@ -20,17 +20,17 @@ export const PostsList: VFC<Props> = ({ posts }) => {
     return <p>Loading...</p>
   return (
     <>
-      {posts &&
-        filteredPosts(posts)
-          ?.map((post) =>
-            post?.prefecture === prefectures[searchPrefecture - 1] ||
-            prefectures[searchPrefecture - 1] === '都道府県を選択'
-              ? post
-              : undefined
-          )
-          .map((post) =>
-            !post ? null : <PostCard key={post?.id} post={post} />
-          )}
+      {filteredPosts(posts)
+        ?.map((post) =>
+          post?.prefecture === prefectures[searchPrefecture - 1] ||
+          prefectures[searchPrefecture - 1] === '都道府県を選択'
+            ? post
+            : undefined
+        )
+        .filter((data) => data !== undefined)
+        .map((post) =>
+          !post ? null : <PostCard key={post?.id} post={post} />
+        )}
     </>
   )
 }
