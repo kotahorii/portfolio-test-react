@@ -35,21 +35,21 @@ export const MyPage = () => {
           onClick={changePostsMode('myPosts')}
           mode="myPosts"
         >
-          My posts
+          自分の投稿
         </SelectModeButton>
         <SelectModeButton
           postsMode={postsMode}
           onClick={changePostsMode('likedPosts')}
           mode="likedPosts"
         >
-          Liked books
+          いいねした投稿
         </SelectModeButton>
         <SelectModeButton
           postsMode={postsMode}
           onClick={changePostsMode('myPrefecturePosts')}
           mode="myPrefecturePosts"
         >
-          My prefecture posts
+          自分の都道府県の投稿
         </SelectModeButton>
       </div>
 

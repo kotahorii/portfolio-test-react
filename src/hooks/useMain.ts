@@ -102,6 +102,16 @@ export const useMain = () => {
     [posts]
   )
 
+  const formatDate = (date: string) => {
+    const formedDate = new Date(date)
+    const y = formedDate.getFullYear()
+    const M = ('00' + (formedDate.getMonth() + 1)).slice(-2)
+    const d = ('00' + formedDate.getDate()).slice(-2)
+    const h = formedDate.getHours()
+    const m = formedDate.getMinutes()
+    return `${y}/${M}/${d} ${h}:${m}`
+  }
+
   return {
     posts,
     postPreview,
@@ -114,5 +124,6 @@ export const useMain = () => {
     submitPost,
     postImageChange,
     resetPostPreview,
+    formatDate,
   }
 }

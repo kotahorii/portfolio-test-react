@@ -30,7 +30,7 @@ export const CustomModal: VFC<Props> = memo(
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <Dialog.Overlay className="fixed bg-gray-500 opacity-50 inset-0" />
+                <Dialog.Overlay className="fixed bg-gray-500 z-20 opacity-50 inset-0" />
               </Transition.Child>
               <span
                 className="inline-block h-screen align-middle"
@@ -48,7 +48,7 @@ export const CustomModal: VFC<Props> = memo(
                 leaveTo="opacity-0 scale-95"
               >
                 <div
-                  className={`${width} ${mdWidth} inline-block fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-500 bg-gray-50 p-6 my-8 overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-lg`}
+                  className={`${width} ${mdWidth} z-30 inline-block fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-500 bg-gray-50 p-6 my-8 overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-lg`}
                 >
                   <Dialog.Title
                     as="h3"

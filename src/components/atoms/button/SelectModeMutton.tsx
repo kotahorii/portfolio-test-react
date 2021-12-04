@@ -16,12 +16,12 @@ export const SelectModeButton: VFC<Props> = ({
 }) => {
   return (
     <button
-      className="hover:bg-gray-200 relative p-2 rounded-lg"
+      className="hover:bg-gray-100 relative p-2 rounded-lg"
       onClick={onClick}
     >
       {children}
       {postsMode === mode && (
-        <div className="bg-blue-300 absolute left-0 bottom-0 mt-1 rounded-full w-full h-1"></div>
+        <div className="bg-gray-300 absolute left-0 bottom-0 mt-1 rounded-full w-full h-0.5"></div>
       )}
     </button>
   )

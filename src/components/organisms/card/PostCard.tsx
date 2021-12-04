@@ -5,6 +5,7 @@ import { useLikes } from 'hooks/useLikes'
 import { LikeButton } from 'components/atoms/button/LikeButton'
 import { Link } from 'react-router-dom'
 import { useRates } from 'hooks/useRate'
+import { useMain } from 'hooks/useMain'
 
 type Props = {
   post: Post
@@ -13,6 +14,7 @@ type Props = {
 export const PostCard: VFC<Props> = memo(({ post }) => {
   const { postsFavorites } = useLikes()
   const { averageRate, postsRates } = useRates()
+  const { formatDate } = useMain()
   return (
     <div className="flex md:flex-row flex-col m-2 items-center md:space-x-5 cursor-pointer md:w-3/5 max-w-2xl w-80 px-5 py-4 shadow-md hover:shadow-lg rounded-lg space-y-3">
       {post.image.url !== null || '' ? (
@@ -37,12 +39,13 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
           <div className="h-16 md:block hidden rounded-lg max-w-xs">
             <p className="text-lg truncate overflow-ellipsis">{post.body}</p>
           </div>
-          <div className="h-6 rounded-lg max-w-xs">
+          <div className="h-6 flex flex-col space-y-1 rounded-lg max-w-xs">
             <p>
               {post.prefecture}
               <span className="mx-2">{post.city}</span>
               {post.town}
             </p>
+            <p className="text-xs">{formatDate(post.createdAt)}</p>
           </div>
         </Link>
         <div className="flex flex-row mt-5 justify-between items-center px-2">

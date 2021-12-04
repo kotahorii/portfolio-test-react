@@ -20,6 +20,7 @@ import { Disclosure } from '@headlessui/react'
 import { DisclosureText } from 'components/molecules/DisclosureText'
 import { useSearch } from 'hooks/useSearch'
 import { CustomTag } from 'components/atoms/button/CustomTag'
+import { PaperAirplaneIcon } from '@heroicons/react/solid'
 
 export const DetailPost = memo(() => {
   const { isLoadingUser } = useMain()
@@ -132,12 +133,13 @@ export const DetailPost = memo(() => {
                 <div className=" w-44"></div>
                 <CustomRateInput />
                 <p>{comment.length}/140</p>
-                <div className="w-24">
-                  <CustomButton
-                    text="コメント"
+                <div className="w-8">
+                  <button
                     type="submit"
                     disabled={comment.length === 0 || comment.length > 140}
-                  />
+                  >
+                    <PaperAirplaneIcon className=" transform rotate-90 w-6 text-gray-400 hover:text-gray-500 cursor-pointer" />
+                  </button>
                 </div>
               </div>
               <div className="flex flex-row space-x-1">
