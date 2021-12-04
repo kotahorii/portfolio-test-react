@@ -41,36 +41,38 @@ export const Main = memo(() => {
     )
   return (
     <Layout>
-      <div className=" flex flex-row space-x-1 w-5/12 items-center">
-        <div className="w-96">
-          <CustomInput
-            name="search"
-            placeholder="タグで絞り込み"
-            value={searchedLabel}
-            onChange={changeSearchedLabel}
-          />
+      <div className="w-5/12 space-y-5">
+        <div className=" flex flex-row space-x-1 items-center">
+          <div className="w-96">
+            <CustomInput
+              name="search"
+              placeholder="タグで絞り込み"
+              value={searchedLabel}
+              onChange={changeSearchedLabel}
+            />
+          </div>
+          <div className=" w-56">
+            <CustomSelector
+              value={searchPrefecture}
+              onChange={changeSearchPrefecture}
+              arrays={prefectures}
+            />
+          </div>
+          <div className="w-10"></div>
+          <p className="w-40">
+            {posts &&
+              filteredPosts(posts)?.map((post) =>
+                post?.prefecture === prefectures[searchPrefecture - 1] ||
+                prefectures[searchPrefecture - 1] === '都道府県を選択'
+                  ? post
+                  : undefined
+              ).length}
+            件の結果
+          </p>
         </div>
-        <div className=" w-56">
-          <CustomSelector
-            value={searchPrefecture}
-            onChange={changeSearchPrefecture}
-            arrays={prefectures}
-          />
+        <div className="flex flex-row justify-center w-full space-x-3">
+          <RadioButton radioData={RadioData} />
         </div>
-        <div className="w-10"></div>
-        <p className="w-40">
-          {posts &&
-            filteredPosts(posts)?.map((post) =>
-              post?.prefecture === prefectures[searchPrefecture - 1] ||
-              prefectures[searchPrefecture - 1] === '都道府県を選択'
-                ? post
-                : undefined
-            ).length}
-          件の結果
-        </p>
-      </div>
-      <div className="flex flex-row justify-center w-1/2 space-x-3">
-        <RadioButton radioData={RadioData} />
       </div>
       <div className="flex flex-col w-full items-center justify-center">
         {choice === '投稿が新しい順' ? (

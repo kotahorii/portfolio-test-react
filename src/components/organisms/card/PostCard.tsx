@@ -50,7 +50,7 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
             <LikeButton post={post} />
             <span>{postsFavorites(post)?.length}</span>
           </div>
-          <div className="h-8 w-20 mt-2 flex flex-row justify-between items-center">
+          <div className="h-8 w-24 mt-2 flex flex-row justify-between items-center">
             <StarIcon className="w-6 text-yellow-500" />
             <p className="flex flex-row">
               {averageRate(post)?.toString() !== 'NaN'
