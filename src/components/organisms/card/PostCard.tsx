@@ -6,6 +6,7 @@ import { LikeButton } from 'components/atoms/button/LikeButton'
 import { Link } from 'react-router-dom'
 import { useRates } from 'hooks/useRate'
 import { useMain } from 'hooks/useMain'
+import { XIcon } from '@heroicons/react/outline'
 
 type Props = {
   post: Post
@@ -15,8 +16,9 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
   const { postsFavorites } = useLikes()
   const { averageRate, postsRates } = useRates()
   const { formatDate } = useMain()
+  const { openDeletePostModal, currentUser } = useMain()
   return (
-    <div className="flex md:flex-row flex-col m-2 items-center md:space-x-5 cursor-pointer md:w-3/5 max-w-2xl w-80 px-5 py-4 shadow-md hover:shadow-lg rounded-lg space-y-3">
+    <div className="flex md:flex-row relative flex-col m-2 items-center md:space-x-5 cursor-pointer md:w-3/5 max-w-2xl w-80 px-5 py-4 shadow-md hover:shadow-lg rounded-lg space-y-3">
       {post.image.url !== null || '' ? (
         <Link to={`/main/${post.id}`} className=" w-72 h-52 rounded-lg">
           <img
@@ -48,7 +50,7 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
             <p className="text-xs">{formatDate(post.createdAt)}</p>
           </div>
         </Link>
-        <div className="flex flex-row mt-5 justify-between items-center px-2">
+        <div className="flex flex-row relative mt-5 justify-between items-center px-2">
           <div className=" flex flex-row items-center w-10 h-8 mt-2 mr-2 rounded-full">
             <LikeButton post={post} />
             <span>{postsFavorites(post)?.length}</span>
@@ -67,6 +69,12 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
           <div className="w-16"></div>
         </div>
       </div>
+      {post.userId === currentUser?.id && (
+        <XIcon
+          onClick={openDeletePostModal(post)}
+          className="absolute right-0 top-0 cursor-pointer w-7 h-7 text-gray-500 hover:text-gray-400"
+        />
+      )}
     </div>
   )
 })

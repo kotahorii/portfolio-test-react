@@ -2,13 +2,18 @@ import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { ChangeEvent, FormEvent, useCallback } from 'react'
 import { toast } from 'react-toastify'
 import {
+  resetDetailPost,
   resetEditPost,
+  selectDetailPost,
   selectEditedPost,
+  selectIsOpenDeletePostModal,
   selectPostPreview,
+  setDetailPost,
   setEditPost,
+  setIsOpenDeletePostModal,
   setPostPreview,
 } from 'slices/postSlice'
-import { CreatePostFormData } from 'types/postType'
+import { CreatePostFormData, Post } from 'types/postType'
 import { User } from 'types/userType'
 import { useMutationPosts } from './queries/useMutationPosts'
 import { useQueryCurrentUser } from './queries/useQueryCurrentUser'
@@ -19,8 +24,11 @@ export const useMain = () => {
   const { data: currentUser, isLoading: isLoadingUser } = useQueryCurrentUser()
   const { data: posts, isLoading: isLoadingPosts } = useQueryPosts()
   const dispatch = useAppDispatch()
+  const detailPost = useAppSelector(selectDetailPost)
   const editedPost = useAppSelector(selectEditedPost)
-  const { createPostMutation, updatePostMutation } = useMutationPosts()
+  const isOpenDeletePostModal = useAppSelector(selectIsOpenDeletePostModal)
+  const { createPostMutation, updatePostMutation, deletePostMutation } =
+    useMutationPosts()
   const postPreview = useAppSelector(selectPostPreview)
   const { closeCreatePostModal } = useHeader()
 
@@ -114,8 +122,31 @@ export const useMain = () => {
     return `${y}/${M}/${d} ${h}:${m}`
   }
 
+  const closeDeletePostModal = useCallback(() => {
+    dispatch(setIsOpenDeletePostModal(false))
+    dispatch(resetDetailPost())
+  }, [dispatch])
+
+  const openDeletePostModal = useCallback(
+    (post: Post) => () => {
+      dispatch(setIsOpenDeletePostModal(true))
+      dispatch(setDetailPost(post))
+    },
+    [dispatch]
+  )
+
+  const deletePost = useCallback(
+    (id: number) => () => {
+      deletePostMutation.mutate(id)
+      closeDeletePostModal()
+      toast.success('削除に成功しました')
+    },
+    [closeDeletePostModal, deletePostMutation]
+  )
+
   return {
     posts,
+    detailPost,
     postPreview,
     currentUser,
     isLoadingPosts,
@@ -127,5 +158,9 @@ export const useMain = () => {
     postImageChange,
     resetPostPreview,
     formatDate,
+    isOpenDeletePostModal,
+    closeDeletePostModal,
+    openDeletePostModal,
+    deletePost,
   }
 }

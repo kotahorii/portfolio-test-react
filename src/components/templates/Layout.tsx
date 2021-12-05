@@ -7,6 +7,8 @@ import { useHeader } from 'hooks/useHeader'
 import { VFC, ReactNode, memo, useEffect } from 'react'
 import { Header } from './Header'
 import { CreateOrEditPost } from 'components/organisms/modal/CreateOrEditPost'
+import { DeletePostModal } from 'components/organisms/modal/DeletePostModal'
+import { useMain } from 'hooks/useMain'
 
 type Props = {
   children: ReactNode
@@ -26,7 +28,7 @@ export const Layout: VFC<Props> = memo(({ children }) => {
     isOpenCreatePostModal,
     closeCreatePostModal,
   } = useHeader()
-  // const { isOpenDeleteBookModal, closeDeleteBookModal } = useMyPage()
+  const { isOpenDeletePostModal, closeDeletePostModal, detailPost } = useMain()
   return (
     <Menu>
       <div className="flex flex-col relative items-center text-gray-500 text-sm font-mono">
@@ -52,13 +54,13 @@ export const Layout: VFC<Props> = memo(({ children }) => {
         >
           <CreateOrEditPost />
         </CustomModal>
-        {/* <CustomModal
-          isOpen={isOpenDeleteBookModal}
-          closeModal={closeDeleteBookModal}
-          title={detailBook.title}
+        <CustomModal
+          isOpen={isOpenDeletePostModal}
+          closeModal={closeDeletePostModal}
+          title={detailPost.title}
         >
-          <DeleteBookModal />
-        </CustomModal> */}
+          <DeletePostModal />
+        </CustomModal>
         <SuccessToast />
       </div>
     </Menu>
