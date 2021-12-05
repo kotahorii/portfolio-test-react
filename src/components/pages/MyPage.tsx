@@ -9,7 +9,7 @@ import { useSearch } from 'hooks/useSearch'
 import React from 'react'
 
 export const MyPage = () => {
-  const { isLoadingUser, isLoadingPosts, posts } = useMain()
+  const { isLoadingUser, isLoadingPosts } = useMain()
   const { isLoadingFavorites } = useLikes()
   const { isLoadingLabels } = useSearch()
   const { changePostsMode, postsMode, likedPost, myPost, myPrefecturePosts } =
