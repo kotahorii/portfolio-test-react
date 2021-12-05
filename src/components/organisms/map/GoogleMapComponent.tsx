@@ -1,18 +1,35 @@
-import { memo } from 'react'
-import {GoogleMap, LoadScript} from '@react-google-maps/api'
+import { memo, VFC } from 'react'
+import {
+  GoogleMap,
+  LoadScript,
+  InfoWindow,
+  Circle,
+} from '@react-google-maps/api'
+import { useGoogleMapComponent } from 'hooks/useGoogleMapComponent'
+import { Post } from 'types/postType'
 
-const containerStyle = {
-  width: 'full',
-  height: '400px',
+type Props = {
+  post: Post | undefined
 }
 
-const center = {
-  lat: 35.69575,
-  lng: 139.77521
-}
-
-export const GoogleMapComponent = memo(() => {
-  return <LoadScript googleMapsApiKey=''>
-    <GoogleMap></GoogleMap>
-  </LoadScript>
+export const GoogleMapComponent: VFC<Props> = memo(({ post }) => {
+  const { containerStyle, center, position, options, circleOptions } =
+    useGoogleMapComponent()
+  return (
+    <LoadScript googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_MAP_API}`}>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={17}
+        options={options}
+      >
+        <InfoWindow position={position}>
+          <div className="bg-white text-lg">
+            <h1>{post?.title}</h1>
+          </div>
+        </InfoWindow>
+        <Circle center={center} radius={50} options={circleOptions} />
+      </GoogleMap>
+    </LoadScript>
+  )
 })

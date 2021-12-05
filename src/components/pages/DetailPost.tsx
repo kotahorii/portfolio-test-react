@@ -21,6 +21,7 @@ import { DisclosureText } from 'components/molecules/DisclosureText'
 import { useSearch } from 'hooks/useSearch'
 import { CustomTag } from 'components/atoms/button/CustomTag'
 import { PaperAirplaneIcon } from '@heroicons/react/solid'
+import { GoogleMapComponent } from 'components/organisms/map/GoogleMapComponent'
 
 export const DetailPost = memo(() => {
   const { isLoadingUser } = useMain()
@@ -163,7 +164,7 @@ export const DetailPost = memo(() => {
             </form>
           </div>
           <DisclosureText />
-          <div className="w-full md:h-96 h-56 bg-green-200 rounded-lg"></div>
+          {/* <GoogleMapComponent post={detailPost} /> */}
         </div>
         <CustomModal
           width="w-full"
