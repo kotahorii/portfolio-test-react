@@ -1,10 +1,5 @@
 import { memo, VFC } from 'react'
-import {
-  GoogleMap,
-  LoadScript,
-  InfoWindow,
-  Circle,
-} from '@react-google-maps/api'
+import { GoogleMap, LoadScript, InfoWindow } from '@react-google-maps/api'
 import { useGoogleMapComponent } from 'hooks/useGoogleMapComponent'
 import { Post } from 'types/postType'
 

@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import axios from 'axios'
-import { useGoogleMapComponent } from 'hooks/useGoogleMapComponent'
 import { useQuery } from 'react-query'
 import { selectEditedPost, setEditPost } from 'slices/postSlice'
 import { AddressQueryType, AddressRes } from 'types/apiTypes'
