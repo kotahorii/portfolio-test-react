@@ -78,7 +78,11 @@ export const DetailPost = memo(() => {
           <div className="flex md:flex-row flex-col justify-center items-center md:space-x-3 md:space-y-0 space-y-3 w-full">
             <div className="flex flex-col justify-between space-y-4 ">
               {detailPost?.image.url === null ? (
-                <div className="w-96 h-64 rounded-lg bg-gray-200"></div>
+                <div className="w-96 h-64 relative rounded-lg bg-gray-200">
+                  <p className=" absolute text-xl font-semibold text-gray-400 transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    No image
+                  </p>
+                </div>
               ) : (
                 <div onClick={openImageModal} className=" relative w-96 h-64">
                   <div className="absolute w-full h-full rounded-md cursor-pointer transition duration-300 bg-black opacity-0 hover:opacity-20"></div>

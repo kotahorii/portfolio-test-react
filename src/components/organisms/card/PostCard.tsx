@@ -30,8 +30,12 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
       ) : (
         <Link
           to={`/main/${post.id}`}
-          className=" w-72 h-52 bg-gray-200 rounded-lg"
-        ></Link>
+          className=" w-72 h-52 relative bg-gray-200 rounded-lg"
+        >
+          <p className=" absolute text-xl font-semibold text-gray-400 transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            No image
+          </p>
+        </Link>
       )}
       <div className="flex flex-col md:h-52 md:w-2/3 w-full py-2 space-y-2">
         <Link className="flex flex-col space-y-2" to={`/main/${post.id}`}>

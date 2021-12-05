@@ -15,7 +15,8 @@ export const CustomInput: VFC<Props> = memo(
       <input
         type={type}
         placeholder={placeholder}
-        className="px-3 py-2 w-full focus:ring-blue-400 bg-gray-100 text-gray-600 rounded-md focus:bg-gray-50"
+        disabled={disabled}
+        className={`px-3 py-2 w-full disabled:cursor-not-allowed focus:ring-blue-400 bg-gray-100 text-gray-600 rounded-md focus:bg-gray-50`}
         name={name}
         value={value}
         onChange={onChange}
