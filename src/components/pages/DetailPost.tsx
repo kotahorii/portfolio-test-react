@@ -21,7 +21,7 @@ import { DisclosureText } from 'components/molecules/DisclosureText'
 import { useSearch } from 'hooks/useSearch'
 import { CustomTag } from 'components/atoms/button/CustomTag'
 import { PaperAirplaneIcon } from '@heroicons/react/solid'
-import { GoogleMapComponent } from 'components/organisms/map/GoogleMapComponent'
+// import { GoogleMapComponent } from 'components/organisms/map/GoogleMapComponent'
 
 export const DetailPost = memo(() => {
   const { isLoadingUser } = useMain()
