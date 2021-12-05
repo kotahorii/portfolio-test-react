@@ -13,8 +13,15 @@ type Props = {
 }
 
 export const GoogleMapComponent: VFC<Props> = memo(({ post }) => {
-  const { containerStyle, center, position, options, circleOptions } =
-    useGoogleMapComponent()
+  const { containerStyle, options } = useGoogleMapComponent()
+  const center = post && {
+    lat: post.lat === null ? 35.69575 : post.lat,
+    lng: post.lng === null ? 139.77521 : post.lng,
+  }
+  const position = post && {
+    lat: post.lat === null ? 35.69575 : post.lat,
+    lng: post.lng === null ? 139.77521 : post.lng,
+  }
   return (
     <LoadScript googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_MAP_API}`}>
       <GoogleMap
@@ -28,7 +35,6 @@ export const GoogleMapComponent: VFC<Props> = memo(({ post }) => {
             <h1>{post?.title}</h1>
           </div>
         </InfoWindow>
-        <Circle center={center} radius={50} options={circleOptions} />
       </GoogleMap>
     </LoadScript>
   )

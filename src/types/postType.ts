@@ -13,6 +13,8 @@ export type CreatePost = {
   prefecture: string
   city: string
   town: string
+  lat: number
+  lng: number
   image: string
 }
 export type CreatePostFormData = FormData & {

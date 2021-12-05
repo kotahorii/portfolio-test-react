@@ -23,6 +23,8 @@ const initialState: StateType = {
     prefecture: '',
     city: '',
     town: '',
+    lat: 0,
+    lng: 0,
     image: '',
   },
   detailPost: {
@@ -38,6 +40,8 @@ const initialState: StateType = {
     id: 0,
     createdAt: '',
     updatedAt: '',
+    lat: 0,
+    lng: 0,
   },
   postPreview: '',
   searchedLabel: '',

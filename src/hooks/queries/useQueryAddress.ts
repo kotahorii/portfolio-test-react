@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import axios from 'axios'
+import { useGoogleMapComponent } from 'hooks/useGoogleMapComponent'
 import { useQuery } from 'react-query'
 import { selectEditedPost, setEditPost } from 'slices/postSlice'
 import { AddressQueryType, AddressRes } from 'types/apiTypes'
@@ -14,6 +15,7 @@ const getAddressData = async (address: string) => {
 export const useQueryAddress = (address: string) => {
   const dispatch = useAppDispatch()
   const editedPost = useAppSelector(selectEditedPost)
+
   return useQuery<AddressQueryType, Error>({
     queryKey: 'address',
     queryFn: () => getAddressData(address),

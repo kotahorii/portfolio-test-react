@@ -21,6 +21,8 @@ export const postRes = {
     url: 'sample.jpg',
   },
   id: 2,
+  lat: 1.1,
+  lng: 1.1,
   createdAt: '2021-11-29T12:07:52.161Z',
   updatedAt: '2021-11-29T12:08:44.215Z',
 }

@@ -69,6 +69,8 @@ export const useMain = () => {
     formData.append('prefecture', editedPost.prefecture)
     formData.append('city', editedPost.city)
     formData.append('town', editedPost.town)
+    formData.append('lat', String(editedPost.lat))
+    formData.append('lng', String(editedPost.lng))
     formData.append('image', editedPost.image)
 
     return formData

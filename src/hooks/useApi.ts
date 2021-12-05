@@ -5,17 +5,25 @@ import { Post } from 'types/postType'
 import { useDetailPost } from './useDetailPost'
 import { useQueryRakutenData } from './queries/useQueryRakuten'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
+import Geocede from 'react-geocode'
 import {
+  selectEditedPost,
   selectIsOpenHotelModal,
   selectIsOpenShopModal,
+  setEditPost,
   setIsOpenHotelModal,
   setIsOpenShopModal,
 } from 'slices/postSlice'
+
+Geocede.setApiKey(`${process.env.REACT_APP_GOOGLE_MAP_API}`)
+Geocede.setLanguage('ja')
+Geocede.setRegion('ja')
 
 export const useApi = () => {
   const [address, setAddress] = useState('')
   const { detailPost } = useDetailPost()
   const dispatch = useAppDispatch()
+  const editedPost = useAppSelector(selectEditedPost)
   const isOpenShopModal = useAppSelector(selectIsOpenShopModal)
   const isOpenHotelModal = useAppSelector(selectIsOpenHotelModal)
 
@@ -57,9 +65,22 @@ export const useApi = () => {
     isError,
   } = useQueryRakutenData(rakutenKeyword(detailPost))
 
+  const geocode = useCallback(() => {
+    Geocede.fromAddress(address).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location
+        dispatch(setEditPost({ ...editedPost, lat: lat, lng: lng }))
+      },
+      (err) => {
+        console.log(err)
+      }
+    )
+  }, [address, dispatch, editedPost])
+
   const setAddressData = useCallback(() => {
     refetchAddress()
-  }, [refetchAddress])
+    geocode()
+  }, [refetchAddress, geocode])
   const isNotValidData = useCallback(
     (data: string) => {
       const pattern1 = /^[0-9]{3}-[0-9]{4}$/

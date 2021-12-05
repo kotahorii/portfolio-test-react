@@ -4,14 +4,6 @@ export const useGoogleMapComponent = () => {
     height: '400px',
   }
 
-  const center = {
-    lat: 35.69575,
-    lng: 139.77521,
-  }
-  const position = {
-    lat: 35.69575,
-    lng: 139.77521,
-  }
   const options = {
     disableDefaultUI: false,
     zoomControl: true,
@@ -29,5 +21,5 @@ export const useGoogleMapComponent = () => {
     radius: 3000,
     zIndex: 1,
   }
-  return { containerStyle, center, position, options, circleOptions }
+  return { containerStyle, options, circleOptions }
 }
