@@ -1,4 +1,4 @@
-import { XCircleIcon } from '@heroicons/react/outline'
+import { XCircleIcon, PhotographIcon } from '@heroicons/react/outline'
 import { useMain } from 'hooks/useMain'
 import { memo, VFC } from 'react'
 
@@ -28,7 +28,9 @@ export const PostImagePreview: VFC<Props> = memo(({ onClick }) => {
   ) : (
     <div
       onClick={onClick}
-      className="cursor-pointer md:w-96 md:h-64 w-48 h-32 bg-green-200 rounded-lg"
-    ></div>
+      className="cursor-pointer relative md:w-96 md:h-64 w-48 h-32 bg-gray-200 hover:bg-gray-300 rounded-lg"
+    >
+      <PhotographIcon className="absolute w-7 text-gray-400 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+    </div>
   )
 })

@@ -24,7 +24,7 @@ export const ImagePreview: VFC<Props> = memo(({ onClick }) => {
     </div>
   ) : (
     <div onClick={onClick} className="cursor-pointer w-24 h-24">
-      <UserCircleIcon className="w-24 h-24 text-gray-400" />
+      <UserCircleIcon className="w-24 h-24 text-gray-200 hover:text-gray-300" />
     </div>
   )
 })

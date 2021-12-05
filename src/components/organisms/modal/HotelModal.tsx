@@ -5,7 +5,7 @@ import { LoadingHotelCard } from '../card/LoadingHotelCard'
 export const HotelModal = () => {
   const { rakutenData, isLoadingRakuten, isRefetchingRakuten } = useApi()
   return (
-    <ul className="flex flex-col overflow-auto space-y-2 w-full h-96 bg-green-200 rounded-lg p-2">
+    <ul className="flex flex-col overflow-auto w-full h-96 p-2">
       {isLoadingRakuten || isRefetchingRakuten
         ? [...Array(4)]
             .map((_, i) => i)

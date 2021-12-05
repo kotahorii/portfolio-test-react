@@ -13,7 +13,7 @@ type Props = {
 export const HotelRestaurantCard: VFC<Props> = memo(
   ({ src, href, title, genre, reviewUrl, special, address }) => {
     return (
-      <li className="bg-gray-50 p-3 flex items-center shadow-md flex-row space-x-3 text-gray-500 rounded-lg w-full ">
+      <li className="bg-gray-50 p-3 flex items-center flex-row space-x-3 text-gray-500 border-t border-gray-300 w-full ">
         <div className="w-32 h-24 flex flex-col justify-center items-center">
           <img
             className="object-cover w-full h-full rounded-lg shadow-md"

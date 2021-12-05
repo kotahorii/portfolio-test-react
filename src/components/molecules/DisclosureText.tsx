@@ -12,7 +12,7 @@ export const DisclosureText = () => {
       leaveFrom="transform scale-100 opacity-100"
       leaveTo="transform scale-95 opacity-0"
     >
-      <Disclosure.Panel className="text-gray-500">
+      <Disclosure.Panel className="text-gray-500 break-words border-t-2 border-b-2 border-gray-300 p-3">
         {detailPost?.body}
       </Disclosure.Panel>
     </Transition>

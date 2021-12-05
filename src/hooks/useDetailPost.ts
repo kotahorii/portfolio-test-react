@@ -12,11 +12,17 @@ export const useDetailPost = () => {
   const { users } = useUsers()
   const { createCommentMutation } = useCommentMutation()
   const [comment, setComment] = useState('')
+  const [openDisclosure, setOpenDisClosure] = useState(false)
   const { id } = useParams()
 
   const commentChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => setComment(e.target.value),
     []
+  )
+
+  const toggleOpenDisclosure = useCallback(
+    () => setOpenDisClosure(!openDisclosure),
+    [openDisclosure]
   )
 
   const submitComment = useCallback(
@@ -46,6 +52,8 @@ export const useDetailPost = () => {
   return {
     comment,
     commentChange,
+    openDisclosure,
+    toggleOpenDisclosure,
     detailPost,
     isLoadingDetailPost,
     isLoadingComment,

@@ -1,6 +1,6 @@
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: false,
   theme: {
     extend: {
       spacing: {
@@ -9,9 +9,9 @@ module.exports = {
         192: '48rem',
       },
     },
-    variants: {
-      extend: { opacity: ['disabled'], cursor: ['disabled'] },
-    },
-    plugins: [],
   },
+  variants: {
+    extend: { opacity: ['disabled'], cursor: ['disabled'] },
+  },
+  plugins: [],
 }

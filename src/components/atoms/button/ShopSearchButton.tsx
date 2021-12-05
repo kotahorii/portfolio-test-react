@@ -8,7 +8,7 @@ export const ShopSearchButton: VFC<Props> = ({ onClick, title }) => {
   return (
     <button
       onClick={onClick}
-      className="p-2 border-solid border-gray-400 hover:bg-gray-100 focus:outline-none border-2 rounded-lg"
+      className="p-2 border-solid border-gray-500 hover:bg-gray-100 focus:outline-none border-2 rounded-lg"
     >
       {title}
     </button>

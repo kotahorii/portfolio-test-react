@@ -6,10 +6,11 @@ type Props = {
   placeholder: string
   type?: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  disabled?: boolean
 }
 
 export const CustomInput: VFC<Props> = memo(
-  ({ name, value, placeholder, onChange, type = 'text' }) => {
+  ({ name, value, placeholder, onChange, type = 'text', disabled = false }) => {
     return (
       <input
         type={type}

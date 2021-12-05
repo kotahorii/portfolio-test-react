@@ -21,6 +21,7 @@ import { DisclosureText } from 'components/molecules/DisclosureText'
 import { useSearch } from 'hooks/useSearch'
 import { CustomTag } from 'components/atoms/button/CustomTag'
 import { PaperAirplaneIcon } from '@heroicons/react/solid'
+import { ChevronDownIcon } from '@heroicons/react/outline'
 // import { GoogleMapComponent } from 'components/organisms/map/GoogleMapComponent'
 
 export const DetailPost = memo(() => {
@@ -34,6 +35,8 @@ export const DetailPost = memo(() => {
     isLoadingDetailPost,
     submitComment,
     postsComments,
+    openDisclosure,
+    toggleOpenDisclosure,
   } = useDetailPost()
   const {
     isOpenShopModal,
@@ -71,7 +74,7 @@ export const DetailPost = memo(() => {
           <div className="flex md:flex-row flex-col justify-center items-center md:space-x-3 md:space-y-0 space-y-3 w-full">
             <div className="flex flex-col justify-between space-y-4 ">
               {detailPost?.image.url === null ? (
-                <div className="w-96 h-64 rounded-lg bg-green-200"></div>
+                <div className="w-96 h-64 rounded-lg bg-gray-200"></div>
               ) : (
                 <div className="w-96 h-64">
                   <img
@@ -111,15 +114,12 @@ export const DetailPost = memo(() => {
                 title="周辺のホテルを検索"
                 onClick={openHotelModal}
               />
-              <Disclosure.Button className="py-2 hover:bg-gray-100">
-                詳細を見る
-              </Disclosure.Button>
             </div>
             <form
               onSubmit={submitComment}
               className=" w-96 flex flex-col space-y-2 rounded-lg"
             >
-              <div className="w-full h-80 p-2 space-y-3 overflow-auto bg-green-200 rounded-lg">
+              <div className="w-full h-80 p-2 space-y-3 overflow-auto border-gray-400 bg-gray-200 rounded-md">
                 {postsComments(Number(id))?.map((comment) => (
                   <CommentCard key={comment.id} comment={comment} />
                 ))}
@@ -150,11 +150,13 @@ export const DetailPost = memo(() => {
                   placeholder="ラベルを入力してください"
                   onChange={changeLabel}
                 />
-                <CustomButton
-                  text="ラベル"
-                  onClick={createLabel}
-                  disabled={labelName.length > 15 || labelName.length === 0}
-                />
+                <div className="w-24">
+                  <CustomButton
+                    text="ラベル"
+                    onClick={createLabel}
+                    disabled={labelName.length > 15 || labelName.length === 0}
+                  />
+                </div>
               </div>
               <div className="flex flex-row space-x-2">
                 {postsLabels(detailPost)?.map((label) => (
@@ -163,7 +165,22 @@ export const DetailPost = memo(() => {
               </div>
             </form>
           </div>
-          <DisclosureText />
+          <Disclosure.Button className="bg-indigo-100 md:w-1/2 w-8/12 hover:bg-indigo-200 rounded-lg border-indigo-400 border-2">
+            <div
+              onClick={toggleOpenDisclosure}
+              className="flex flex-row justify-center space-x-2 py-2"
+            >
+              <span>詳細を見る</span>
+              <ChevronDownIcon
+                className={`${
+                  openDisclosure ? '' : 'transform rotate-180'
+                } w-5 h-5 text-purple-500`}
+              />
+            </div>
+          </Disclosure.Button>
+          <div className="md:w-6/12 w-8/12">
+            <DisclosureText />
+          </div>
           {/* <GoogleMapComponent post={detailPost} /> */}
         </div>
         <CustomModal
