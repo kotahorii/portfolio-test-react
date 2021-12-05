@@ -25,7 +25,7 @@ export const CustomButton: VFC<Props> = memo(
       <button
         type={type}
         disabled={disabled}
-        className={`${color} hover:${hoverColor} disabled:opacity-50 disabled:cursor-not-allowed shadow-md inline-flex w-full max-w-xs justify-center px-3 py-2 text-sm font-medium border border-transparent rounded-full text-gray-50 hover:bg-indigo-400 focus:outline-none`}
+        className={`${color} hover:${hoverColor} transform hover:scale-105 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md inline-flex w-full max-w-xs justify-center px-3 py-2 text-sm font-medium border border-transparent rounded-full text-gray-50 hover:bg-indigo-400 focus:outline-none`}
         onClick={onClick}
       >
         {loading ? <RefreshIcon className="animate-spin w-5" /> : text}

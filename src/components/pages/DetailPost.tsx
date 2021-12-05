@@ -76,9 +76,10 @@ export const DetailPost = memo(() => {
               {detailPost?.image.url === null ? (
                 <div className="w-96 h-64 rounded-lg bg-gray-200"></div>
               ) : (
-                <div className="w-96 h-64">
+                <div className=" relative w-96 h-64">
+                  <div className="absolute w-full h-full rounded-md cursor-pointer transition duration-300 bg-black opacity-0 hover:opacity-20"></div>
                   <img
-                    className="rounded-lg object-cover w-full h-full"
+                    className="rounded-md object-cover w-full h-full"
                     alt="post detail"
                     src={detailPost?.image.url}
                   />
@@ -119,7 +120,7 @@ export const DetailPost = memo(() => {
               onSubmit={submitComment}
               className=" w-96 flex flex-col space-y-2 rounded-lg"
             >
-              <div className="w-full h-80 p-2 space-y-3 overflow-auto border-gray-400 bg-gray-200 rounded-md">
+              <div className="w-full h-80 p-2 space-y-3 overflow-auto bg-gray-200 rounded-md">
                 {postsComments(Number(id))?.map((comment) => (
                   <CommentCard key={comment.id} comment={comment} />
                 ))}
@@ -139,7 +140,7 @@ export const DetailPost = memo(() => {
                     type="submit"
                     disabled={comment.length === 0 || comment.length > 140}
                   >
-                    <PaperAirplaneIcon className=" transform rotate-90 w-6 text-gray-400 hover:text-gray-500 cursor-pointer" />
+                    <PaperAirplaneIcon className="transform rotate-90 w-6 text-gray-400 hover:text-gray-500 cursor-pointer" />
                   </button>
                 </div>
               </div>
