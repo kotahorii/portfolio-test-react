@@ -72,7 +72,7 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
       {post.userId === currentUser?.id && (
         <XIcon
           onClick={openDeletePostModal(post)}
-          className="absolute right-0 top-0 cursor-pointer w-7 h-7 text-gray-500 hover:text-gray-400"
+          className="absolute right-1 top-0 cursor-pointer w-7 h-7 text-gray-500 hover:text-gray-400"
         />
       )}
     </div>

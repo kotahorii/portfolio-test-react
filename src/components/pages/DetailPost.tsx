@@ -22,6 +22,7 @@ import { useSearch } from 'hooks/useSearch'
 import { CustomTag } from 'components/atoms/button/CustomTag'
 import { PaperAirplaneIcon } from '@heroicons/react/solid'
 import { ChevronDownIcon } from '@heroicons/react/outline'
+import { ImageModal } from 'components/organisms/modal/ImageModal'
 // import { GoogleMapComponent } from 'components/organisms/map/GoogleMapComponent'
 
 export const DetailPost = memo(() => {
@@ -37,6 +38,9 @@ export const DetailPost = memo(() => {
     postsComments,
     openDisclosure,
     toggleOpenDisclosure,
+    isOpenImageModal,
+    openImageModal,
+    closeImageModal,
   } = useDetailPost()
   const {
     isOpenShopModal,
@@ -76,7 +80,7 @@ export const DetailPost = memo(() => {
               {detailPost?.image.url === null ? (
                 <div className="w-96 h-64 rounded-lg bg-gray-200"></div>
               ) : (
-                <div className=" relative w-96 h-64">
+                <div onClick={openImageModal} className=" relative w-96 h-64">
                   <div className="absolute w-full h-full rounded-md cursor-pointer transition duration-300 bg-black opacity-0 hover:opacity-20"></div>
                   <img
                     className="rounded-md object-cover w-full h-full"
@@ -202,6 +206,11 @@ export const DetailPost = memo(() => {
         >
           <HotelModal />
         </CustomModal>
+        <ImageModal
+          isOpen={isOpenImageModal}
+          closeModal={closeImageModal}
+          post={detailPost}
+        />
       </Disclosure>
     </Layout>
   )

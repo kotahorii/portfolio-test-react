@@ -13,6 +13,7 @@ type StateType = {
   isOpenDeletePostModal: boolean
   isOpenShopModal: boolean
   isOpenHotelModal: boolean
+  isOpenImageModal: boolean
 }
 
 const initialState: StateType = {
@@ -50,6 +51,7 @@ const initialState: StateType = {
   isOpenDeletePostModal: false,
   isOpenShopModal: false,
   isOpenHotelModal: false,
+  isOpenImageModal: false,
   selectedOption: '1',
 }
 
@@ -94,6 +96,9 @@ export const postSlice = createSlice({
     setSelectedOption: (state, action) => {
       state.selectedOption = action.payload
     },
+    setIsOpenImageModal: (state, action: PayloadAction<boolean>) => {
+      state.isOpenImageModal = action.payload
+    },
   },
 })
 
@@ -110,6 +115,7 @@ export const {
   setSearchedLabel,
   setSearchPrefecture,
   setSelectedOption,
+  setIsOpenImageModal,
 } = postSlice.actions
 export const selectEditedPost = (state: RootState) => state.post.editedPost
 export const selectDetailPost = (state: RootState) => state.post.detailPost
@@ -128,4 +134,6 @@ export const selectSearchPrefecture = (state: RootState) =>
   state.post.searchPrefecture
 export const selectSelectedOption = (state: RootState) =>
   state.post.selectedOption
+export const selectIsOpenImageModal = (state: RootState) =>
+  state.post.isOpenImageModal
 export default postSlice.reducer

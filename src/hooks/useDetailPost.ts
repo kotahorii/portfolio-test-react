@@ -6,8 +6,12 @@ import { useParams } from 'react-router'
 import { useUsers } from './useUsers'
 import { Comment } from 'types/postType'
 import { useQueryDetailPost } from './queries/useQueryDetailPost'
+import { useAppDispatch, useAppSelector } from 'app/hooks'
+import { selectIsOpenImageModal, setIsOpenImageModal } from 'slices/postSlice'
 
 export const useDetailPost = () => {
+  const dispatch = useAppDispatch()
+  const isOpenImageModal = useAppSelector(selectIsOpenImageModal)
   const { data: comments, isLoading: isLoadingComment } = useQueryComments()
   const { users } = useUsers()
   const { createCommentMutation } = useCommentMutation()
@@ -49,6 +53,15 @@ export const useDetailPost = () => {
 
   const { data: detailPost, isLoading: isLoadingDetailPost } =
     useQueryDetailPost(Number(id))
+
+  const openImageModal = useCallback(() => {
+    dispatch(setIsOpenImageModal(true))
+  }, [dispatch])
+
+  const closeImageModal = useCallback(() => {
+    dispatch(setIsOpenImageModal(false))
+  }, [dispatch])
+
   return {
     comment,
     commentChange,
@@ -62,5 +75,8 @@ export const useDetailPost = () => {
     postsComments,
     createCommentMutation,
     id,
+    openImageModal,
+    closeImageModal,
+    isOpenImageModal,
   }
 }
