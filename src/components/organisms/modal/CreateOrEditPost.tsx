@@ -1,4 +1,3 @@
-import { ArrowLeftIcon } from '@heroicons/react/outline'
 import { CustomButton } from 'components/atoms/button/CustomButton'
 import { CustomInput } from 'components/atoms/form/CustomInput'
 import { CustomLabel } from 'components/atoms/form/CustomLabel'
