@@ -11,6 +11,8 @@ type Props = {
 export const CustomTag: VFC<Props> = ({ label }) => {
   const { deleteLabel } = useSearch()
   const { currentUser } = useMain()
+  const { isLoadingLabels } = useSearch()
+  if (isLoadingLabels) return null
   return (
     <div
       key={label.id}

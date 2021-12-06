@@ -2,6 +2,7 @@ import { prefectures } from 'data/prefecture'
 import { useSearch } from 'hooks/useSearch'
 import { VFC } from 'react'
 import { Post } from 'types/postType'
+import { LoadingCard } from '../card/LoadingCard'
 import { PostCard } from '../card/PostCard'
 
 type Props = {
@@ -17,7 +18,15 @@ export const PostsList: VFC<Props> = ({ posts }) => {
     isLoadingRatePosts,
   } = useSearch()
   if (isLoadingFavPosts || isLoadingRatePosts || isLoadingRateAve)
-    return <p>Loading...</p>
+    return (
+      <>
+        {[...Array(5)]
+          .map((_, i) => i)
+          ?.map((i) => (
+            <LoadingCard key={i} />
+          ))}
+      </>
+    )
   return (
     <>
       {filteredPosts(posts)

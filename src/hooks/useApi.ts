@@ -7,12 +7,11 @@ import { useQueryRakutenData } from './queries/useQueryRakuten'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import Geocede from 'react-geocode'
 import {
-  selectEditedPost,
   selectIsOpenHotelModal,
   selectIsOpenShopModal,
-  setEditPost,
   setIsOpenHotelModal,
   setIsOpenShopModal,
+  setLatAndLng,
 } from 'slices/postSlice'
 
 Geocede.setApiKey(`${process.env.REACT_APP_GOOGLE_MAP_API}`)
@@ -23,7 +22,6 @@ export const useApi = () => {
   const [address, setAddress] = useState('')
   const { detailPost } = useDetailPost()
   const dispatch = useAppDispatch()
-  const editedPost = useAppSelector(selectEditedPost)
   const isOpenShopModal = useAppSelector(selectIsOpenShopModal)
   const isOpenHotelModal = useAppSelector(selectIsOpenHotelModal)
 
@@ -69,13 +67,13 @@ export const useApi = () => {
     Geocede.fromAddress(address).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location
-        dispatch(setEditPost({ ...editedPost, lat: lat, lng: lng }))
+        dispatch(setLatAndLng({ lat: lat, lng: lng }))
       },
       (err) => {
         console.log(err)
       }
     )
-  }, [address, dispatch, editedPost])
+  }, [address, dispatch])
 
   const setAddressData = useCallback(() => {
     refetchAddress()

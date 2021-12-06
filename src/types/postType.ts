@@ -17,6 +17,10 @@ export type CreatePost = {
   lng: number
   image: string
 }
+export type LatLngType = {
+  lat: number
+  lng: number
+}
 export type CreatePostFormData = FormData & {
   append(name: keyof CreatePost, value: String | Blob, fileName?: string): any
 }

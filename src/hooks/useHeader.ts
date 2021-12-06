@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router'
 import {
+  resetEditPost,
   selectIsOpenCreatePostModal,
   setIsOpenCreatePostModal,
 } from 'slices/postSlice'
@@ -52,6 +53,7 @@ export const useHeader = () => {
   }, [dispatch])
 
   const closeCreatePostModal = useCallback(() => {
+    dispatch(resetEditPost())
     dispatch(setIsOpenCreatePostModal(false))
   }, [dispatch])
 

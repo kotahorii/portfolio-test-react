@@ -7,6 +7,7 @@ import {
   selectDetailPost,
   selectEditedPost,
   selectIsOpenDeletePostModal,
+  selectLatAndLng,
   selectPostPreview,
   setDetailPost,
   setEditPost,
@@ -26,6 +27,7 @@ export const useMain = () => {
   const dispatch = useAppDispatch()
   const detailPost = useAppSelector(selectDetailPost)
   const editedPost = useAppSelector(selectEditedPost)
+  const latAndLng = useAppSelector(selectLatAndLng)
   const isOpenDeletePostModal = useAppSelector(selectIsOpenDeletePostModal)
   const { createPostMutation, updatePostMutation, deletePostMutation } =
     useMutationPosts()
@@ -77,12 +79,12 @@ export const useMain = () => {
     formData.append('prefecture', editedPost.prefecture)
     formData.append('city', editedPost.city)
     formData.append('town', editedPost.town)
-    formData.append('lat', String(editedPost.lat))
-    formData.append('lng', String(editedPost.lng))
+    formData.append('lat', String(latAndLng.lat))
+    formData.append('lng', String(latAndLng.lng))
     formData.append('image', editedPost.image)
 
     return formData
-  }, [editedPost])
+  }, [editedPost, latAndLng])
 
   const submitPost = useCallback(
     (e: FormEvent<HTMLFormElement>) => {

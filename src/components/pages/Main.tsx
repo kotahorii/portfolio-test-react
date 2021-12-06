@@ -31,7 +31,7 @@ export const Main = memo(() => {
     return (
       <Layout>
         <div className="flex flex-col w-full items-center justify-center">
-          {[...Array(18)]
+          {[...Array(5)]
             .map((_, i) => i)
             ?.map((i) => (
               <LoadingCard key={i} />

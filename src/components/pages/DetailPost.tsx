@@ -11,7 +11,6 @@ import { useDetailPost } from 'hooks/useDetailPost'
 import { useLikes } from 'hooks/useLikes'
 import { useMain } from 'hooks/useMain'
 import { memo } from 'react'
-import { LoadingPostPage } from './LoadingPostPage'
 import { ShopModal } from 'components/organisms/modal/ShopModal'
 import { HotelModal } from 'components/organisms/modal/HotelModal'
 import { CustomRateInput } from 'components/molecules/rate/CustomRateInput'
@@ -26,12 +25,11 @@ import { ImageModal } from 'components/organisms/modal/ImageModal'
 // import { GoogleMapComponent } from 'components/organisms/map/GoogleMapComponent'
 
 export const DetailPost = memo(() => {
-  const { isLoadingUser } = useMain()
+  const { isLoadingUser, currentUser } = useMain()
   const {
     id,
     commentChange,
     comment,
-    isLoadingComment,
     detailPost,
     isLoadingDetailPost,
     submitComment,
@@ -53,19 +51,12 @@ export const DetailPost = memo(() => {
 
   const { postsFavorites } = useLikes()
   const { isLoadingRates, averageRate, postsRates } = useRates()
-  const { isLoadingLabels, labelName, changeLabel, createLabel, postsLabels } =
-    useSearch()
+  const { labelName, changeLabel, createLabel, postsLabels } = useSearch()
 
-  if (
-    isLoadingDetailPost ||
-    isLoadingUser ||
-    isLoadingComment ||
-    isLoadingRates ||
-    isLoadingLabels
-  )
+  if (isLoadingDetailPost || isLoadingUser || isLoadingRates)
     return (
       <Layout>
-        <LoadingPostPage />
+        <></>
       </Layout>
     )
   return (
@@ -153,19 +144,25 @@ export const DetailPost = memo(() => {
                 </div>
               </div>
               <div className="flex flex-row space-x-1">
-                <CustomInput
-                  name="label"
-                  value={labelName}
-                  placeholder="ラベルを入力してください"
-                  onChange={changeLabel}
-                />
-                <div className="w-24">
-                  <CustomButton
-                    text="ラベル"
-                    onClick={createLabel}
-                    disabled={labelName.length > 15 || labelName.length === 0}
-                  />
-                </div>
+                {detailPost?.userId === currentUser?.id && (
+                  <>
+                    <CustomInput
+                      name="label"
+                      value={labelName}
+                      placeholder="ラベルを入力してください"
+                      onChange={changeLabel}
+                    />
+                    <div className="w-24">
+                      <CustomButton
+                        text="ラベル"
+                        onClick={createLabel}
+                        disabled={
+                          labelName.length > 15 || labelName.length === 0
+                        }
+                      />
+                    </div>
+                  </>
+                )}
               </div>
               <div className="flex flex-row space-x-2">
                 {postsLabels(detailPost)?.map((label) => (

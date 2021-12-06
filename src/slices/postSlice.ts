@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Post, UpdatePost } from 'types/postType'
+import { LatLngType, Post, UpdatePost } from 'types/postType'
 import { RootState } from '../app/store'
 
 type StateType = {
   editedPost: UpdatePost
+  latAndLng: LatLngType
   detailPost: Post
   postPreview: string
   searchedLabel: string
@@ -27,6 +28,10 @@ const initialState: StateType = {
     lat: 0,
     lng: 0,
     image: '',
+  },
+  latAndLng: {
+    lat: 0,
+    lng: 0,
   },
   detailPost: {
     title: '',
@@ -99,6 +104,9 @@ export const postSlice = createSlice({
     setIsOpenImageModal: (state, action: PayloadAction<boolean>) => {
       state.isOpenImageModal = action.payload
     },
+    setLatAndLng: (state, action: PayloadAction<LatLngType>) => {
+      state.latAndLng = action.payload
+    },
   },
 })
 
@@ -116,6 +124,7 @@ export const {
   setSearchPrefecture,
   setSelectedOption,
   setIsOpenImageModal,
+  setLatAndLng,
 } = postSlice.actions
 export const selectEditedPost = (state: RootState) => state.post.editedPost
 export const selectDetailPost = (state: RootState) => state.post.detailPost
@@ -136,4 +145,5 @@ export const selectSelectedOption = (state: RootState) =>
   state.post.selectedOption
 export const selectIsOpenImageModal = (state: RootState) =>
   state.post.isOpenImageModal
+export const selectLatAndLng = (state: RootState) => state.post.latAndLng
 export default postSlice.reducer

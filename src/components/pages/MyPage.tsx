@@ -5,17 +5,14 @@ import { Layout } from 'components/templates/Layout'
 import { useLikes } from 'hooks/useLikes'
 import { useMain } from 'hooks/useMain'
 import { useMyPage } from 'hooks/useMyPage'
-import { useSearch } from 'hooks/useSearch'
-import React from 'react'
 
 export const MyPage = () => {
   const { isLoadingUser, isLoadingPosts } = useMain()
   const { isLoadingFavorites } = useLikes()
-  const { isLoadingLabels } = useSearch()
   const { changePostsMode, postsMode, likedPost, myPost, myPrefecturePosts } =
     useMyPage()
 
-  if (isLoadingPosts || isLoadingUser || isLoadingLabels || isLoadingFavorites)
+  if (isLoadingPosts || isLoadingUser || isLoadingFavorites)
     return (
       <Layout>
         <div className="flex flex-col w-full items-center justify-center">
