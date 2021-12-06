@@ -1,9 +1,12 @@
-import React from 'react'
+import { useQueryCurrentUser } from 'hooks/queries/useQueryCurrentUser'
+import { memo, VFC } from 'react'
+import { Navigate } from 'react-router'
 
-export const PublicRoute = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+type Props = {
+  children: JSX.Element
 }
+
+export const PublicRoute: VFC<Props> = memo(({ children }) => {
+  const { data: currentUser } = useQueryCurrentUser()
+  return currentUser?.name ? <Navigate to="/main" replace /> : children
+})
