@@ -18,20 +18,20 @@ export const Header = memo(() => {
             behavior: 'smooth',
           })
         }}
-        className="text-3xl p-3 rounded-full hover:bg-gray-200 cursor-pointer"
+        className="text-3xl p-2 rounded-md hover:bg-gray-200 cursor-pointer"
       >
         Portfolio App
       </div>
       <div className="md:flex hidden flex-row space-x-3">
         <Link
           to="/main"
-          className="text-lg hover:bg-gray-200 rounded-full px-3 py-3"
+          className="text-lg hover:bg-gray-200 rounded-md px-2 py-2"
         >
           投稿一覧
         </Link>
         <Link
           to="/myPage"
-          className="text-lg hover:bg-gray-200 rounded-full px-3 py-3"
+          className="text-lg hover:bg-gray-200 rounded-md px-2 py-2"
         >
           マイページ
         </Link>

@@ -26,6 +26,7 @@ import { ImageModal } from 'components/organisms/modal/ImageModal'
 
 export const DetailPost = memo(() => {
   const { isLoadingUser, currentUser } = useMain()
+  const { isLoadingFavorites } = useLikes()
   const {
     id,
     commentChange,
@@ -58,7 +59,8 @@ export const DetailPost = memo(() => {
     isLoadingDetailPost ||
     isLoadingUser ||
     isLoadingRates ||
-    isRefechingDetailPost
+    isRefechingDetailPost ||
+    isLoadingFavorites
   )
     return (
       <Layout>
@@ -93,7 +95,7 @@ export const DetailPost = memo(() => {
               <div className="flex flex-row justify-between">
                 <div className="h-7 w-12 flex flex-row items-center rounded-lg">
                   {detailPost?.city !== '' && <LikeButton post={detailPost!} />}
-                  <span>{postsFavorites(detailPost!)?.length}</span>
+                  <span>{postsFavorites(detailPost)?.length}</span>
                 </div>
                 <div className=" flex flex-row items-center space-x-1 h-7 w-24 rounded-lg">
                   <StarIcon className="w-6 text-yellow-500" />

@@ -10,7 +10,8 @@ export const useLikes = () => {
   const { currentUser } = useMain()
 
   const postsFavorites = useCallback(
-    (post: Post) => favorites?.filter((fav) => fav.postId === post.id),
+    (post: Post | undefined) =>
+      favorites?.filter((fav) => fav.postId === post?.id),
     [favorites]
   )
   const isLiked = useCallback(
