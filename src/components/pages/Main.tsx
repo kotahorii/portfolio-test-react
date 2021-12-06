@@ -41,9 +41,9 @@ export const Main = memo(() => {
     )
   return (
     <Layout>
-      <div className="w-7/12 space-y-5">
+      <div className=" flex flex-col items-center md:w-7/12 w-11/12 space-y-5">
         <div className=" flex flex-row space-x-1 justify-center items-center">
-          <div className="w-96">
+          <div className="md:w-96 w-full">
             <CustomInput
               name="search"
               placeholder="タグで絞り込み"
@@ -58,9 +58,8 @@ export const Main = memo(() => {
               arrays={prefectures}
             />
           </div>
-          <div className="w-10"></div>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-5 items-center justify-center w-full lg:space-y-0 space-y-1">
+        <div className="grid grid-cols-2 lg:grid-cols-5 items-center justify-center  md:w-11/12 lg:space-y-0 space-y-1">
           <RadioButton radioData={RadioData} />
           <p className=" w-28 border-2 border-gray-500 rounded-lg text-center py-1">
             {

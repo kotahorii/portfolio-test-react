@@ -20,15 +20,15 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
   const { openDeletePostModal, currentUser } = useMain()
   const { refetch: refetchDetailPost } = useQueryDetailPost(post.id)
   return (
-    <div className="flex md:flex-row relative flex-col m-2 items-center md:space-x-5 cursor-pointer md:w-3/5 max-w-2xl w-80 px-5 py-4 shadow-md hover:shadow-lg rounded-lg space-y-3">
+    <div className="flex md:flex-row relative flex-col m-2 items-center md:space-x-5 cursor-pointer md:w-3/5 max-w-2xl w-80 px-5 py-4 shadow-md hover:shadow-lg rounded-md space-y-3">
       {post.image.url !== null || '' ? (
         <Link
           onClick={() => refetchDetailPost()}
           to={`/main/${post.id}`}
-          className=" w-72 h-52 rounded-lg"
+          className=" w-72 h-52 rounded-md"
         >
           <img
-            className="w-full h-full rounded-lg"
+            className="w-full h-full rounded-md"
             src={post.image.url}
             alt="post"
           />
@@ -37,7 +37,7 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
         <Link
           onClick={() => refetchDetailPost()}
           to={`/main/${post.id}`}
-          className=" w-72 h-52 relative bg-gray-200 rounded-lg"
+          className=" w-72 h-52 relative bg-gray-200 rounded-md"
         >
           <p className=" absolute text-xl font-semibold text-gray-400 transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             No image
@@ -50,13 +50,13 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
           className="flex flex-col space-y-2"
           to={`/main/${post.id}`}
         >
-          <div className="h-10 rounded-lg max-w-xs">
+          <div className="h-10 rounded-md max-w-xs">
             <p className="text-xl truncate overflow-ellipsis">{post.title}</p>
           </div>
-          <div className="h-16 md:block hidden rounded-lg max-w-xs">
+          <div className="h-16 md:block hidden rounded-md max-w-xs">
             <p className="text-lg truncate overflow-ellipsis">{post.body}</p>
           </div>
-          <div className="h-6 flex flex-col space-y-1 rounded-lg max-w-xs">
+          <div className="h-6 flex flex-col space-y-1 rounded-md max-w-xs">
             <p>
               {post.prefecture}
               <span className="mx-2">{post.city}</span>

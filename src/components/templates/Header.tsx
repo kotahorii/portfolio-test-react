@@ -5,13 +5,6 @@ import { Link } from 'react-router-dom'
 import { CustomUserIcon } from 'components/molecules/userIcon/CustomUserIcon'
 
 export const Header = memo(() => {
-  const pageTopButton = document.querySelector('#page-top')
-  pageTopButton?.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
-  })
   const { currentUser } = useMain()
   return (
     <nav className=" flex flex-row z-10 fixed justify-between items-center border-b bg-gray-50 border-gray-300 px-3 w-screen h-20 text-gray-500 bg-gray-20">
@@ -19,7 +12,12 @@ export const Header = memo(() => {
         <CustomUserIcon user={currentUser} />
       </Menu.Button>
       <div
-        id="page-top"
+        onClick={() => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          })
+        }}
         className="text-3xl p-3 rounded-full hover:bg-gray-200 cursor-pointer"
       >
         Portfolio App
