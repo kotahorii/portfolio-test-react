@@ -1,13 +1,16 @@
+import { useAppDispatch, useAppSelector } from 'app/hooks'
 import Cookies from 'js-cookie'
 import client from 'lib/client'
 import { useMutation, useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router'
 import { toast } from 'react-toastify'
+import { resetUserData } from 'slices/userSlice'
 import { SignInData, AuthRes, User, SignUpFormData } from 'types/userType'
 
 export const useMutationAuth = () => {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
+  const dispatch = useAppDispatch()
 
   const signInMutation = useMutation(
     (data: SignInData) => client.post<AuthRes>('auth/sign_in', data),
@@ -21,6 +24,7 @@ export const useMutationAuth = () => {
       },
       onError: () => {
         toast.error('ログインに失敗しました')
+        dispatch(resetUserData())
       },
     }
   )
@@ -37,6 +41,7 @@ export const useMutationAuth = () => {
       },
       onError: () => {
         toast.error('新規登録に失敗しました')
+        dispatch(resetUserData())
       },
     }
   )
