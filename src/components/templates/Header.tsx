@@ -7,7 +7,7 @@ import { CustomUserIcon } from 'components/molecules/userIcon/CustomUserIcon'
 export const Header = memo(() => {
   const { currentUser } = useMain()
   return (
-    <nav className=" flex flex-row z-10 fixed justify-between items-center border-b bg-gray-50 border-gray-300 px-3 w-screen h-20 text-gray-500 bg-gray-20">
+    <nav className=" flex flex-row z-10 fixed justify-between items-center bg-gray-50 shadow-md px-3 w-screen h-20 text-gray-500 bg-gray-20">
       <Menu.Button>
         <CustomUserIcon user={currentUser} />
       </Menu.Button>
