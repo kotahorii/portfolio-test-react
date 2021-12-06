@@ -9,6 +9,7 @@ import { prefectures } from 'data/prefecture'
 import { useLikes } from 'hooks/useLikes'
 import { RadioButton } from 'components/atoms/button/RadioButton'
 import { PostsList } from 'components/organisms/main/PostsList'
+import { RadioData } from 'data/radioData'
 
 export const Main = memo(() => {
   const { isLoadingUser, isLoadingPosts, posts } = useMain()
@@ -21,7 +22,6 @@ export const Main = memo(() => {
     searchPrefecture,
     changeSearchPrefecture,
     selectedOption,
-    RadioData,
     favPostsData,
     rateAveData,
     ratePostsData,

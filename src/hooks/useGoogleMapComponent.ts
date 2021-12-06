@@ -8,6 +8,7 @@ export const useGoogleMapComponent = () => {
     disableDefaultUI: false,
     zoomControl: true,
   }
+
   const circleOptions = {
     strokeColor: '#FF0000',
     strokeOpacity: 0.8,

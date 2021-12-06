@@ -15,9 +15,11 @@ export const useDetailPost = () => {
   const { data: comments, isLoading: isLoadingComment } = useQueryComments()
   const { users } = useUsers()
   const { createCommentMutation } = useCommentMutation()
+  const { id } = useParams()
+  const { data: detailPost, isLoading: isLoadingDetailPost } =
+    useQueryDetailPost(Number(id))
   const [comment, setComment] = useState('')
   const [openDisclosure, setOpenDisClosure] = useState(false)
-  const { id } = useParams()
 
   const commentChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => setComment(e.target.value),
@@ -50,9 +52,6 @@ export const useDetailPost = () => {
       users?.filter((user) => user.id === comment.userId)[0],
     [users]
   )
-
-  const { data: detailPost, isLoading: isLoadingDetailPost } =
-    useQueryDetailPost(Number(id))
 
   const openImageModal = useCallback(() => {
     dispatch(setIsOpenImageModal(true))

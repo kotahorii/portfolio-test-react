@@ -20,11 +20,11 @@ export const useUsers = () => {
   const { data: currentUser } = useQueryCurrentUser()
   const { updateUserMutation } = useMutationUser()
   const { userData } = useAuth()
+  const detailUser = useAppSelector(selectDetailUser)
   const postsUser = useCallback(
     (post: Post) => users?.filter((user) => user.id === post.userId)[0],
     [users]
   )
-  const detailUser = useAppSelector(selectDetailUser)
   const openUsersPosts = useCallback(
     (user: User) => () => {
       dispatch(setDetailUser(user))

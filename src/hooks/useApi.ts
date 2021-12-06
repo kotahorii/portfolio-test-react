@@ -41,6 +41,7 @@ export const useApi = () => {
   } = useQueryAddress(validatedAddress)
   const { postHotPepperParams } = useMutateHotPepper()
   const isLoadingHotPepper = postHotPepperParams.isLoading
+
   const hotPepperKeyword = useCallback(
     (post: Post | undefined) =>
       post?.prefecture && post?.city && post?.town
@@ -79,6 +80,7 @@ export const useApi = () => {
     refetchAddress()
     geocode()
   }, [refetchAddress, geocode])
+
   const isNotValidData = useCallback(
     (data: string) => {
       const pattern1 = /^[0-9]{3}-[0-9]{4}$/

@@ -33,7 +33,6 @@ export const useSearch = () => {
 
   const { posts } = useMain()
   const [labelName, setLabelName] = useState('')
-  // const [choice, setChoice] = useState('投稿が新しい順')
   const changeLabel = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => setLabelName(e.target.value),
     []
@@ -60,46 +59,40 @@ export const useSearch = () => {
       dispatch(setSearchedLabel(e.target.value)),
     [dispatch]
   )
-  const searchLabels =
-    !labels || searchedLabel === ''
-      ? []
-      : Array.from(
-          new Set(
-            labels
-              .filter((label) => label.name.includes(searchedLabel))
-              .map((label) => label.postId)
-          )
-        )
-  const filteredPosts = (posts: Post[] | undefined) =>
-    posts?.map((post) =>
-      searchLabels.includes(post.id) || searchedLabel === '' ? post : undefined
-    )
-  const changeSearchPrefecture = (e: ChangeEvent<{ value: unknown }>) =>
-    dispatch(setSearchPrefecture(e.target.value as number))
+  const searchLabels = useCallback(
+    () =>
+      !labels || searchedLabel === ''
+        ? []
+        : Array.from(
+            new Set(
+              labels
+                .filter((label) => label.name.includes(searchedLabel))
+                .map((label) => label.postId)
+            )
+          ),
+    [labels, searchedLabel]
+  )
+
+  const filteredPosts = useCallback(
+    (posts: Post[] | undefined) =>
+      posts?.map((post) =>
+        searchLabels().includes(post.id) || searchedLabel === ''
+          ? post
+          : undefined
+      ),
+    [searchLabels, searchedLabel]
+  )
+  const changeSearchPrefecture = useCallback(
+    (e: ChangeEvent<{ value: unknown }>) =>
+      dispatch(setSearchPrefecture(e.target.value as number)),
+    [dispatch]
+  )
 
   const handleOptionChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) =>
       dispatch(setSelectedOption(e.target.value)),
     [dispatch]
   )
-  const RadioData = [
-    {
-      name: '投稿が新しい順',
-      value: 1,
-    },
-    {
-      name: 'いいねが多い順',
-      value: 2,
-    },
-    {
-      name: '評価が高い順',
-      value: 3,
-    },
-    {
-      name: '評価数が多い順',
-      value: 4,
-    },
-  ]
 
   return {
     selectedOption,
@@ -110,7 +103,6 @@ export const useSearch = () => {
     labelName,
     createLabel,
     changeSearchedLabel,
-    searchLabels,
     searchedLabel,
     deleteLabel,
     postsLabels,
@@ -121,7 +113,6 @@ export const useSearch = () => {
     isLoadingFavPosts,
     isLoadingRatePosts,
     isLoadingRateAve,
-    RadioData,
     favPostsData,
     rateAveData,
     ratePostsData,

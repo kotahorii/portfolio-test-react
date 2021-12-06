@@ -33,6 +33,15 @@ export const useMain = () => {
     useMutationPosts()
   const postPreview = useAppSelector(selectPostPreview)
   const { closeCreatePostModal } = useHeader()
+  const formatDate = (date: string) => {
+    const formedDate = new Date(date)
+    const y = formedDate.getFullYear()
+    const M = ('00' + (formedDate.getMonth() + 1)).slice(-2)
+    const d = ('00' + formedDate.getDate()).slice(-2)
+    const h = formedDate.getHours()
+    const m = formedDate.getMinutes()
+    return `${y}/${M}/${d} ${h}:${m}`
+  }
 
   const changePost = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -113,16 +122,6 @@ export const useMain = () => {
     (user: User) => posts?.filter((post) => post.userId === user.id),
     [posts]
   )
-
-  const formatDate = (date: string) => {
-    const formedDate = new Date(date)
-    const y = formedDate.getFullYear()
-    const M = ('00' + (formedDate.getMonth() + 1)).slice(-2)
-    const d = ('00' + formedDate.getDate()).slice(-2)
-    const h = formedDate.getHours()
-    const m = formedDate.getMinutes()
-    return `${y}/${M}/${d} ${h}:${m}`
-  }
 
   const closeDeletePostModal = useCallback(() => {
     dispatch(setIsOpenDeletePostModal(false))
