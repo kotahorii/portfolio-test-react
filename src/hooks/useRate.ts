@@ -47,9 +47,11 @@ export const useRates = () => {
   const averageRate = useCallback(
     (post: Post | undefined) =>
       postsRates(post) &&
-      postsRates(post)!
-        .map((rate) => rate.rate)
-        .reduce((acc, cur) => acc + cur, 0) / postsRates(post)!.length,
+      (
+        postsRates(post)!
+          .map((rate) => rate.rate)
+          .reduce((acc, cur) => acc + cur, 0) / postsRates(post)!.length
+      ).toFixed(1),
     [postsRates]
   )
   return {

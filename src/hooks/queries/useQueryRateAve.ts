@@ -17,6 +17,6 @@ export const useQueryRateAve = () => {
   return useQuery<Post[], Error>({
     queryKey: 'postsRateAve',
     queryFn: getRateAve,
-    staleTime: Infinity,
+    staleTime: 600000,
   })
 }

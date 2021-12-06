@@ -16,8 +16,11 @@ export const useDetailPost = () => {
   const { users } = useUsers()
   const { createCommentMutation } = useCommentMutation()
   const { id } = useParams()
-  const { data: detailPost, isLoading: isLoadingDetailPost } =
-    useQueryDetailPost(Number(id))
+  const {
+    data: detailPost,
+    isLoading: isLoadingDetailPost,
+    isRefetching: isRefechingDetailPost,
+  } = useQueryDetailPost(Number(id))
   const [comment, setComment] = useState('')
   const [openDisclosure, setOpenDisClosure] = useState(false)
 
@@ -67,6 +70,7 @@ export const useDetailPost = () => {
     openDisclosure,
     toggleOpenDisclosure,
     detailPost,
+    isRefechingDetailPost,
     isLoadingDetailPost,
     isLoadingComment,
     commentsUser,

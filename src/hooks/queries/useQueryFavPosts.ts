@@ -17,6 +17,6 @@ export const useQueryFavPosts = () => {
   return useQuery<Post[], Error>({
     queryKey: 'postsFav',
     queryFn: getFavPosts,
-    staleTime: Infinity,
+    staleTime: 600000,
   })
 }

@@ -17,5 +17,7 @@ export const useQueryDetailPost = (id: number | undefined) => {
   return useQuery<Post, Error>({
     queryKey: 'post',
     queryFn: () => getDetailPost(id),
+    staleTime: Infinity,
+    enabled: false,
   })
 }

@@ -32,6 +32,7 @@ export const DetailPost = memo(() => {
     comment,
     detailPost,
     isLoadingDetailPost,
+    isRefechingDetailPost,
     submitComment,
     postsComments,
     openDisclosure,
@@ -53,7 +54,12 @@ export const DetailPost = memo(() => {
   const { isLoadingRates, averageRate, postsRates } = useRates()
   const { labelName, changeLabel, createLabel, postsLabels } = useSearch()
 
-  if (isLoadingDetailPost || isLoadingUser || isLoadingRates)
+  if (
+    isLoadingDetailPost ||
+    isLoadingUser ||
+    isLoadingRates ||
+    isRefechingDetailPost
+  )
     return (
       <Layout>
         <></>
@@ -166,7 +172,7 @@ export const DetailPost = memo(() => {
               </div>
               <div className="flex flex-row space-x-2">
                 {postsLabels(detailPost)?.map((label) => (
-                  <CustomTag label={label} />
+                  <CustomTag key={label.id} label={label} />
                 ))}
               </div>
             </form>

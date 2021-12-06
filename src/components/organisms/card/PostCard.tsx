@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { useRates } from 'hooks/useRate'
 import { useMain } from 'hooks/useMain'
 import { XIcon } from '@heroicons/react/outline'
+import { useQueryDetailPost } from 'hooks/queries/useQueryDetailPost'
 
 type Props = {
   post: Post
@@ -17,10 +18,15 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
   const { averageRate, postsRates } = useRates()
   const { formatDate } = useMain()
   const { openDeletePostModal, currentUser } = useMain()
+  const { refetch: refetchDetailPost } = useQueryDetailPost(post.id)
   return (
     <div className="flex md:flex-row relative flex-col m-2 items-center md:space-x-5 cursor-pointer md:w-3/5 max-w-2xl w-80 px-5 py-4 shadow-md hover:shadow-lg rounded-lg space-y-3">
       {post.image.url !== null || '' ? (
-        <Link to={`/main/${post.id}`} className=" w-72 h-52 rounded-lg">
+        <Link
+          onClick={() => refetchDetailPost()}
+          to={`/main/${post.id}`}
+          className=" w-72 h-52 rounded-lg"
+        >
           <img
             className="w-full h-full rounded-lg"
             src={post.image.url}
@@ -29,6 +35,7 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
         </Link>
       ) : (
         <Link
+          onClick={() => refetchDetailPost()}
           to={`/main/${post.id}`}
           className=" w-72 h-52 relative bg-gray-200 rounded-lg"
         >
@@ -38,7 +45,11 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
         </Link>
       )}
       <div className="flex flex-col md:h-52 md:w-2/3 w-full py-2 space-y-2">
-        <Link className="flex flex-col space-y-2" to={`/main/${post.id}`}>
+        <Link
+          onClick={() => refetchDetailPost()}
+          className="flex flex-col space-y-2"
+          to={`/main/${post.id}`}
+        >
           <div className="h-10 rounded-lg max-w-xs">
             <p className="text-xl truncate overflow-ellipsis">{post.title}</p>
           </div>
