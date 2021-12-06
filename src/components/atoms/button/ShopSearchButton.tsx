@@ -1,10 +1,10 @@
-import { VFC } from 'react'
+import { memo, VFC } from 'react'
 
 type Props = {
   onClick: () => void
   title: string
 }
-export const ShopSearchButton: VFC<Props> = ({ onClick, title }) => {
+export const ShopSearchButton: VFC<Props> = memo(({ onClick, title }) => {
   return (
     <button
       onClick={onClick}
@@ -13,4 +13,4 @@ export const ShopSearchButton: VFC<Props> = ({ onClick, title }) => {
       {title}
     </button>
   )
-}
+})

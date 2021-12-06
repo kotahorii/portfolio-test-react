@@ -1,8 +1,9 @@
 import { useApi } from 'hooks/useApi'
+import { memo } from 'react'
 import { HotelRestaurantCard } from '../card/HotelRestaurantCard'
 import { LoadingHotelCard } from '../card/LoadingHotelCard'
 
-export const HotelModal = () => {
+export const HotelModal = memo(() => {
   const { rakutenData, isLoadingRakuten, isRefetchingRakuten } = useApi()
   return (
     <ul className="flex flex-col overflow-auto w-full h-96 p-2">
@@ -23,4 +24,4 @@ export const HotelModal = () => {
           ))}
     </ul>
   )
-}
+})

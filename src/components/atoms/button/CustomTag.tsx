@@ -1,14 +1,14 @@
 import { XCircleIcon } from '@heroicons/react/solid'
 import { useMain } from 'hooks/useMain'
 import { useSearch } from 'hooks/useSearch'
-import { VFC } from 'react'
+import { memo, VFC } from 'react'
 import { Label } from 'types/postType'
 
 type Props = {
   label: Label
 }
 
-export const CustomTag: VFC<Props> = ({ label }) => {
+export const CustomTag: VFC<Props> = memo(({ label }) => {
   const { deleteLabel } = useSearch()
   const { currentUser } = useMain()
   const { isLoadingLabels } = useSearch()
@@ -27,4 +27,4 @@ export const CustomTag: VFC<Props> = ({ label }) => {
       )}
     </div>
   )
-}
+})

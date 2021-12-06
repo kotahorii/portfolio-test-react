@@ -5,8 +5,9 @@ import { Layout } from 'components/templates/Layout'
 import { useLikes } from 'hooks/useLikes'
 import { useMain } from 'hooks/useMain'
 import { useMyPage } from 'hooks/useMyPage'
+import { memo } from 'react'
 
-export const MyPage = () => {
+export const MyPage = memo(() => {
   const { isLoadingUser, isLoadingPosts } = useMain()
   const { isLoadingFavorites } = useLikes()
   const { changePostsMode, postsMode, likedPost, myPost, myPrefecturePosts } =
@@ -62,4 +63,4 @@ export const MyPage = () => {
       </div>
     </Layout>
   )
-}
+})

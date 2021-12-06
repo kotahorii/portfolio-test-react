@@ -1,5 +1,5 @@
 import { useSearch } from 'hooks/useSearch'
-import { VFC } from 'react'
+import { memo, VFC } from 'react'
 
 type Props = {
   radioData: {
@@ -9,7 +9,7 @@ type Props = {
   }[]
 }
 
-export const RadioButton: VFC<Props> = ({ radioData }) => {
+export const RadioButton: VFC<Props> = memo(({ radioData }) => {
   const { handleOptionChange, selectedOption } = useSearch()
   return (
     <>
@@ -29,4 +29,4 @@ export const RadioButton: VFC<Props> = ({ radioData }) => {
       ))}
     </>
   )
-}
+})

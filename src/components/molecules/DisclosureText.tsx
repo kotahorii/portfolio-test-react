@@ -1,7 +1,8 @@
 import { Disclosure, Transition } from '@headlessui/react'
 import { useDetailPost } from 'hooks/useDetailPost'
+import { memo } from 'react'
 
-export const DisclosureText = () => {
+export const DisclosureText = memo(() => {
   const { detailPost } = useDetailPost()
   return (
     <Transition
@@ -17,4 +18,4 @@ export const DisclosureText = () => {
       </Disclosure.Panel>
     </Transition>
   )
-}
+})

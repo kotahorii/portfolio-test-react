@@ -1,10 +1,11 @@
 import { useApi } from 'hooks/useApi'
+import { memo } from 'react'
 import { useQueryClient } from 'react-query'
 import { HotPepperQueryType } from 'types/apiTypes'
 import { HotelRestaurantCard } from '../card/HotelRestaurantCard'
 import { LoadingHotelCard } from '../card/LoadingHotelCard'
 
-export const ShopModal = () => {
+export const ShopModal = memo(() => {
   const { isLoadingHotPepper } = useApi()
   const queryClient = useQueryClient()
   const hotPepperData =
@@ -32,4 +33,4 @@ export const ShopModal = () => {
           ))}
     </ul>
   )
-}
+})

@@ -1,6 +1,6 @@
 import { prefectures } from 'data/prefecture'
 import { useSearch } from 'hooks/useSearch'
-import { VFC } from 'react'
+import { memo, VFC } from 'react'
 import { Post } from 'types/postType'
 import { LoadingCard } from '../card/LoadingCard'
 import { PostCard } from '../card/PostCard'
@@ -9,7 +9,7 @@ type Props = {
   posts: Post[] | undefined
 }
 
-export const PostsList: VFC<Props> = ({ posts }) => {
+export const PostsList: VFC<Props> = memo(({ posts }) => {
   const {
     filteredPosts,
     searchPrefecture,
@@ -42,4 +42,4 @@ export const PostsList: VFC<Props> = ({ posts }) => {
         )}
     </>
   )
-}
+})
