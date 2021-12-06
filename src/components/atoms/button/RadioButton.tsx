@@ -14,7 +14,7 @@ export const RadioButton: VFC<Props> = ({ radioData }) => {
   return (
     <>
       {radioData.map((data) => (
-        <label key={data.value} className="inline-flex items-center">
+        <label key={data.value} className="w-32">
           <input
             type="radio"
             className="form-radio"

@@ -60,9 +60,9 @@ export const Main = memo(() => {
           </div>
           <div className="w-10"></div>
         </div>
-        <div className="flex flex-row justify-center w-full space-x-3">
+        <div className="grid grid-cols-2 lg:grid-cols-5 items-center justify-center w-full lg:space-y-0 space-y-1">
           <RadioButton radioData={RadioData} />
-          <p className="w-40 border-2 border-gray-500 rounded-lg text-center py-1">
+          <p className=" w-28 border-2 border-gray-500 rounded-lg text-center py-1">
             {
               filteredPosts(posts)
                 ?.map((post) =>
