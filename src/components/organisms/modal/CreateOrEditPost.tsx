@@ -14,7 +14,6 @@ export const CreateOrEditPost = memo(() => {
     changeAddress,
     setAddressData,
     isNotValidData,
-    validatedAddress,
     isLoadingAddress,
     isRefetchingAddress,
   } = useApi()

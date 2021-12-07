@@ -1,4 +1,3 @@
-import { UserCircleIcon } from '@heroicons/react/solid'
 import { memo, VFC } from 'react'
 import { User } from 'types/userType'
 import { UserIconWithNoPing } from './UserIconWithNoPing'

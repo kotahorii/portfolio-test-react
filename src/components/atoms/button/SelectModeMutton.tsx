@@ -12,7 +12,9 @@ export const SelectModeButton: VFC<Props> = memo(
   ({ mode, postsMode, children, onClick }) => {
     return (
       <button
-        className="hover:bg-gray-200 relative p-2 rounded-lg"
+        className={`hover:bg-gray-200 ${
+          postsMode === mode && 'font-bold text-gray-600'
+        } relative p-2 rounded-lg`}
         onClick={onClick}
       >
         {children}

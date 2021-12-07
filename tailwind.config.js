@@ -33,6 +33,7 @@ module.exports = {
       opacity: ['disabled'],
       cursor: ['disabled'],
       borderWidth: ['hover', 'focus'],
+      fontWeight: ['hover', 'focus'],
     },
   },
   plugins: [],
