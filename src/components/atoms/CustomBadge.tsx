@@ -4,8 +4,8 @@ import { User } from 'types/userType'
 
 type Props = {
   user?: User
-  color: `text-${string}-${number}`
-  bgColor: `bg-${string}-${number}`
+  color: string
+  bgColor: string
 }
 export const CustomBadge: VFC<Props> = ({ user, color, bgColor }) => {
   return (

@@ -3,7 +3,6 @@ import { RefreshIcon } from '@heroicons/react/outline'
 
 type Props = {
   onClick?: () => void
-  color?: string
   hoverColor?: string
   text: string
   type?: 'button' | 'submit' | 'reset'

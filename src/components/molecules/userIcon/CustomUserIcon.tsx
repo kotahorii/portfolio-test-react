@@ -1,4 +1,3 @@
-import { CheckCircleIcon } from '@heroicons/react/solid'
 import { UserCircleIcon } from '@heroicons/react/solid'
 import { CustomBadge } from 'components/atoms/CustomBadge'
 import { VFC } from 'react'
