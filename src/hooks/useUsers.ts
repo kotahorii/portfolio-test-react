@@ -50,7 +50,7 @@ export const useUsers = () => {
       }
       updateUserMutation.mutate(data)
       dispatch(setIsOpenEditUserModal(false))
-      toast.success('Success to update user!')
+      toast.success('ユーザーの更新に成功しました')
     },
     [currentUser, createEditFormData, updateUserMutation, dispatch]
   )

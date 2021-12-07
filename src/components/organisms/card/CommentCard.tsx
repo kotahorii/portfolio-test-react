@@ -1,4 +1,3 @@
-import { UserCircleIcon } from '@heroicons/react/solid'
 import { UserIconWithNoPing } from 'components/molecules/userIcon/UserIconWithNoPing'
 import { useDetailPost } from 'hooks/useDetailPost'
 import { useMain } from 'hooks/useMain'
