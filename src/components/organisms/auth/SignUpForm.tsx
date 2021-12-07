@@ -33,7 +33,7 @@ export const SignUpForm = memo(() => {
         <CustomInput
           name="password"
           value={userData.password}
-          placeholder="６文字以上"
+          placeholder="６文字以上入力してください"
           type="password"
           onChange={changeAuthData}
         />
@@ -43,7 +43,7 @@ export const SignUpForm = memo(() => {
         <CustomInput
           name="passwordConfirmation"
           value={userData.passwordConfirmation}
-          placeholder="６文字以上"
+          placeholder="６文字以上入力して下さい"
           type="password"
           onChange={changeAuthData}
         />
