@@ -20,7 +20,7 @@ export const LikeButton: VFC<Props> = memo(({ post }) => {
       ) : (
         <OutLineLike
           onClick={toggleLike(post)}
-          className="w-8 p-1 text-gray-400 rounded-full hover:bg-gray-200 cursor-pointer"
+          className="w-8 p-1 text-gray-400 rounded-full hover:bg-gray-200 hover:text-red-400 cursor-pointer"
         />
       )}
     </>

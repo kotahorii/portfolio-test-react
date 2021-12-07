@@ -13,7 +13,7 @@ export const CustomRateInput = memo(() => {
           .map((i) => (
             <OutLineStar
               onClick={rateCreate(i + 1)}
-              className="w-6 h-6 text-yellow-400 rounded-full hover:bg-gray-200 cursor-pointer"
+              className="w-6 h-6 text-gray-400 rounded-full hover:bg-gray-200 hover:text-yellow-400 cursor-pointer"
               key={i}
             />
           ))
@@ -33,7 +33,7 @@ export const CustomRateInput = memo(() => {
             .map((i) => (
               <OutLineStar
                 onClick={rateUpdate(i + rate + 1)}
-                className="w-6 h-6 text-yellow-400 rounded-full hover:bg-gray-200 cursor-pointer"
+                className="w-6 h-6 text-gray-400 rounded-full hover:bg-gray-200 hover:text-yellow-400 cursor-pointer"
                 key={i}
               />
             ))}
