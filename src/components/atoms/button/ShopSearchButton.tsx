@@ -8,7 +8,7 @@ export const ShopSearchButton: VFC<Props> = memo(({ onClick, title }) => {
   return (
     <button
       onClick={onClick}
-      className="p-2 border-solid border-gray-500 hover:bg-gray-100 focus:outline-none border-2 rounded-lg"
+      className="p-2 border-solid text-indigo-800 border-indigo-800 hover:bg-indigo-100 focus:outline-none border-2 rounded-lg"
     >
       {title}
     </button>
