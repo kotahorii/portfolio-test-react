@@ -22,6 +22,7 @@ import { CustomTag } from 'components/atoms/button/CustomTag'
 import { PaperAirplaneIcon } from '@heroicons/react/solid'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 import { ImageModal } from 'components/organisms/modal/ImageModal'
+import { ValidationMessage } from 'components/atoms/form/ValidationMessage'
 // import { GoogleMapComponent } from 'components/organisms/map/GoogleMapComponent'
 
 export const DetailPost = memo(() => {
@@ -152,6 +153,9 @@ export const DetailPost = memo(() => {
                   </>
                 )}
               </div>
+              <ValidationMessage isError={labelName.length > 15}>
+                タグ名が長すぎます
+              </ValidationMessage>
               <div className="flex flex-row w-96 overflow-x-auto whitespace-nowrap space-x-2">
                 {postsLabels(detailPost)?.map((label) => (
                   <CustomTag key={label.id} label={label} />
@@ -173,6 +177,9 @@ export const DetailPost = memo(() => {
                 placeholder="コメントを140文字以内で入力してください"
                 onChange={commentChange}
               />
+              <ValidationMessage isError={comment.length > 140}>
+                コメントが長すぎます
+              </ValidationMessage>
               <div className="w-full flex flex-row items-center space-x-2 h-10">
                 <div className=" w-44"></div>
                 <CustomRateInput />
