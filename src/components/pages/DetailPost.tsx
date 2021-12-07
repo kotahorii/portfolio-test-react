@@ -122,35 +122,6 @@ export const DetailPost = memo(() => {
                 title="周辺のホテルを検索"
                 onClick={openHotelModal}
               />
-            </div>
-            <form
-              onSubmit={submitComment}
-              className=" w-96 flex flex-col space-y-2 rounded-lg"
-            >
-              <div className="w-full h-80 p-2 space-y-3 overflow-auto bg-gray-200 rounded-md">
-                {postsComments(Number(id))?.map((comment) => (
-                  <CommentCard key={comment.id} comment={comment} />
-                ))}
-              </div>
-              <CustomInput
-                name="comment"
-                value={comment}
-                placeholder="コメント"
-                onChange={commentChange}
-              />
-              <div className="w-full flex flex-row items-center space-x-2 h-10">
-                <div className=" w-44"></div>
-                <CustomRateInput />
-                <p>{comment.length}/140</p>
-                <div className="w-8">
-                  <button
-                    type="submit"
-                    disabled={comment.length === 0 || comment.length > 140}
-                  >
-                    <PaperAirplaneIcon className="transform rotate-90 w-6 text-gray-400 hover:text-gray-500 cursor-pointer" />
-                  </button>
-                </div>
-              </div>
               <div className="flex flex-row space-x-1">
                 {detailPost?.userId === currentUser?.id && (
                   <>
@@ -176,6 +147,35 @@ export const DetailPost = memo(() => {
                 {postsLabels(detailPost)?.map((label) => (
                   <CustomTag key={label.id} label={label} />
                 ))}
+              </div>
+            </div>
+            <form
+              onSubmit={submitComment}
+              className=" w-96 flex flex-col space-y-2 rounded-lg"
+            >
+              <div className="w-full h-108 p-2 space-y-3 overflow-auto bg-gray-200 rounded-md">
+                {postsComments(Number(id))?.map((comment) => (
+                  <CommentCard key={comment.id} comment={comment} />
+                ))}
+              </div>
+              <CustomInput
+                name="comment"
+                value={comment}
+                placeholder="コメント"
+                onChange={commentChange}
+              />
+              <div className="w-full flex flex-row items-center space-x-2 h-10">
+                <div className=" w-44"></div>
+                <CustomRateInput />
+                <p>{comment.length}/140</p>
+                <div className="w-8">
+                  <button
+                    type="submit"
+                    disabled={comment.length === 0 || comment.length > 140}
+                  >
+                    <PaperAirplaneIcon className="transform rotate-90 w-6 text-gray-400 hover:text-gray-500 cursor-pointer" />
+                  </button>
+                </div>
               </div>
             </form>
           </div>
