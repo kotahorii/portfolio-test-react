@@ -53,14 +53,16 @@ export const DetailPost = memo(() => {
 
   const { postsFavorites } = useLikes()
   const { isLoadingRates, averageRate, postsRates } = useRates()
-  const { labelName, changeLabel, createLabel, postsLabels } = useSearch()
+  const { labelName, changeLabel, createLabel, postsLabels, isLoadingLabels } =
+    useSearch()
 
   if (
     isLoadingDetailPost ||
     isLoadingUser ||
     isLoadingRates ||
     isRefechingDetailPost ||
-    isLoadingFavorites
+    isLoadingFavorites ||
+    isLoadingLabels
   )
     return (
       <Layout>
@@ -143,7 +145,7 @@ export const DetailPost = memo(() => {
                   </>
                 )}
               </div>
-              <div className="flex flex-row space-x-2">
+              <div className="flex flex-row w-96 overflow-x-auto whitespace-nowrap space-x-2">
                 {postsLabels(detailPost)?.map((label) => (
                   <CustomTag key={label.id} label={label} />
                 ))}
@@ -153,7 +155,7 @@ export const DetailPost = memo(() => {
               onSubmit={submitComment}
               className=" w-96 flex flex-col space-y-2 rounded-lg"
             >
-              <div className="w-full h-108 p-2 space-y-3 overflow-auto bg-gray-200 rounded-md">
+              <div className="w-full md:h-108 h-80 p-2 space-y-3 overflow-auto bg-gray-200 rounded-md">
                 {postsComments(Number(id))?.map((comment) => (
                   <CommentCard key={comment.id} comment={comment} />
                 ))}

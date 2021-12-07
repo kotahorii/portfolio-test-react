@@ -38,8 +38,8 @@ export const useMain = () => {
     const y = formedDate.getFullYear()
     const M = ('00' + (formedDate.getMonth() + 1)).slice(-2)
     const d = ('00' + formedDate.getDate()).slice(-2)
-    const h = formedDate.getHours()
-    const m = formedDate.getMinutes()
+    const h = ('00' + formedDate.getHours()).slice(-2)
+    const m = ('00' + formedDate.getMinutes()).slice(-2)
     return `${y}/${M}/${d} ${h}:${m}`
   }
 
