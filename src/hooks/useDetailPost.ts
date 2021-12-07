@@ -8,6 +8,7 @@ import { Comment } from 'types/postType'
 import { useQueryDetailPost } from './queries/useQueryDetailPost'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { selectIsOpenImageModal, setIsOpenImageModal } from 'slices/postSlice'
+import { User } from 'types/userType'
 
 export const useDetailPost = () => {
   const dispatch = useAppDispatch()
@@ -64,6 +65,12 @@ export const useDetailPost = () => {
     dispatch(setIsOpenImageModal(false))
   }, [dispatch])
 
+  const postUser = useCallback(
+    (users: User[] | undefined) =>
+      users?.filter((user) => user.id === detailPost?.id)[0],
+    [detailPost]
+  )
+
   return {
     comment,
     commentChange,
@@ -81,5 +88,6 @@ export const useDetailPost = () => {
     openImageModal,
     closeImageModal,
     isOpenImageModal,
+    postUser,
   }
 }

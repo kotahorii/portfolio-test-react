@@ -16,7 +16,7 @@ import { Post } from 'types/postType'
 
 export const useUsers = () => {
   const dispatch = useAppDispatch()
-  const { data: users } = useQueryUsers()
+  const { data: users, isLoading: isLoadingUsers } = useQueryUsers()
   const { data: currentUser } = useQueryCurrentUser()
   const { updateUserMutation } = useMutationUser()
   const { userData } = useAuth()
@@ -55,5 +55,12 @@ export const useUsers = () => {
     [currentUser, createEditFormData, updateUserMutation, dispatch]
   )
 
-  return { users, postsUser, detailUser, openUsersPosts, updateUser }
+  return {
+    users,
+    postsUser,
+    detailUser,
+    openUsersPosts,
+    updateUser,
+    isLoadingUsers,
+  }
 }

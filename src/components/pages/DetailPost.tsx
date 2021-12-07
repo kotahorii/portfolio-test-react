@@ -53,8 +53,14 @@ export const DetailPost = memo(() => {
 
   const { postsFavorites } = useLikes()
   const { isLoadingRates, averageRate, postsRates } = useRates()
-  const { labelName, changeLabel, createLabel, postsLabels, isLoadingLabels } =
-    useSearch()
+  const {
+    labelName,
+    changeLabel,
+    createLabel,
+    postsLabels,
+    isLoadingLabels,
+    labelPostLoading,
+  } = useSearch()
 
   if (
     isLoadingDetailPost ||
@@ -130,7 +136,7 @@ export const DetailPost = memo(() => {
                     <CustomInput
                       name="label"
                       value={labelName}
-                      placeholder="ラベルを入力してください"
+                      placeholder="１５文字以内で入力してください"
                       onChange={changeLabel}
                     />
                     <div className="w-24">
@@ -140,6 +146,7 @@ export const DetailPost = memo(() => {
                         disabled={
                           labelName.length > 15 || labelName.length === 0
                         }
+                        loading={labelPostLoading()}
                       />
                     </div>
                   </>
@@ -155,7 +162,7 @@ export const DetailPost = memo(() => {
               onSubmit={submitComment}
               className=" w-96 flex flex-col space-y-2 rounded-lg"
             >
-              <div className="w-full md:h-108 h-80 p-2 space-y-3 overflow-auto bg-gray-200 rounded-md">
+              <div className="w-full md:h-108 h-80 p-2 space-y-3 overflow-auto bg-indigo-100 rounded-md">
                 {postsComments(Number(id))?.map((comment) => (
                   <CommentCard key={comment.id} comment={comment} />
                 ))}
@@ -163,7 +170,7 @@ export const DetailPost = memo(() => {
               <CustomInput
                 name="comment"
                 value={comment}
-                placeholder="コメント"
+                placeholder="コメントを140文字以内で入力してください"
                 onChange={commentChange}
               />
               <div className="w-full flex flex-row items-center space-x-2 h-10">

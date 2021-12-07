@@ -93,6 +93,10 @@ export const useSearch = () => {
       dispatch(setSelectedOption(e.target.value)),
     [dispatch]
   )
+  const labelPostLoading = useCallback(
+    () => createLabelMutation.isLoading,
+    [createLabelMutation]
+  )
 
   return {
     selectedOption,
@@ -116,5 +120,6 @@ export const useSearch = () => {
     favPostsData,
     rateAveData,
     ratePostsData,
+    labelPostLoading,
   }
 }
