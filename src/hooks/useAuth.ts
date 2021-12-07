@@ -97,8 +97,9 @@ export const useAuth = () => {
     ? !userData.email || userData.password.length < 6
     : !userData.name ||
       !userData.email ||
+      !userData.prefecture ||
       userData.password.length < 6 ||
-      userData.passwordConfirmation.length < 6
+      userData.passwordConfirmation !== userData.password
 
   const isLoadingAuth = useCallback(
     () => (isLogin ? signInMutation.isLoading : signUpMutation.isLoading),

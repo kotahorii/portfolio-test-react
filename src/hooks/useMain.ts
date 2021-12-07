@@ -144,6 +144,14 @@ export const useMain = () => {
     },
     [closeDeletePostModal, deletePostMutation]
   )
+  const validationCreatePost = useCallback(
+    () =>
+      !editedPost.title ||
+      !editedPost.prefecture ||
+      !editedPost.city ||
+      !editedPost.town,
+    [editedPost]
+  )
 
   return {
     posts,
@@ -163,5 +171,6 @@ export const useMain = () => {
     closeDeletePostModal,
     openDeletePostModal,
     deletePost,
+    validationCreatePost
   }
 }

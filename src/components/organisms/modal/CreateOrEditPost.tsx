@@ -7,7 +7,7 @@ import { useMain } from 'hooks/useMain'
 import { memo } from 'react'
 
 export const CreateOrEditPost = memo(() => {
-  const { editedPost, changePost, submitPost } = useMain()
+  const { editedPost, changePost, submitPost, validationCreatePost } = useMain()
   const {
     address,
     changeAddress,
@@ -22,7 +22,7 @@ export const CreateOrEditPost = memo(() => {
       <form onSubmit={submitPost} className="px-2">
         <div className=" flex flex-col space-y-3 mt-2">
           <div className="flex md:flex-row flex-col w-full md:space-x-2">
-            <div className=" flex-1">
+            <div className="flex-1">
               <CustomLabel title="タイトル" />
               <CustomInput
                 name="title"
@@ -68,7 +68,7 @@ export const CreateOrEditPost = memo(() => {
               <CustomInput
                 name="prefecture"
                 value={editedPost.prefecture}
-                placeholder="例：広島県"
+                placeholder="〇〇県"
                 onChange={changePost}
                 disabled={true}
               />
@@ -78,7 +78,7 @@ export const CreateOrEditPost = memo(() => {
               <CustomInput
                 name="city"
                 value={editedPost.city}
-                placeholder="例：東広島市"
+                placeholder="〇〇市"
                 onChange={changePost}
                 disabled={true}
               />
@@ -88,7 +88,7 @@ export const CreateOrEditPost = memo(() => {
               <CustomInput
                 name="town"
                 value={editedPost.town}
-                placeholder="例：西条岡町"
+                placeholder="〇〇町"
                 onChange={changePost}
                 disabled={true}
               />
@@ -98,7 +98,7 @@ export const CreateOrEditPost = memo(() => {
         <div className="w-full h-64 flex flex-col space-y-3 mt-3 items-center">
           <PostImageInput />
           <CustomButton
-            disabled={!editedPost.title}
+            disabled={validationCreatePost()}
             type="submit"
             text="投稿"
           />
