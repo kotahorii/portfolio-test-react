@@ -1,6 +1,7 @@
 import { CustomButton } from 'components/atoms/button/CustomButton'
 import { CustomInput } from 'components/atoms/form/CustomInput'
 import { CustomLabel } from 'components/atoms/form/CustomLabel'
+import { ValidationMessage } from 'components/atoms/form/ValidationMessage'
 import { PostImageInput } from 'components/molecules/postImage/PostImageInput'
 import { useApi } from 'hooks/useApi'
 import { useMain } from 'hooks/useMain'
@@ -22,16 +23,24 @@ export const CreateOrEditPost = memo(() => {
       <form onSubmit={submitPost} className="px-2">
         <div className=" flex flex-col space-y-3 mt-2">
           <div className="flex md:flex-row flex-col w-full md:space-x-2">
-            <div className="flex-1">
+            <div className="flex-1 space-y-1">
               <CustomLabel title="タイトル" />
               <CustomInput
                 name="title"
                 value={editedPost.title}
-                placeholder="タイトルを入力"
+                placeholder="タイトルを30文字以内で入力してください"
                 onChange={changePost}
               />
+              <ValidationMessage
+                isError={
+                  editedPost.title.length === 0 || editedPost.title.length > 30
+                }
+              >
+                {editedPost.title.length > 30 &&
+                  '140文字以内で入力してください'}
+              </ValidationMessage>
             </div>
-            <div>
+            <div className="space-y-1">
               <CustomLabel title="郵便番号" />
               <div className="flex flex-row">
                 <CustomInput
@@ -52,16 +61,22 @@ export const CreateOrEditPost = memo(() => {
             </div>
           </div>
           <div className="flex flex-row items-end w-full md:space-x-2">
-            <div className="flex-1">
-              <CustomLabel title="本文" />
-              <CustomInput
-                name="body"
-                value={editedPost.body}
-                placeholder="本文を入力"
-                onChange={changePost}
-              />
+            <div className="flex flex-row space-x-2 items-center w-full">
+              <div className="flex-1">
+                <CustomLabel title="本文" />
+                <CustomInput
+                  name="body"
+                  value={editedPost.body}
+                  placeholder="本文を入力"
+                  onChange={changePost}
+                />
+              </div>
+              <p>{editedPost.body.length}/140</p>
             </div>
           </div>
+          <ValidationMessage isError={editedPost.body.length > 140}>
+            140字以内で入力してください
+          </ValidationMessage>
           <div className="flex md:flex-row flex-col w-full md:space-x-2">
             <div>
               <CustomLabel title="都道府県" />

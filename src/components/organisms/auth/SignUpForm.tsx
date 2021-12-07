@@ -1,6 +1,7 @@
 import { CustomInput } from 'components/atoms/form/CustomInput'
 import { CustomLabel } from 'components/atoms/form/CustomLabel'
 import { CustomSelector } from 'components/atoms/form/CustomSelector'
+import { ValidationMessage } from 'components/atoms/form/ValidationMessage'
 import { ImageInput } from 'components/molecules/userIcon/ImageInput'
 import { prefectures } from 'data/prefecture'
 import { useAuth } from 'hooks/useAuth'
@@ -47,6 +48,14 @@ export const SignUpForm = memo(() => {
           type="password"
           onChange={changeAuthData}
         />
+        <ValidationMessage
+          isError={
+            userData.passwordConfirmation.length > 0 &&
+            userData.passwordConfirmation !== userData.password
+          }
+        >
+          パスワードが一致しません
+        </ValidationMessage>
       </div>
       <div className="flex flex-row justify-between items-center space-x-3">
         <div className="flex flex-col w-44 space-y-3">
