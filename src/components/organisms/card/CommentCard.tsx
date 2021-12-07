@@ -1,4 +1,4 @@
-import { UserIconWithNoPing } from 'components/molecules/userIcon/UserIconWithNoPing'
+import { CustomUserIcon } from 'components/molecules/userIcon/CustomUserIcon'
 import { useDetailPost } from 'hooks/useDetailPost'
 import { useMain } from 'hooks/useMain'
 import { memo, VFC } from 'react'
@@ -15,7 +15,7 @@ export const CommentCard: VFC<Props> = memo(({ comment }) => {
   return (
     <div className="w-full p-2 flex flex-col space-y-2 shadow-sm rounded-lg bg-gray-50">
       <div className="flex flex-row items-center space-x-3">
-        <UserIconWithNoPing user={commentsUser(comment)} />
+        <CustomUserIcon user={commentsUser(comment)} />
         <div className="flex flex-col space-y-1">
           <p className="font-semibold">{commentsUser(comment)?.name}</p>
           <p className="text-xs">{formatDate(comment.createdAt)}</p>
