@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback, useState } from 'react'
 import { useQueryAddress } from 'hooks/queries/useQueryAddress'
-import { useMutateHotPepper } from './queries/useMutationHotPepper'
+// import { useMutateHotPepper } from './queries/useMutationHotPepper'
 import { Post } from 'types/postType'
 import { useDetailPost } from './useDetailPost'
 import { useQueryRakutenData } from './queries/useQueryRakuten'
@@ -13,6 +13,7 @@ import {
   setIsOpenShopModal,
   setLatAndLng,
 } from 'slices/postSlice'
+import { useQueryHotPepper } from 'hooks/queries/useQueryHotPepper'
 
 Geocede.setApiKey(`${process.env.REACT_APP_GOOGLE_MAP_API}`)
 Geocede.setLanguage('ja')
@@ -39,8 +40,6 @@ export const useApi = () => {
     isRefetching: isRefetchingAddress,
     refetch: refetchAddress,
   } = useQueryAddress(validatedAddress)
-  const { postHotPepperParams } = useMutateHotPepper()
-  const isLoadingHotPepper = postHotPepperParams.isLoading
 
   const hotPepperKeyword = useCallback(
     (post: Post | undefined) =>
@@ -49,6 +48,13 @@ export const useApi = () => {
         : '',
     []
   )
+
+  const {
+    data: hotpepperData,
+    refetch: refetchHotPepperData,
+    isLoading: isLoadingHotPepperData,
+    isRefetching: isRefetchingHotPepperData,
+  } = useQueryHotPepper(hotPepperKeyword(detailPost))
   const rakutenKeyword = useCallback(
     (post: Post | undefined) =>
       post?.prefecture && post?.city
@@ -81,20 +87,16 @@ export const useApi = () => {
     geocode()
   }, [refetchAddress, geocode])
 
-  const isNotValidData = useCallback(
-    (data: string) => {
-      const pattern1 = /^[0-9]{3}-[0-9]{4}$/
-      const pattern2 = /^[0-9]{7}$/
-      return (
-        !pattern1.test(validatedAddress) && !pattern2.test(validatedAddress)
-      )
-    },
-    [validatedAddress]
-  )
+  const isNotValidData = useCallback(() => {
+    const pattern1 = /^[0-9]{3}-[0-9]{4}$/
+    const pattern2 = /^[0-9]{7}$/
+    return !pattern1.test(validatedAddress) && !pattern2.test(validatedAddress)
+  }, [validatedAddress])
 
   const openShopModal = useCallback(() => {
-    postHotPepperParams.mutate(hotPepperKeyword(detailPost))
-  }, [postHotPepperParams, detailPost, hotPepperKeyword])
+    dispatch(setIsOpenShopModal(true))
+    refetchHotPepperData()
+  }, [dispatch, refetchHotPepperData])
 
   const closeShopModal = useCallback(() => {
     dispatch(setIsOpenShopModal(false))
@@ -120,16 +122,18 @@ export const useApi = () => {
     isError,
     isLoadingAddress,
     isRefetchingAddress,
+    hotpepperData,
     isLoadingRakuten,
     isRefetchingRakuten,
-    isLoadingHotPepper,
+    isRefetchingHotPepperData,
+    isLoadingHotPepperData,
     validatedAddress,
     address,
     changeAddress,
     rakutenData,
     setAddressData,
     addressData,
-    postHotPepperParams,
+    // postHotPepperParams,
     hotPepperKeyword,
   }
 }

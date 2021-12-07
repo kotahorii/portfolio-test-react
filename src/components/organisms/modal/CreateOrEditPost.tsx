@@ -52,7 +52,7 @@ export const CreateOrEditPost = memo(() => {
                 <div>
                   <CustomButton
                     text="set"
-                    disabled={isNotValidData(validatedAddress)}
+                    disabled={isNotValidData()}
                     loading={isLoadingAddress || isRefetchingAddress}
                     onClick={setAddressData}
                   />
