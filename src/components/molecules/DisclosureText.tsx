@@ -2,6 +2,7 @@ import { Disclosure, Transition } from '@headlessui/react'
 import { useDetailPost } from 'hooks/useDetailPost'
 import { useUsers } from 'hooks/useUsers'
 import { memo } from 'react'
+import { UserIconWithNoPing } from './userIcon/UserIconWithNoPing'
 
 export const DisclosureText = memo(() => {
   const { detailPost, postUser, isLoadingDetailPost } = useDetailPost()
@@ -18,8 +19,11 @@ export const DisclosureText = memo(() => {
       leaveTo="transform scale-95 opacity-0"
     >
       <Disclosure.Panel className=" flex flex-col space-y-2 text-gray-500 break-words border-t border-b border-indigo-400 p-3">
-        {postUser(users)?.createdAt}
-        {detailPost?.body}
+        <div className="flex flex-row space-x-2">
+          <UserIconWithNoPing user={postUser(users)} />
+          <p className="h-14 py-2">{postUser(users)?.name}</p>
+        </div>
+        <p>{detailPost?.body}</p>
       </Disclosure.Panel>
     </Transition>
   )

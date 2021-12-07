@@ -67,7 +67,7 @@ export const useDetailPost = () => {
 
   const postUser = useCallback(
     (users: User[] | undefined) =>
-      users?.filter((user) => user.id === detailPost?.id)[0],
+      users?.filter((user) => user.id === detailPost?.userId)[0],
     [detailPost]
   )
 
