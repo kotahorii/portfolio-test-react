@@ -93,9 +93,8 @@ export const useApi = () => {
   )
 
   const openShopModal = useCallback(() => {
-    dispatch(setIsOpenShopModal(true))
     postHotPepperParams.mutate(hotPepperKeyword(detailPost))
-  }, [dispatch, postHotPepperParams, detailPost, hotPepperKeyword])
+  }, [postHotPepperParams, detailPost, hotPepperKeyword])
 
   const closeShopModal = useCallback(() => {
     dispatch(setIsOpenShopModal(false))
@@ -130,5 +129,7 @@ export const useApi = () => {
     rakutenData,
     setAddressData,
     addressData,
+    postHotPepperParams,
+    hotPepperKeyword,
   }
 }
