@@ -23,6 +23,7 @@ import { PaperAirplaneIcon } from '@heroicons/react/solid'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 import { ImageModal } from 'components/organisms/modal/ImageModal'
 import { ValidationMessage } from 'components/atoms/form/ValidationMessage'
+import { TextArea } from 'components/atoms/form/TextArea'
 // import { GoogleMapComponent } from 'components/organisms/map/GoogleMapComponent'
 
 export const DetailPost = memo(() => {
@@ -172,8 +173,14 @@ export const DetailPost = memo(() => {
                   <CommentCard key={comment.id} comment={comment} />
                 ))}
               </div>
-              <CustomInput
+              {/* <CustomInput
                 name="comment"
+                value={comment}
+                placeholder="コメントを140文字以内で入力してください"
+                onChange={commentChange}
+                isError={comment.length > 140}
+              /> */}
+              <TextArea
                 value={comment}
                 placeholder="コメントを140文字以内で入力してください"
                 onChange={commentChange}
@@ -195,8 +202,8 @@ export const DetailPost = memo(() => {
                       className={`transform rotate-90 ${
                         comment.length === 0 || comment.length > 140
                           ? 'opacity-30 cursor-not-allowed'
-                          : 'opacity-100'
-                      } w-6 text-gray-400 hover:text-gray-500 cursor-pointer`}
+                          : 'opacity-100 hover:text-gray-500'
+                      } w-6 text-gray-400 cursor-pointer`}
                     />
                   </button>
                 </div>

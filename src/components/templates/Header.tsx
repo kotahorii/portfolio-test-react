@@ -20,18 +20,18 @@ export const Header = memo(() => {
         }}
         className="text-3xl p-2 hover:border-b-3 hover:text-indigo-500 border-indigo-500 cursor-pointer"
       >
-        Portfolio App
+        旅行アプリ（仮）
       </div>
       <div className="md:flex hidden flex-row space-x-3">
         <Link
           to="/main"
-          className="text-lg hover:bg-gray-100 rounded-md px-2 py-2"
+          className="text-lg hover:bg-gray-100 hover:text-indigo-500 rounded-md px-2 py-2"
         >
           投稿一覧
         </Link>
         <Link
           to="/myPage"
-          className="text-lg hover:bg-gray-100 rounded-md px-2 py-2"
+          className="text-lg hover:bg-gray-100 hover:text-indigo-500 rounded-md px-2 py-2"
         >
           マイページ
         </Link>

@@ -26,7 +26,7 @@ export const useDetailPost = () => {
   const [openDisclosure, setOpenDisClosure] = useState(false)
 
   const commentChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => setComment(e.target.value),
+    (e: ChangeEvent<HTMLTextAreaElement>) => setComment(e.target.value),
     []
   )
 
