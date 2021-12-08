@@ -1,6 +1,7 @@
 import { CustomButton } from 'components/atoms/button/CustomButton'
 import { CustomInput } from 'components/atoms/form/CustomInput'
 import { CustomLabel } from 'components/atoms/form/CustomLabel'
+import { TextArea } from 'components/atoms/form/TextArea'
 import { ValidationMessage } from 'components/atoms/form/ValidationMessage'
 import { PostImageInput } from 'components/molecules/postImage/PostImageInput'
 import { useApi } from 'hooks/useApi'
@@ -8,7 +9,13 @@ import { useMain } from 'hooks/useMain'
 import { memo } from 'react'
 
 export const CreateOrEditPost = memo(() => {
-  const { editedPost, changePost, submitPost, validationCreatePost } = useMain()
+  const {
+    editedPost,
+    changePost,
+    changeBody,
+    submitPost,
+    validationCreatePost,
+  } = useMain()
   const {
     address,
     changeAddress,
@@ -58,16 +65,17 @@ export const CreateOrEditPost = memo(() => {
           <div className="flex flex-row items-end w-full md:space-x-2">
             <div className="flex flex-row space-x-2 items-center w-full">
               <div className="flex-1">
-                <CustomLabel title="本文" />
-                <CustomInput
-                  name="body"
+                <div className="flex flex-row">
+                  <CustomLabel title="本文" />
+                  <p className="ml-3">{editedPost.body.length}/140</p>
+                </div>
+                <TextArea
                   value={editedPost.body}
                   placeholder="本文を入力"
-                  onChange={changePost}
+                  onChange={changeBody}
                   isError={editedPost.body.length > 140}
                 />
               </div>
-              <p>{editedPost.body.length}/140</p>
             </div>
           </div>
           <ValidationMessage isError={editedPost.body.length > 140}>

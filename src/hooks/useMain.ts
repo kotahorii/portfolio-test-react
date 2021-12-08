@@ -52,6 +52,12 @@ export const useMain = () => {
     [dispatch, editedPost]
   )
 
+  const changeBody = useCallback(
+    (e: ChangeEvent<HTMLTextAreaElement>) =>
+      dispatch(setEditPost({ ...editedPost, body: e.target.value })),
+    [dispatch, editedPost]
+  )
+
   const uploadPostImage = useCallback(
     (e) => {
       const file = e.target.files[0] as string
@@ -162,6 +168,7 @@ export const useMain = () => {
     isLoadingPosts,
     isLoadingUser,
     changePost,
+    changeBody,
     editedPost,
     usersPost,
     submitPost,

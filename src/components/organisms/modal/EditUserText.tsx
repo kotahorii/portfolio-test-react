@@ -41,7 +41,6 @@ export const EditUserText = memo(() => {
         />
         <span>{userData.introduction.length}/140</span>
       </div>
-
       <ValidationMessage isError={userData.introduction.length > 140}>
         140文字以内で入力してください
       </ValidationMessage>
