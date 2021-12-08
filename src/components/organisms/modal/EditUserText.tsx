@@ -20,9 +20,14 @@ export const EditUserText = memo(() => {
         value={userData.name}
         placeholder="名前を入力"
         onChange={changeAuthData}
+        isError={!userData.name || userData.name.length > 20}
       />
-      <ValidationMessage isError={userData.name.length === 0}>
-        名前は必須です
+      <ValidationMessage isError={!userData.name || userData.name.length > 20}>
+        {!userData.name
+          ? '名前は必須です'
+          : userData.name.length > 20
+          ? '名前が長すぎます'
+          : null}
       </ValidationMessage>
       <CustomLabel title="自己紹介" />
       <CustomInput
@@ -30,7 +35,11 @@ export const EditUserText = memo(() => {
         value={userData.introduction}
         placeholder="自己紹介を入力"
         onChange={changeAuthData}
+        isError={userData.name.length > 140}
       />
+      <ValidationMessage isError={userData.name.length > 140}>
+        140文字以内で入力してください
+      </ValidationMessage>
       <div className="flex flex-row items-center mb-2 justify-between">
         <div className="flex flex-col w-36 space-y-2">
           <CustomLabel title="都道府県" />
@@ -43,7 +52,11 @@ export const EditUserText = memo(() => {
         <ImageInput />
         <div></div>
       </div>
-      <CustomButton disabled={!userData.name} type="submit" text="更新" />
+      <CustomButton
+        disabled={!userData.name || userData.name.length > 20}
+        type="submit"
+        text="更新"
+      />
     </form>
   )
 })

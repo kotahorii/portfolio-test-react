@@ -139,6 +139,7 @@ export const DetailPost = memo(() => {
                       value={labelName}
                       placeholder="１５文字以内で入力してください"
                       onChange={changeLabel}
+                      isError={labelName.length > 15}
                     />
                     <div className="w-24">
                       <CustomButton
@@ -176,6 +177,7 @@ export const DetailPost = memo(() => {
                 value={comment}
                 placeholder="コメントを140文字以内で入力してください"
                 onChange={commentChange}
+                isError={comment.length > 140}
               />
               <ValidationMessage isError={comment.length > 140}>
                 コメントが長すぎます

@@ -29,14 +29,10 @@ export const CreateOrEditPost = memo(() => {
                 value={editedPost.title}
                 placeholder="タイトルを30文字以内で入力してください"
                 onChange={changePost}
+                isError={editedPost.title.length > 30}
               />
-              <ValidationMessage
-                isError={
-                  editedPost.title.length === 0 || editedPost.title.length > 30
-                }
-              >
-                {editedPost.title.length > 30 &&
-                  '140文字以内で入力してください'}
+              <ValidationMessage isError={editedPost.title.length > 30}>
+                {editedPost.title.length > 30 && '30文字以内で入力してください'}
               </ValidationMessage>
             </div>
             <div className="space-y-1">
@@ -68,6 +64,7 @@ export const CreateOrEditPost = memo(() => {
                   value={editedPost.body}
                   placeholder="本文を入力"
                   onChange={changePost}
+                  isError={editedPost.body.length > 140}
                 />
               </div>
               <p>{editedPost.body.length}/140</p>

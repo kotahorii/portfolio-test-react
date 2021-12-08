@@ -11,16 +11,20 @@ export const SignUpForm = memo(() => {
   const { userData, changeAuthData, prefectureChange } = useAuth()
   return (
     <>
-      <div className=" flex flex-col items-center w-full">
+      <div className=" flex flex-col space-y-1 w-full">
         <CustomLabel title="名前" />
         <CustomInput
           name="name"
           value={userData.name}
           placeholder="名前を入力"
           onChange={changeAuthData}
+          isError={userData.name.length > 20}
         />
+        <ValidationMessage isError={userData.name.length > 20}>
+          名前が長すぎます
+        </ValidationMessage>
       </div>
-      <div className=" flex flex-col items-center w-full">
+      <div className=" flex flex-col space-y-1 w-full">
         <CustomLabel title="メールアドレス" />
         <CustomInput
           name="email"
@@ -29,7 +33,7 @@ export const SignUpForm = memo(() => {
           onChange={changeAuthData}
         />
       </div>
-      <div className=" flex flex-col items-center w-full">
+      <div className=" flex flex-col space-y-1 w-full">
         <CustomLabel title="パスワード" />
         <CustomInput
           name="password"
@@ -39,7 +43,7 @@ export const SignUpForm = memo(() => {
           onChange={changeAuthData}
         />
       </div>
-      <div className=" flex flex-col items-center w-full">
+      <div className=" flex flex-col space-y-1 w-full">
         <CustomLabel title="パスワード（確認用）" />
         <CustomInput
           name="passwordConfirmation"
@@ -47,10 +51,14 @@ export const SignUpForm = memo(() => {
           placeholder="６文字以上入力して下さい"
           type="password"
           onChange={changeAuthData}
+          isError={
+            userData.passwordConfirmation.length >= 6 &&
+            userData.passwordConfirmation !== userData.password
+          }
         />
         <ValidationMessage
           isError={
-            userData.passwordConfirmation.length > 0 &&
+            userData.passwordConfirmation.length >= 6 &&
             userData.passwordConfirmation !== userData.password
           }
         >
