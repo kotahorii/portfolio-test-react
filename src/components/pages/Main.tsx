@@ -10,10 +10,12 @@ import { useLikes } from 'hooks/useLikes'
 import { RadioButton } from 'components/atoms/button/RadioButton'
 import { PostsList } from 'components/organisms/main/PostsList'
 import { RadioData } from 'data/radioData'
+import { useRates } from 'hooks/useRate'
 
 export const Main = memo(() => {
   const { isLoadingUser, isLoadingPosts, posts } = useMain()
   const { isLoadingFavorites } = useLikes()
+  const { isLoadingRates } = useRates()
   const {
     searchedLabel,
     changeSearchedLabel,
@@ -27,7 +29,13 @@ export const Main = memo(() => {
     ratePostsData,
   } = useSearch()
 
-  if (isLoadingPosts || isLoadingUser || isLoadingLabels || isLoadingFavorites)
+  if (
+    isLoadingPosts ||
+    isLoadingUser ||
+    isLoadingLabels ||
+    isLoadingFavorites ||
+    isLoadingRates
+  )
     return (
       <Layout>
         <div className="flex flex-col w-full items-center justify-center">
