@@ -168,29 +168,23 @@ export const DetailPost = memo(() => {
               onSubmit={submitComment}
               className=" w-96 flex flex-col space-y-2 rounded-lg"
             >
-              <div className="w-full md:h-108 h-80 p-2 space-y-3 overflow-auto bg-indigo-100 rounded-md">
+              <div className="w-full md:h-104 h-80 p-2 space-y-3 overflow-auto bg-indigo-100 rounded-md">
                 {postsComments(Number(id))?.map((comment) => (
                   <CommentCard key={comment.id} comment={comment} />
                 ))}
               </div>
-              {/* <CustomInput
-                name="comment"
-                value={comment}
-                placeholder="コメントを140文字以内で入力してください"
-                onChange={commentChange}
-                isError={comment.length > 140}
-              /> */}
               <TextArea
                 value={comment}
                 placeholder="コメントを140文字以内で入力してください"
                 onChange={commentChange}
                 isError={comment.length > 140}
               />
-              <ValidationMessage isError={comment.length > 140}>
-                コメントが長すぎます
-              </ValidationMessage>
               <div className="w-full flex flex-row items-center space-x-2 h-10">
-                <div className=" w-44"></div>
+                <div className=" w-44">
+                  <ValidationMessage isError={comment.length > 140}>
+                    コメントが長すぎます
+                  </ValidationMessage>
+                </div>
                 <CustomRateInput />
                 <p>{comment.length}/140</p>
                 <div className="w-8">

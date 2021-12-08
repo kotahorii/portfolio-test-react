@@ -27,6 +27,11 @@ export const useAuth = () => {
     },
     [dispatch, userData]
   )
+  const changeIntroduction = useCallback(
+    (e: ChangeEvent<HTMLTextAreaElement>) =>
+      dispatch(setUserData({ ...userData, introduction: e.target.value })),
+    [dispatch, userData]
+  )
 
   const prefectureChange = useCallback(
     (e: ChangeEvent<{ value: unknown }>) =>
@@ -117,6 +122,7 @@ export const useAuth = () => {
     isLogin,
     toggleIsLogin,
     changeAuthData,
+    changeIntroduction,
     authUser,
     signOut,
     isValidAuth,

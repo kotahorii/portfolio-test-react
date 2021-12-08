@@ -2,6 +2,7 @@ import { CustomButton } from 'components/atoms/button/CustomButton'
 import { CustomInput } from 'components/atoms/form/CustomInput'
 import { CustomLabel } from 'components/atoms/form/CustomLabel'
 import { CustomSelector } from 'components/atoms/form/CustomSelector'
+import { TextArea } from 'components/atoms/form/TextArea'
 import { ValidationMessage } from 'components/atoms/form/ValidationMessage'
 import { ImageInput } from 'components/molecules/userIcon/ImageInput'
 import { prefectures } from 'data/prefecture'
@@ -10,7 +11,8 @@ import { useUsers } from 'hooks/useUsers'
 import { memo } from 'react'
 
 export const EditUserText = memo(() => {
-  const { userData, changeAuthData, prefectureChange } = useAuth()
+  const { userData, changeAuthData, changeIntroduction, prefectureChange } =
+    useAuth()
   const { updateUser } = useUsers()
   return (
     <form onSubmit={updateUser} className=" mt-2 flex flex-col space-y-2">
@@ -30,15 +32,14 @@ export const EditUserText = memo(() => {
           : null}
       </ValidationMessage>
       <CustomLabel title="自己紹介" />
-      <div className="flex flex-row items-center space-x-1">
-        <CustomInput
-          name="introduction"
+      <div className="flex flex-row items-center space-x-1 w-full">
+        <TextArea
           value={userData.introduction}
           placeholder="自己紹介を入力してください"
-          onChange={changeAuthData}
+          onChange={changeIntroduction}
           isError={userData.introduction.length > 140}
         />
-        <p>{userData.introduction.length}/140</p>
+        <span>{userData.introduction.length}/140</span>
       </div>
 
       <ValidationMessage isError={userData.introduction.length > 140}>
