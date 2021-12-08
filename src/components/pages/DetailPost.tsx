@@ -168,7 +168,7 @@ export const DetailPost = memo(() => {
               onSubmit={submitComment}
               className=" w-96 flex flex-col space-y-2 rounded-lg"
             >
-              <div className="w-full md:h-104 h-80 p-2 space-y-3 overflow-auto bg-indigo-100 rounded-md">
+              <div className="w-full md:h-104 h-80 p-2 space-y-3 overflow-auto bg-gradient-to-tr from-blue-200 via-indigo-100 to-indigo-200 rounded-md">
                 {postsComments(Number(id))?.map((comment) => (
                   <CommentCard key={comment.id} comment={comment} />
                 ))}
@@ -193,7 +193,7 @@ export const DetailPost = memo(() => {
                     disabled={comment.length === 0 || comment.length > 140}
                   >
                     <PaperAirplaneIcon
-                      className={`transform rotate-90 ${
+                      className={`transform rotate-90 transition duration-300 ${
                         comment.length === 0 || comment.length > 140
                           ? 'opacity-30 cursor-not-allowed'
                           : 'opacity-100 hover:text-gray-500'
@@ -204,7 +204,7 @@ export const DetailPost = memo(() => {
               </div>
             </form>
           </div>
-          <Disclosure.Button className="bg-indigo-100 md:w-1/2 w-8/12 hover:bg-indigo-200 rounded-lg border-indigo-400 border-2">
+          <Disclosure.Button className=" text-indigo-600 bg-gradient-to-tr from-blue-300 via-indigo-200 to-indigo-300 transition duration-700 hover:from-blue-400 hover:via-indigo-300 hover:to-indigo-400  md:w-1/2 w-8/12 rounded-lg border-indigo-400 border-2 shadow-md">
             <div
               onClick={toggleOpenDisclosure}
               className="flex flex-row justify-center space-x-2 py-2"
@@ -221,7 +221,7 @@ export const DetailPost = memo(() => {
             <DisclosureText />
           </div>
           {/* <GoogleMapComponent post={detailPost} /> */}
-          <div className="h-96 w-screen bg-indigo-100"></div>
+          <div className="h-96 w-screen bg-gradient-to-tr from-blue-300 via-indigo-200 to-indigo-300 "></div>
         </div>
         <CustomModal
           width="w-full"

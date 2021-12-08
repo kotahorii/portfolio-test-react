@@ -34,6 +34,7 @@ module.exports = {
       cursor: ['disabled'],
       borderWidth: ['hover', 'focus'],
       fontWeight: ['hover', 'focus'],
+      gradientColorStops: ['hover', 'focus'],
     },
   },
   plugins: [],

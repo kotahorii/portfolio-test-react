@@ -20,7 +20,7 @@ export const PostCard: VFC<Props> = memo(({ post }) => {
   const { openDeletePostModal, currentUser } = useMain()
   const { refetch: refetchDetailPost } = useQueryDetailPost(post.id)
   return (
-    <div className="flex md:flex-row relative flex-col m-2 items-center md:space-x-5 cursor-pointer md:w-3/5 max-w-2xl w-80 px-5 py-4 shadow-md hover:shadow-lg rounded-md space-y-3">
+    <div className="flex md:flex-row relative flex-col m-2 items-center md:space-x-5 cursor-pointer md:w-3/5 max-w-2xl w-80 px-5 py-4 shadow-md hover:shadow-lg transition duration-300 rounded-md space-y-3">
       {post.image.url !== null || '' ? (
         <Link
           onClick={() => refetchDetailPost()}

@@ -27,7 +27,7 @@ export const CustomBadge: VFC<Props> = ({ user }) => {
 
   return (
     <CheckCircleIcon
-      className={`absolute w-5 -bottom-1 -right-1 ${color()} z-10 rounded-full`}
+      className={`absolute w-5 -bottom-1 -right-1 ${color()} rounded-full`}
     />
   )
 }

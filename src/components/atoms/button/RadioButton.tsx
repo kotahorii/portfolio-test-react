@@ -16,7 +16,7 @@ export const RadioButton: VFC<Props> = memo(({ radioData }) => {
       {radioData.map((data) => (
         <label
           key={data.value}
-          className="w-32 hover:bg-gray-200 py-1 pl-2 rounded-lg cursor-pointer"
+          className="w-32 transition duration-300 hover:bg-gray-200 py-1 pl-2 rounded-lg cursor-pointer"
         >
           <input
             type="radio"

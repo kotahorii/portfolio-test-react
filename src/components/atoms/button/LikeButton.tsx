@@ -15,12 +15,12 @@ export const LikeButton: VFC<Props> = memo(({ post }) => {
       {isLiked(post) ? (
         <SolidLike
           onClick={toggleLike(post)}
-          className="w-8 p-1 text-red-400 rounded-full hover:bg-gray-200 cursor-pointer"
+          className="w-8 p-1 text-red-400 rounded-full transition duration-300 hover:bg-gray-200 cursor-pointer"
         />
       ) : (
         <OutLineLike
           onClick={toggleLike(post)}
-          className="w-8 p-1 text-gray-400 rounded-full hover:bg-gray-200 hover:text-red-400 cursor-pointer"
+          className="w-8 p-1 text-gray-400 rounded-full transition duration-300 hover:bg-gray-200 hover:text-red-400 cursor-pointer"
         />
       )}
     </>

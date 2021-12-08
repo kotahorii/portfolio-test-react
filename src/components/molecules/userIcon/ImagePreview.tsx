@@ -12,7 +12,7 @@ export const ImagePreview: VFC<Props> = memo(({ onClick }) => {
     <div className="relative w-28 h-28 px-2 py-2 ">
       <XCircleIcon
         onClick={resetPreview}
-        className="absolute right-4 top-1 cursor-pointer w-7 text-gray-300 hover:text-gray-400"
+        className="absolute right-4 top-1 cursor-pointer w-7 text-gray-300 transition duration-300 hover:text-gray-400"
       />
       <div onClick={onClick} className="cursor-pointer w-20 h-20">
         <img
@@ -24,7 +24,7 @@ export const ImagePreview: VFC<Props> = memo(({ onClick }) => {
     </div>
   ) : (
     <div onClick={onClick} className="cursor-pointer w-24 h-24">
-      <UserCircleIcon className="w-24 h-24 text-gray-200 hover:text-gray-300" />
+      <UserCircleIcon className="w-24 h-24 text-gray-200 transition duration-300 hover:text-gray-300" />
     </div>
   )
 })

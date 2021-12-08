@@ -18,20 +18,20 @@ export const Header = memo(() => {
             behavior: 'smooth',
           })
         }}
-        className="text-3xl p-2 hover:border-b-3 hover:text-indigo-500 border-indigo-500 cursor-pointer"
+        className="text-3xl p-2 transition duration-500 hover:border-b-3 hover:text-indigo-500 border-indigo-500 cursor-pointer"
       >
         旅行アプリ（仮）
       </div>
       <div className="md:flex hidden flex-row space-x-3">
         <Link
           to="/main"
-          className="text-lg hover:bg-gray-100 hover:text-indigo-500 rounded-md px-2 py-2"
+          className="text-lg transition duration-300 hover:bg-gray-100 hover:text-indigo-500 rounded-md px-2 py-2"
         >
           投稿一覧
         </Link>
         <Link
           to="/myPage"
-          className="text-lg hover:bg-gray-100 hover:text-indigo-500 rounded-md px-2 py-2"
+          className="text-lg transition duration-300 hover:bg-gray-100 hover:text-indigo-500 rounded-md px-2 py-2"
         >
           マイページ
         </Link>
