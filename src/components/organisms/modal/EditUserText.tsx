@@ -31,7 +31,10 @@ export const EditUserText = memo(() => {
           ? '名前が長すぎます'
           : null}
       </ValidationMessage>
-      <CustomLabel title="自己紹介" />
+      <div className="flex flex-row">
+        <CustomLabel title="自己紹介" />
+        <span className="ml-3">{userData.introduction.length}/140</span>
+      </div>
       <div className="flex flex-row items-center space-x-1 w-full">
         <TextArea
           value={userData.introduction}
@@ -39,7 +42,6 @@ export const EditUserText = memo(() => {
           onChange={changeIntroduction}
           isError={userData.introduction.length > 140}
         />
-        <span>{userData.introduction.length}/140</span>
       </div>
       <ValidationMessage isError={userData.introduction.length > 140}>
         140文字以内で入力してください
