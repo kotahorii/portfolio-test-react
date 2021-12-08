@@ -8,7 +8,7 @@ import { useMain } from './useMain'
 export const useRates = () => {
   const { data: rates, isLoading: isLoadingRates } = useQueryRates()
   const { createRateMutation, updateRateMutation } = useRateMutate()
-  const { currentUser } = useMain()
+  const { currentUser, usersPost } = useMain()
   const { detailPost } = useDetailPost()
 
   const postsRates = useCallback(
