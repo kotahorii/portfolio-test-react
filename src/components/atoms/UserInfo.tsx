@@ -1,6 +1,5 @@
 import { HeartIcon, StarIcon } from '@heroicons/react/solid'
 import { useLikes } from 'hooks/useLikes'
-import { useMain } from 'hooks/useMain'
 import { useRates } from 'hooks/useRate'
 import { memo, ReactNode, useRef, VFC } from 'react'
 import { User } from 'types/userType'

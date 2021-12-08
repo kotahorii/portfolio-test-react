@@ -189,7 +189,13 @@ export const DetailPost = memo(() => {
                     type="submit"
                     disabled={comment.length === 0 || comment.length > 140}
                   >
-                    <PaperAirplaneIcon className="transform rotate-90 w-6 text-gray-400 hover:text-gray-500 cursor-pointer" />
+                    <PaperAirplaneIcon
+                      className={`transform rotate-90 ${
+                        comment.length === 0 || comment.length > 140
+                          ? 'opacity-30 cursor-not-allowed'
+                          : 'opacity-100'
+                      } w-6 text-gray-400 hover:text-gray-500 cursor-pointer`}
+                    />
                   </button>
                 </div>
               </div>
