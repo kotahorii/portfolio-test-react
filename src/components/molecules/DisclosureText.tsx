@@ -19,7 +19,7 @@ export const DisclosureText = memo(() => {
       leaveFrom="transform scale-100 opacity-100"
       leaveTo="transform scale-95 opacity-0"
     >
-      <Disclosure.Panel className=" flex flex-col space-y-2 text-gray-500 break-words border-t border-b border-indigo-400 p-3">
+      <Disclosure.Panel className=" flex flex-col space-y-2 text-gray-500 break-words bg-indigo-100 rounded-md p-3">
         <div className="flex flex-row space-x-2">
           <UserInfo user={postUser(users)}>
             <CustomUserIcon user={postUser(users)} />
