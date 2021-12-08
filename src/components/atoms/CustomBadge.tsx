@@ -10,7 +10,7 @@ type Props = {
 export const CustomBadge: VFC<Props> = ({ user, color, bgColor }) => {
   return (
     <CheckCircleIcon
-      className={`absolute w-5 -bottom-1 -right-1 ${color} ${bgColor} rounded-full`}
+      className={`absolute w-5 -bottom-1 -right-1 ${color} ${bgColor} z-10 rounded-full`}
     />
   )
 }

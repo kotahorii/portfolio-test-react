@@ -212,6 +212,7 @@ export const DetailPost = memo(() => {
             <DisclosureText />
           </div>
           {/* <GoogleMapComponent post={detailPost} /> */}
+          <div className="h-96 w-screen bg-indigo-100"></div>
         </div>
         <CustomModal
           width="w-full"
