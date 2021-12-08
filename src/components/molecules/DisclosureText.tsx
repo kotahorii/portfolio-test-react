@@ -1,4 +1,5 @@
 import { Disclosure, Transition } from '@headlessui/react'
+import { Tooltip } from 'components/atoms/Tooltip'
 import { useDetailPost } from 'hooks/useDetailPost'
 import { useUsers } from 'hooks/useUsers'
 import { memo } from 'react'
@@ -20,7 +21,9 @@ export const DisclosureText = memo(() => {
     >
       <Disclosure.Panel className=" flex flex-col space-y-2 text-gray-500 break-words border-t border-b border-indigo-400 p-3">
         <div className="flex flex-row space-x-2">
-          <CustomUserIcon user={postUser(users)} />
+          <Tooltip tooltipText="test">
+            <CustomUserIcon user={postUser(users)} />
+          </Tooltip>
           <div className="h-14 py-2">
             <p>投稿者</p>
             <p className="font-semibold">{postUser(users)?.name}</p>
