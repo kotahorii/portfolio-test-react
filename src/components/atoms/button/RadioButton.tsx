@@ -27,7 +27,13 @@ export const RadioButton: VFC<Props> = memo(({ radioData }) => {
             checked={Number(selectedOption) === data.value}
             onChange={handleOptionChange}
           />
-          <span className="ml-2">{data.name}</span>
+          <span
+            className={`ml-2 ${
+              Number(selectedOption) === data.value && 'font-bold'
+            }`}
+          >
+            {data.name}
+          </span>
         </label>
       ))}
     </>
