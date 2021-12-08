@@ -30,14 +30,18 @@ export const EditUserText = memo(() => {
           : null}
       </ValidationMessage>
       <CustomLabel title="自己紹介" />
-      <CustomInput
-        name="introduction"
-        value={userData.introduction}
-        placeholder="自己紹介を入力"
-        onChange={changeAuthData}
-        isError={userData.name.length > 140}
-      />
-      <ValidationMessage isError={userData.name.length > 140}>
+      <div className="flex flex-row items-center space-x-1">
+        <CustomInput
+          name="introduction"
+          value={userData.introduction}
+          placeholder="自己紹介を入力してください"
+          onChange={changeAuthData}
+          isError={userData.introduction.length > 140}
+        />
+        <p>{userData.introduction.length}/140</p>
+      </div>
+
+      <ValidationMessage isError={userData.introduction.length > 140}>
         140文字以内で入力してください
       </ValidationMessage>
       <div className="flex flex-row items-center mb-2 justify-between">
