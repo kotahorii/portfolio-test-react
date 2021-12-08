@@ -18,7 +18,7 @@ export const Header = memo(() => {
             behavior: 'smooth',
           })
         }}
-        className="text-3xl p-2 hover:border-b-2 border-indigo-400 cursor-pointer"
+        className="text-3xl p-2 hover:border-b-3 hover:text-indigo-500 border-indigo-500 cursor-pointer"
       >
         Portfolio App
       </div>

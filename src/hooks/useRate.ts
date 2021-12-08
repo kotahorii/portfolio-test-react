@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { Post } from 'types/postType'
+import { User } from 'types/userType'
 import { useRateMutate } from './queries/useMutationRate'
 import { useQueryRates } from './queries/useQueryRates'
 import { useDetailPost } from './useDetailPost'
@@ -54,6 +55,13 @@ export const useRates = () => {
       ).toFixed(1),
     [postsRates]
   )
+  const getAllRate = useCallback(
+    (user: User | undefined) =>
+      usersPost(user)
+        ?.map((post) => rates?.filter((rate) => rate.postId === post.id).length)
+        .reduce((sum, cur) => (!sum || !cur ? 0 : sum + cur)),
+    [usersPost, rates]
+  )
   return {
     rate,
     rateCreate,
@@ -62,5 +70,6 @@ export const useRates = () => {
     averageRate,
     postsRates,
     isLoadingRates,
+    getAllRate,
   }
 }
