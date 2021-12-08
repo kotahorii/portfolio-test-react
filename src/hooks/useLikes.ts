@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { Post } from 'types/postType'
+import { User } from 'types/userType'
 import { useLikeMutation } from './queries/useMutationFavorite'
 import { useQueryFavorites } from './queries/useQueryFavorites'
 import { useMain } from './useMain'
@@ -7,7 +8,7 @@ import { useMain } from './useMain'
 export const useLikes = () => {
   const { createLikeMutation, deleteLikeMutation } = useLikeMutation()
   const { data: favorites, isLoading: isLoadingFavorites } = useQueryFavorites()
-  const { currentUser } = useMain()
+  const { currentUser, usersPost } = useMain()
 
   const postsFavorites = useCallback(
     (post: Post | undefined) =>
@@ -15,21 +16,21 @@ export const useLikes = () => {
     [favorites]
   )
   const isLiked = useCallback(
-    (post: Post) =>
+    (post: Post | undefined) =>
       postsFavorites(post) &&
       postsFavorites(post)!.filter((fav) => fav.userId === currentUser?.id)
         .length > 0,
     [postsFavorites, currentUser]
   )
   const toggleLike = useCallback(
-    (post: Post) => () => {
+    (post: Post | undefined) => () => {
       if (isLiked(post)) {
-        const fav = postsFavorites(post)!.filter(
+        const fav = postsFavorites(post)?.filter(
           (fav) => fav.userId === currentUser?.id
         )[0]
-        deleteLikeMutation.mutate({ id: fav.id, postId: post.id })
+        deleteLikeMutation.mutate({ id: fav?.id, postId: post?.id })
       } else {
-        createLikeMutation.mutate({ postId: post.id })
+        createLikeMutation.mutate({ postId: post?.id })
       }
     },
     [
@@ -40,5 +41,14 @@ export const useLikes = () => {
       postsFavorites,
     ]
   )
-  return { postsFavorites, isLiked, toggleLike, isLoadingFavorites }
+  const getAllFav = useCallback(
+    (user: User | undefined) =>
+      usersPost(user)
+        ?.map(
+          (post) => favorites?.filter((fav) => fav.postId === post.id).length
+        )
+        .reduce((sum, cur) => (!sum || !cur ? 0 : sum + cur)),
+    [usersPost, favorites]
+  )
+  return { postsFavorites, isLiked, toggleLike, isLoadingFavorites, getAllFav }
 }

@@ -70,7 +70,7 @@ export const useMyPage = () => {
     (id: number) => () => {
       deletePostMutation.mutate(id)
       closeDeletePostModal()
-      toast.success('Success to delete post!')
+      toast.success('投稿を削除しました')
     },
     [deletePostMutation, closeDeletePostModal]
   )

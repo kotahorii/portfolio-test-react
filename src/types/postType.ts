@@ -43,7 +43,7 @@ export type Favorite = typeof favoriteRes
 export type CreateFavorite = {
   postId: number | undefined
 }
-export type DeleteFavorite = CreateFavorite & { id: number }
+export type DeleteFavorite = CreateFavorite & { id: number | undefined }
 
 export type Rate = typeof rateRes
 export type CreateRate = {

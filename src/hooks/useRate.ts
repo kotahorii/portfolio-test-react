@@ -36,7 +36,7 @@ export const useRates = () => {
     (num: number) => () => {
       setRate(num)
       updateRateMutation.mutate({
-        id: myRate(detailPost)?.id!,
+        id: myRate(detailPost)?.id,
         postId: detailPost?.id,
         rate: num,
       })

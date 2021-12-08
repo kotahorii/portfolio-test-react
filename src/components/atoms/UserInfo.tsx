@@ -1,3 +1,5 @@
+import { useLikes } from 'hooks/useLikes'
+import { useMain } from 'hooks/useMain'
 import { memo, ReactNode, useRef, VFC } from 'react'
 import { User } from 'types/userType'
 
@@ -7,6 +9,8 @@ type Props = {
 }
 
 export const UserInfo: VFC<Props> = memo(({ user, children }) => {
+  const { getAllFav } = useLikes()
+  const { usersPost } = useMain()
   const ref = useRef<HTMLDivElement>(null)
   const handleMouseEnter = () => {
     if (!ref.current) return
@@ -28,7 +32,11 @@ export const UserInfo: VFC<Props> = memo(({ user, children }) => {
         onMouseLeave={handleMouseLeave}
       >
         <p className="text-lg">{user?.name}</p>
-        <p className='text-base'>{user?.introduction}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        <p className="text-base">{user?.introduction}</p>
+        <div className="flex flex-row">
+          <div>{usersPost(user)?.length}</div>
+          <div>{getAllFav(user)}</div>
+        </div>
       </div>
       <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         {children}

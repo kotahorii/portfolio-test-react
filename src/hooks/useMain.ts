@@ -119,7 +119,8 @@ export const useMain = () => {
   )
 
   const usersPost = useCallback(
-    (user: User) => posts?.filter((post) => post.userId === user.id),
+    (user: User | undefined) =>
+      posts?.filter((post) => post.userId === user?.id),
     [posts]
   )
 
@@ -171,6 +172,6 @@ export const useMain = () => {
     closeDeletePostModal,
     openDeletePostModal,
     deletePost,
-    validationCreatePost
+    validationCreatePost,
   }
 }
