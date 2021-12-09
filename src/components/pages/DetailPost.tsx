@@ -24,7 +24,7 @@ import { ChevronDownIcon } from '@heroicons/react/outline'
 import { ImageModal } from 'components/organisms/modal/ImageModal'
 import { ValidationMessage } from 'components/atoms/form/ValidationMessage'
 import { TextArea } from 'components/atoms/form/TextArea'
-// import { GoogleMapComponent } from 'components/organisms/map/GoogleMapComponent'
+import { GoogleMapComponent } from 'components/organisms/map/GoogleMapComponent'
 
 export const DetailPost = memo(() => {
   const { isLoadingUser, currentUser } = useMain()
@@ -227,7 +227,7 @@ export const DetailPost = memo(() => {
           <div className="md:w-6/12 w-8/12">
             <DisclosureText />
           </div>
-          {/* <GoogleMapComponent post={detailPost} /> */}
+          <GoogleMapComponent post={detailPost} />
           <div className="h-96 w-screen bg-gradient-to-tr from-blue-300 via-indigo-200 to-indigo-300 "></div>
         </div>
         <CustomModal
