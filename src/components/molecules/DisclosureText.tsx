@@ -1,7 +1,6 @@
 import { Disclosure, Transition } from '@headlessui/react'
 import { UserInfo } from 'components/atoms/UserInfo'
 import { useDetailPost } from 'hooks/useDetailPost'
-import { useMain } from 'hooks/useMain'
 import { useUsers } from 'hooks/useUsers'
 import { memo } from 'react'
 import { CustomUserIcon } from './userIcon/CustomUserIcon'

@@ -43,6 +43,7 @@ export const DetailPost = memo(() => {
     isOpenImageModal,
     openImageModal,
     closeImageModal,
+    openEditPostModal,
   } = useDetailPost()
   const {
     isOpenShopModal,
@@ -179,11 +180,12 @@ export const DetailPost = memo(() => {
                 onChange={commentChange}
                 isError={comment.length > 140}
               />
+              <ValidationMessage isError={comment.length > 140}>
+                コメントが長すぎます
+              </ValidationMessage>
               <div className="w-full flex flex-row items-center space-x-2 h-10">
-                <div className=" w-44">
-                  <ValidationMessage isError={comment.length > 140}>
-                    コメントが長すぎます
-                  </ValidationMessage>
+                <div className="flex items-center justify-center w-44">
+                  <CustomButton text="投稿を編集" onClick={openEditPostModal} />
                 </div>
                 <CustomRateInput />
                 <p>{comment.length}/140</p>
@@ -204,7 +206,7 @@ export const DetailPost = memo(() => {
               </div>
             </form>
           </div>
-          <Disclosure.Button className=" text-indigo-600 bg-gradient-to-tr from-blue-300 via-indigo-200 to-indigo-300 transition duration-700 hover:from-blue-400 hover:via-indigo-300 hover:to-indigo-400  md:w-1/2 w-8/12 rounded-lg border-indigo-400 border-2 shadow-md">
+          <Disclosure.Button className=" text-indigo-600 bg-indigo-100 hover:bg-indigo-200 md:w-1/2 w-8/12 rounded-lg border-indigo-400 border-2 shadow-md">
             <div
               onClick={toggleOpenDisclosure}
               className="flex flex-row justify-center space-x-2 py-2"

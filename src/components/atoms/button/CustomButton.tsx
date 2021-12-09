@@ -6,7 +6,7 @@ type Props = {
   hoverColor?: string
   text: string
   type?: 'button' | 'submit' | 'reset'
-  disabled: boolean
+  disabled?: boolean
   loading?: boolean
 }
 

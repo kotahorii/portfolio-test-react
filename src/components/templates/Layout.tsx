@@ -9,6 +9,8 @@ import { Header } from './Header'
 import { CreateOrEditPost } from 'components/organisms/modal/CreateOrEditPost'
 import { DeletePostModal } from 'components/organisms/modal/DeletePostModal'
 import { useMain } from 'hooks/useMain'
+import { useAppSelector } from 'app/hooks'
+import { selectEditedPost } from 'slices/postSlice'
 
 type Props = {
   children: ReactNode
@@ -29,6 +31,7 @@ export const Layout: VFC<Props> = memo(({ children }) => {
     closeCreatePostModal,
   } = useHeader()
   const { isOpenDeletePostModal, closeDeletePostModal, detailPost } = useMain()
+  const editedPost = useAppSelector(selectEditedPost)
   return (
     <Menu>
       <div className="flex flex-col relative items-center text-gray-500 text-sm font-mono">
@@ -48,7 +51,7 @@ export const Layout: VFC<Props> = memo(({ children }) => {
         <CustomModal
           width="w-full"
           mdWidth="md:w-192"
-          title="新規投稿"
+          title={`${editedPost.id === 0 ? '新規投稿' : '投稿を編集'}`}
           isOpen={isOpenCreatePostModal}
           closeModal={closeCreatePostModal}
         >
