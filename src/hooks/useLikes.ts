@@ -47,7 +47,7 @@ export const useLikes = () => {
         ?.map(
           (post) => favorites?.filter((fav) => fav.postId === post.id).length
         )
-        .reduce((sum, cur) => (!sum || !cur ? 0 : sum + cur)),
+        .reduce((sum, cur) => sum! + cur!),
     [usersPost, favorites]
   )
   return { postsFavorites, isLiked, toggleLike, isLoadingFavorites, getAllFav }

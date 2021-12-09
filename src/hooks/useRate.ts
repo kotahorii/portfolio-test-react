@@ -59,7 +59,7 @@ export const useRates = () => {
     (user: User | undefined) =>
       usersPost(user)
         ?.map((post) => rates?.filter((rate) => rate.postId === post.id).length)
-        .reduce((sum, cur) => (!sum || !cur ? 0 : sum + cur)),
+        .reduce((sum, cur) => sum! + cur!),
     [usersPost, rates]
   )
   return {
