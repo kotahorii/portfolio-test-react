@@ -185,7 +185,12 @@ export const DetailPost = memo(() => {
               </ValidationMessage>
               <div className="w-full flex flex-row items-center space-x-2 h-10">
                 <div className="flex items-center justify-center w-44">
-                  <CustomButton text="投稿を編集" onClick={openEditPostModal} />
+                  {detailPost?.userId === currentUser?.id && (
+                    <CustomButton
+                      text="投稿を編集"
+                      onClick={openEditPostModal}
+                    />
+                  )}
                 </div>
                 <CustomRateInput />
                 <p>{comment.length}/140</p>
