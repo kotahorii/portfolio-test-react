@@ -43,11 +43,14 @@ export const useLikes = () => {
   )
   const getAllFav = useCallback(
     (user: User | undefined) =>
-      usersPost(user)
-        ?.map(
-          (post) => favorites?.filter((fav) => fav.postId === post.id).length
-        )
-        .reduce((sum, cur) => sum! + cur!),
+      usersPost(user) === []
+        ? 0
+        : usersPost(user)
+            ?.map(
+              (post) =>
+                favorites?.filter((fav) => fav.postId === post.id).length
+            )
+            .reduce((sum, cur) => sum! + cur!, 0),
     [usersPost, favorites]
   )
   return { postsFavorites, isLiked, toggleLike, isLoadingFavorites, getAllFav }

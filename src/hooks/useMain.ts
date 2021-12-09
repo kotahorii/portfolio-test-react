@@ -19,6 +19,7 @@ import { User } from 'types/userType'
 import { useMutationPosts } from './queries/useMutationPosts'
 import { useQueryCurrentUser } from './queries/useQueryCurrentUser'
 import { useQueryPosts } from './queries/useQueryPosts'
+import { useDetailPost } from './useDetailPost'
 import { useHeader } from './useHeader'
 
 export const useMain = () => {
@@ -26,10 +27,12 @@ export const useMain = () => {
   const { data: posts, isLoading: isLoadingPosts } = useQueryPosts()
   const dispatch = useAppDispatch()
   const detailUserPost = useAppSelector(selectDetailPost)
+  const { detailPost } = useDetailPost()
   const editedPost = useAppSelector(selectEditedPost)
   const latAndLng = useAppSelector(selectLatAndLng)
   const isOpenDeletePostModal = useAppSelector(selectIsOpenDeletePostModal)
-  const { createPostMutation, deletePostMutation } = useMutationPosts()
+  const { createPostMutation, updatePostMutation, deletePostMutation } =
+    useMutationPosts()
   const postPreview = useAppSelector(selectPostPreview)
   const { closeCreatePostModal } = useHeader()
 
@@ -89,6 +92,7 @@ export const useMain = () => {
 
   const createFormData = useCallback((): CreatePostFormData => {
     const formData = new FormData()
+    formData.append('id', String(editedPost.id))
     formData.append('title', editedPost.title)
     formData.append('body', editedPost.body)
     formData.append('prefecture', editedPost.prefecture)
@@ -105,12 +109,25 @@ export const useMain = () => {
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault()
       const data = createFormData()
-      createPostMutation.mutate(data)
-      toast.success('投稿に成功しました。')
+      if (editedPost.id === 0) {
+        createPostMutation.mutate(data)
+        toast.success('投稿に成功しました。')
+      } else {
+        updatePostMutation.mutate({ id: detailPost?.id, formData: data })
+        toast.success('編集に成功しました')
+      }
       closeCreatePostModal()
       dispatch(resetEditPost())
     },
-    [createFormData, createPostMutation, dispatch, closeCreatePostModal]
+    [
+      createFormData,
+      createPostMutation,
+      updatePostMutation,
+      dispatch,
+      closeCreatePostModal,
+      editedPost.id,
+      detailPost?.id,
+    ]
   )
 
   const usersPost = useCallback(
