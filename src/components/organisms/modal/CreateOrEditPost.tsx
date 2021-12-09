@@ -119,7 +119,7 @@ export const CreateOrEditPost = memo(() => {
           <CustomButton
             disabled={validationCreatePost()}
             type="submit"
-            text="投稿"
+            text={`${editedPost.id === 0 ? '投稿' : '編集'}`}
           />
         </div>
       </form>

@@ -3,7 +3,8 @@ import { useMain } from 'hooks/useMain'
 import { memo } from 'react'
 
 export const DeletePostModal = memo(() => {
-  const { detailPost, deletePost, closeDeletePostModal } = useMain()
+  const { detailUserPost, deletePost, closeDeletePostModal } = useMain()
+
   return (
     <div className="flex flex-col mt-5 space-y-4 md:w-80 w-72">
       <p>本当に削除しますか?</p>
@@ -18,7 +19,7 @@ export const DeletePostModal = memo(() => {
             <p>キャンセル</p>
           </div>
           <div
-            onClick={deletePost(detailPost.id)}
+            onClick={deletePost(detailUserPost.id)}
             className="flex flex-row hover:bg-gray-200 p-2 rounded-lg cursor-pointer"
           >
             <TrashIcon className="w-5" />

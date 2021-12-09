@@ -7,13 +7,7 @@ import { useUsers } from './useUsers'
 import { Comment } from 'types/postType'
 import { useQueryDetailPost } from './queries/useQueryDetailPost'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
-import {
-  selectEditedPost,
-  selectIsOpenImageModal,
-  setEditPost,
-  setIsOpenCreatePostModal,
-  setIsOpenImageModal,
-} from 'slices/postSlice'
+import { selectIsOpenImageModal, setIsOpenImageModal } from 'slices/postSlice'
 import { User } from 'types/userType'
 
 export const useDetailPost = () => {
@@ -30,7 +24,6 @@ export const useDetailPost = () => {
   } = useQueryDetailPost(Number(id))
   const [comment, setComment] = useState('')
   const [openDisclosure, setOpenDisClosure] = useState(false)
-  const editedPost = useAppSelector(selectEditedPost)
 
   const commentChange = useCallback(
     (e: ChangeEvent<HTMLTextAreaElement>) => setComment(e.target.value),
@@ -77,28 +70,11 @@ export const useDetailPost = () => {
       users?.filter((user) => user.id === detailPost?.userId)[0],
     [detailPost]
   )
-  const openEditPostModal = useCallback(() => {
-    dispatch(setIsOpenCreatePostModal(true))
-    if (detailPost) {
-      dispatch(
-        setEditPost({
-          ...editedPost,
-          id: detailPost.id,
-          title: detailPost.title,
-          body: detailPost.body,
-          prefecture: detailPost.prefecture,
-          city: detailPost.city,
-          town: detailPost.town,
-        })
-      )
-    }
-  }, [dispatch, detailPost, editedPost])
 
   return {
     comment,
     commentChange,
     openDisclosure,
-    openEditPostModal,
     toggleOpenDisclosure,
     detailPost,
     isRefechingDetailPost,

@@ -25,14 +25,14 @@ export const useMain = () => {
   const { data: currentUser, isLoading: isLoadingUser } = useQueryCurrentUser()
   const { data: posts, isLoading: isLoadingPosts } = useQueryPosts()
   const dispatch = useAppDispatch()
-  const detailPost = useAppSelector(selectDetailPost)
+  const detailUserPost = useAppSelector(selectDetailPost)
   const editedPost = useAppSelector(selectEditedPost)
   const latAndLng = useAppSelector(selectLatAndLng)
   const isOpenDeletePostModal = useAppSelector(selectIsOpenDeletePostModal)
-  const { createPostMutation, updatePostMutation, deletePostMutation } =
-    useMutationPosts()
+  const { createPostMutation, deletePostMutation } = useMutationPosts()
   const postPreview = useAppSelector(selectPostPreview)
   const { closeCreatePostModal } = useHeader()
+
   const formatDate = (date: string) => {
     const formedDate = new Date(date)
     const y = formedDate.getFullYear()
@@ -105,23 +105,12 @@ export const useMain = () => {
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault()
       const data = createFormData()
-      if (editedPost.id === 0) {
-        createPostMutation.mutate(data)
-        toast.success('投稿に成功しました。')
-      } else {
-        updatePostMutation.mutate({ id: editedPost.id, formData: data })
-      }
+      createPostMutation.mutate(data)
+      toast.success('投稿に成功しました。')
       closeCreatePostModal()
       dispatch(resetEditPost())
     },
-    [
-      createFormData,
-      createPostMutation,
-      updatePostMutation,
-      dispatch,
-      closeCreatePostModal,
-      editedPost.id,
-    ]
+    [createFormData, createPostMutation, dispatch, closeCreatePostModal]
   )
 
   const usersPost = useCallback(
@@ -162,7 +151,6 @@ export const useMain = () => {
 
   return {
     posts,
-    detailPost,
     postPreview,
     currentUser,
     isLoadingPosts,
@@ -180,5 +168,6 @@ export const useMain = () => {
     openDeletePostModal,
     deletePost,
     validationCreatePost,
+    detailUserPost,
   }
 }

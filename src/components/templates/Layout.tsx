@@ -30,7 +30,8 @@ export const Layout: VFC<Props> = memo(({ children }) => {
     isOpenCreatePostModal,
     closeCreatePostModal,
   } = useHeader()
-  const { isOpenDeletePostModal, closeDeletePostModal, detailPost } = useMain()
+  const { isOpenDeletePostModal, closeDeletePostModal, detailUserPost } =
+    useMain()
   const editedPost = useAppSelector(selectEditedPost)
   return (
     <Menu>
@@ -60,7 +61,7 @@ export const Layout: VFC<Props> = memo(({ children }) => {
         <CustomModal
           isOpen={isOpenDeletePostModal}
           closeModal={closeDeletePostModal}
-          title={detailPost.title}
+          title={detailUserPost.title}
         >
           <DeletePostModal />
         </CustomModal>

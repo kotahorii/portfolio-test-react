@@ -1,12 +1,7 @@
 import Cookies from 'js-cookie'
 import client from 'lib/client'
 import { useMutation, useQueryClient } from 'react-query'
-import { CreatePostFormData, Post, UpdatePostFormData } from 'types/postType'
-
-type UpdateData = {
-  id: number
-  formData: UpdatePostFormData
-}
+import { CreatePostFormData, Post } from 'types/postType'
 
 export const useMutationPosts = () => {
   const queryClient = useQueryClient()
@@ -52,49 +47,6 @@ export const useMutationPosts = () => {
       },
     }
   )
-  const updatePostMutation = useMutation(
-    (data: UpdateData) => client.put(`posts/${data.id}`, data.formData),
-    {
-      onSuccess: (res, variable) => {
-        const previousPosts = queryClient.getQueryData<Post[]>('posts')
-        const previousFavPosts = queryClient.getQueryData<Post[]>('postsFav')
-        const previousRatePosts = queryClient.getQueryData<Post[]>('postsRate')
-        const previousRateAve = queryClient.getQueryData<Post[]>('postsRateAve')
-        if (previousPosts) {
-          queryClient.setQueryData<Post[]>(
-            'posts',
-            previousPosts.map((post) =>
-              post.id === variable.id ? res.data : post
-            )
-          )
-        }
-        if (previousFavPosts) {
-          queryClient.setQueryData<Post[]>(
-            'postsFav',
-            previousFavPosts.map((post) =>
-              post.id === variable.id ? res.data : post
-            )
-          )
-        }
-        if (previousRatePosts) {
-          queryClient.setQueryData<Post[]>(
-            'postsRate',
-            previousRatePosts.map((post) =>
-              post.id === variable.id ? res.data : post
-            )
-          )
-        }
-        if (previousRateAve) {
-          queryClient.setQueryData<Post[]>(
-            'postsRateAve',
-            previousRateAve.map((post) =>
-              post.id === variable.id ? res.data : post
-            )
-          )
-        }
-      },
-    }
-  )
   const deletePostMutation = useMutation(
     (id: number) => client.delete(`posts/${id}`),
     {
@@ -131,5 +83,5 @@ export const useMutationPosts = () => {
     }
   )
 
-  return { createPostMutation, updatePostMutation, deletePostMutation }
+  return { createPostMutation, deletePostMutation }
 }

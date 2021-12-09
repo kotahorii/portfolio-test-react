@@ -43,7 +43,6 @@ export const DetailPost = memo(() => {
     isOpenImageModal,
     openImageModal,
     closeImageModal,
-    openEditPostModal,
   } = useDetailPost()
   const {
     isOpenShopModal,
@@ -180,12 +179,11 @@ export const DetailPost = memo(() => {
                 onChange={commentChange}
                 isError={comment.length > 140}
               />
-              <ValidationMessage isError={comment.length > 140}>
-                コメントが長すぎます
-              </ValidationMessage>
               <div className="w-full flex flex-row items-center space-x-2 h-10">
                 <div className="flex items-center justify-center w-44">
-                  <CustomButton text="投稿を編集" onClick={openEditPostModal} />
+                  <ValidationMessage isError={comment.length > 140}>
+                    コメントが長すぎます
+                  </ValidationMessage>
                 </div>
                 <CustomRateInput />
                 <p>{comment.length}/140</p>
