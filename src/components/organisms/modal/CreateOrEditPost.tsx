@@ -67,18 +67,24 @@ export const CreateOrEditPost = memo(() => {
               <div className="flex-1">
                 <div className="flex flex-row">
                   <CustomLabel title="本文" />
-                  <p className="ml-3">{editedPost.body.length}/140</p>
+                  <p className="ml-3">
+                    {editedPost.body !== null ? editedPost.body.length : 0}/140
+                  </p>
                 </div>
                 <TextArea
                   value={editedPost.body}
                   placeholder="本文を入力"
                   onChange={changeBody}
-                  isError={editedPost.body.length > 140}
+                  isError={
+                    editedPost.body !== null && editedPost.body.length > 140
+                  }
                 />
               </div>
             </div>
           </div>
-          <ValidationMessage isError={editedPost.body.length > 140}>
+          <ValidationMessage
+            isError={editedPost.body !== null && editedPost.body.length > 140}
+          >
             140字以内で入力してください
           </ValidationMessage>
           <div className="flex md:flex-row flex-col w-full md:space-x-2">

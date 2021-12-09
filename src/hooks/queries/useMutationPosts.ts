@@ -53,7 +53,14 @@ export const useMutationPosts = () => {
     }
   )
   const updatePostMutation = useMutation(
-    (data: UpdateData) => client.put(`posts/${data.id}`, data.formData),
+    (data: UpdateData) =>
+      client.put(`posts/${data.id}`, data.formData, {
+        headers: {
+          'access-token': Cookies.get('_access_token') as string,
+          client: Cookies.get('_client') as string,
+          uid: Cookies.get('_uid') as string,
+        },
+      }),
     {
       onSuccess: (res, variable) => {
         const previousPosts = queryClient.getQueryData<Post[]>('posts')

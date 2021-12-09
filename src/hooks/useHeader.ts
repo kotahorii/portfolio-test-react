@@ -15,6 +15,7 @@ import {
 import {
   selectIsOpenEditUserModal,
   setIsOpenEditUserModal,
+  setPreview,
   setUserData,
 } from 'slices/userSlice'
 import { MenuType } from 'types/postType'
@@ -54,6 +55,7 @@ export const useHeader = () => {
 
   const closeCreatePostModal = useCallback(() => {
     dispatch(resetEditPost())
+    dispatch(setPreview(''))
     dispatch(setIsOpenCreatePostModal(false))
   }, [dispatch])
 
