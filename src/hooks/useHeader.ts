@@ -16,7 +16,6 @@ import {
 import {
   selectIsOpenEditUserModal,
   setIsOpenEditUserModal,
-  setPreview,
   setUserData,
 } from 'slices/userSlice'
 import { MenuType } from 'types/postType'
