@@ -118,6 +118,7 @@ export const useMain = () => {
       }
       closeCreatePostModal()
       dispatch(resetEditPost())
+      dispatch(resetPostPreview())
     },
     [
       createFormData,
@@ -127,6 +128,7 @@ export const useMain = () => {
       closeCreatePostModal,
       editedPost.id,
       detailPost?.id,
+      resetPostPreview,
     ]
   )
 
