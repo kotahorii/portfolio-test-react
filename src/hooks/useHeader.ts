@@ -11,6 +11,7 @@ import {
   resetEditPost,
   selectIsOpenCreatePostModal,
   setIsOpenCreatePostModal,
+  setPostPreview,
 } from 'slices/postSlice'
 import {
   selectIsOpenEditUserModal,
@@ -55,8 +56,8 @@ export const useHeader = () => {
 
   const closeCreatePostModal = useCallback(() => {
     dispatch(resetEditPost())
-    dispatch(setPreview(''))
     dispatch(setIsOpenCreatePostModal(false))
+    dispatch(setPostPreview(''))
   }, [dispatch])
 
   const myPageNavigate = useCallback(() => {

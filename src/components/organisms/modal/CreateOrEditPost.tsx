@@ -26,7 +26,7 @@ export const CreateOrEditPost = memo(() => {
   } = useApi()
   return (
     <>
-      <form onSubmit={submitPost} className="px-2">
+      <form onSubmit={submitPost} className="p-3">
         <div className=" flex flex-col space-y-3 mt-2">
           <div className="flex md:flex-row flex-col w-full md:space-x-2">
             <div className="flex-1 space-y-1">
@@ -120,7 +120,7 @@ export const CreateOrEditPost = memo(() => {
             </div>
           </div>
         </div>
-        <div className="w-full h-64 flex flex-col space-y-3 mt-3 items-center">
+        <div className="w-full h-64 flex flex-col space-y-4 mt-3 items-center">
           <PostImageInput />
           <CustomButton
             disabled={validationCreatePost()}
